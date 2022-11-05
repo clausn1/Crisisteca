@@ -30,7 +30,7 @@ public class Registrarse extends JFrame{
 		this.setBounds(100, 100, 1000, 700);
 		this.setSize(400,400);
 //		this.setSize( 600, 300 );
-		getContentPane().setLayout(new FlowLayout());
+		getContentPane().setLayout(new FlowLayout(2));
 		this.setLocationRelativeTo(null);
 		this.setTitle("Registrarse");
 
@@ -39,15 +39,12 @@ public class Registrarse extends JFrame{
 		JPanel pnlIzquierda = new JPanel();
 		JPanel pnlDerecha = new JPanel();
 	
-		//espacios en blanco
-		//EmptyBorder espacio = new EmptyBorder(5,20,5,20);
 		
 		pnlMain.setLayout(new BorderLayout());
-//		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
-//		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-		pnlIzquierda.setLayout(new GridLayout(10,1));
-//		pnlIzquierda.setSize(41, 41);;
+		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
+		pnlIzquierda.setLayout(new GridLayout(7,7));
+//		pnlIzquierda.setSize(41, 41);;
 
 		JLabel lblNombre = new JLabel("Nombre: ");
 		JLabel lblApellidos = new JLabel("Apellidos: ");
