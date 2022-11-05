@@ -1,8 +1,10 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -25,10 +27,6 @@ public class RegistrarseInstitucion extends JFrame{
 	}
 	
 	private JTextField tfNombre;
-	private JTextField tfApellidos;
-	private JTextField tfDNI;
-	private JTextField tfDireccion;
-	private JTextField tfCodigoPostal;
 	private JTextField tfEmail;
 	private JTextField tfTelefono;
 
@@ -37,12 +35,12 @@ public class RegistrarseInstitucion extends JFrame{
 		this.setBounds(100, 100, 1000, 700);
 		this.setSize(400,400);
 //		this.setSize( 600, 300 );
-		getContentPane().setLayout(new FlowLayout());
+		getContentPane().setLayout(new FlowLayout(2));
 		this.setLocationRelativeTo(null);
 		this.setTitle("Registrarse Institucion");
 
 		/// Panel de la Izquierda
-		JPanel pnlMain = new JPanel();
+		JPanel pnlMain = new JPanel(new FlowLayout(FlowLayout.CENTER, 100, 5));
 		JPanel pnlIzquierda = new JPanel();
 		JPanel pnlDerecha = new JPanel();
 	
@@ -52,13 +50,14 @@ public class RegistrarseInstitucion extends JFrame{
 		pnlMain.setLayout(new BorderLayout());
 //		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 //		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-		pnlIzquierda.setLayout(new GridLayout(10,1));
+		pnlIzquierda.setLayout(new GridLayout(3,3));
 //		pnlIzquierda.setSize(41, 41);;
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
 
 		JLabel lblNombre = new JLabel("Nombre: ");
 		JLabel lblEmail = new JLabel("E-mail: ");
 		JLabel lblTelefono = new JLabel("Teléfono: ");
+		
 		
 		pnlIzquierda.add(lblNombre);
 		pnlIzquierda.add(lblEmail);
@@ -68,6 +67,9 @@ public class RegistrarseInstitucion extends JFrame{
 		tfNombre = new JTextField( "", 20);
 		tfEmail = new JTextField( "", 20);
 		tfTelefono= new JTextField("",20);
+		
+		
+
 		
 		pnlDerecha.add(tfNombre);
 		pnlDerecha.add(tfEmail);
