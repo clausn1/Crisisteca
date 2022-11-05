@@ -37,7 +37,7 @@ public class CiudadanoOInstiticion extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 CiudadanoOInstiticion().dispose();
+				new CiudadanoOInstiticion().dispose(); //HAY QUE ARREGLARLO
 				new Registrarse().setVisible(true);
 
 				
