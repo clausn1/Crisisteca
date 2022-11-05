@@ -29,7 +29,8 @@ public class RegistrarseInstitucion extends JFrame{
 	private JTextField tfNombre;
 	private JTextField tfEmail;
 	private JTextField tfTelefono;
- //int x= 3
+	
+	
 	public RegistrarseInstitucion() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1000, 700);
