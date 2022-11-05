@@ -38,6 +38,7 @@ public class Registrarse extends JFrame{
 		JPanel pnlMain = new JPanel();
 		JPanel pnlIzquierda = new JPanel();
 		JPanel pnlDerecha = new JPanel();
+		JPanel pnlAbajo = new JPanel();
 	
 		
 		pnlMain.setLayout(new BorderLayout());
@@ -53,18 +54,16 @@ public class Registrarse extends JFrame{
 		JLabel lblCodigoPostal = new JLabel("Código Postal: ");
 		JLabel lblEmail = new JLabel("E-mail: ");
 		JLabel lblTelefono = new JLabel("Teléfono: ");
-		JLabel lblCondicionesUso = new JLabel();
 		
-		pnlIzquierda.add(lblNombre);
 		
+		pnlIzquierda.add(lblNombre);		
 		pnlIzquierda.add(lblApellidos);
 		pnlIzquierda.add(lblDNI);
 		pnlIzquierda.add(lblDireccion);
 		pnlIzquierda.add(lblCodigoPostal);
 		pnlIzquierda.add(lblEmail);
 		pnlIzquierda.add(lblTelefono);
-		pnlIzquierda.add(lblCondicionesUso);
-
+		
 		/// Panel de la Derecha
 		tfNombre = new JTextField( "", 20);
 		tfApellidos= new JTextField("",20);
@@ -83,7 +82,10 @@ public class Registrarse extends JFrame{
 		pnlDerecha.add(tfTelefono);
 
 		
-		///Panel central
+		///Panel de condiciones de uso
+		JLabel lblCondicionesUso = new JLabel();
+		pnlAbajo.add(lblCondicionesUso);
+
 
 		/// Panel principal
 //		pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.X_AXIS));
@@ -94,7 +96,7 @@ public class Registrarse extends JFrame{
 		
 		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
 		pnlMain.add(pnlDerecha, BorderLayout.EAST);
-//
+		pnlMain.add(pnlAbajo, BorderLayout.SOUTH);
 		add(pnlMain, BorderLayout.NORTH);
 
 
