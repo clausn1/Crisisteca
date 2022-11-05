@@ -39,6 +39,9 @@ public class Registrarse extends JFrame{
 		JPanel pnlIzquierda = new JPanel();
 		JPanel pnlDerecha = new JPanel();
 	
+		//espacios en blanco
+		//EmptyBorder espacio = new EmptyBorder(5,20,5,20);
+		
 		pnlMain.setLayout(new BorderLayout());
 //		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 //		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
@@ -56,6 +59,7 @@ public class Registrarse extends JFrame{
 		JLabel lblCondicionesUso = new JLabel();
 		
 		pnlIzquierda.add(lblNombre);
+		
 		pnlIzquierda.add(lblApellidos);
 		pnlIzquierda.add(lblDNI);
 		pnlIzquierda.add(lblDireccion);
@@ -65,15 +69,21 @@ public class Registrarse extends JFrame{
 		pnlIzquierda.add(lblCondicionesUso);
 
 		/// Panel de la Derecha
-		tfNombre = new JTextField( "", 16 );
+		tfNombre = new JTextField( "", 20);
+		tfApellidos= new JTextField("",20);
+		tfDNI = new JTextField( "", 20);
+		tfDireccion= new JTextField("",20);
+		tfCodigoPostal= new JTextField("",20);
+		tfEmail = new JTextField( "", 20);
+		tfTelefono= new JTextField("",20);
 		
 		pnlDerecha.add(tfNombre);
-//		pnlDerecha.add(lblApellidos);
-//		pnlDerecha.add(lblDNI);
-//		pnlDerecha.add(lblDireccion);
-//		pnlDerecha.add(lblCodigoPostal);
-//		pnlDerecha.add(lblEmail);
-//		pnlDerecha.add(lblTelefono);
+		pnlDerecha.add(tfApellidos);
+		pnlDerecha.add(tfDNI);
+		pnlDerecha.add(tfDireccion);
+		pnlDerecha.add(tfCodigoPostal);
+		pnlDerecha.add(tfEmail);
+		pnlDerecha.add(tfTelefono);
 
 		
 		///Panel central
