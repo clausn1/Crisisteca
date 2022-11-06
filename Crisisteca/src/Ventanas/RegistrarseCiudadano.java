@@ -3,14 +3,14 @@ package Ventanas;
 import java.awt.*;
 import javax.swing.*;
 
-public class Registrarse extends JFrame{
+public class RegistrarseCiudadano extends JFrame{
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                new Registrarse();
+                new RegistrarseCiudadano();
             }
             
 		});
@@ -25,7 +25,7 @@ public class Registrarse extends JFrame{
 	private JTextField tfEmail;
 	private JTextField tfTelefono;
 
-	public Registrarse() {
+	public RegistrarseCiudadano() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1000, 700);
 		this.setSize(400,400);
