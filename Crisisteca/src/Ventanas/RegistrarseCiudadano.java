@@ -1,7 +1,12 @@
 package Ventanas;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
+
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 
 public class RegistrarseCiudadano extends JFrame{
 
@@ -26,36 +31,42 @@ public class RegistrarseCiudadano extends JFrame{
 	private JTextField tfTelefono;
 
 	public RegistrarseCiudadano() {
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setBounds(100, 100, 1000, 700);
-		this.setSize(400,400);
-//		this.setSize( 600, 300 );
-		getContentPane().setLayout(new FlowLayout(2));
-		this.setLocationRelativeTo(null);
-		this.setTitle("Registrarse");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Registrarse como Ciudadano");
+		setBounds(100, 100, 1000, 700);
+		setSize(600,400);
+		setResizable(false);
+		getContentPane().setLayout(new FlowLayout());
+		setLocationRelativeTo(null);
 
 		/// Panel de la Izquierda
 		JPanel pnlMain = new JPanel();
 		JPanel pnlIzquierda = new JPanel();
 		JPanel pnlDerecha = new JPanel();
 		JPanel pnlAbajo = new JPanel();
-	
+//		JPanel pnlAbajoIzquierda = new JPanel();
+//		JPanel pnlAbajoDerecha = new JPanel();
+
 		
 		pnlMain.setLayout(new BorderLayout());
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-		pnlIzquierda.setLayout(new GridLayout(7,7));
-//		pnlIzquierda.setSize(41, 41);;
 
 		JLabel lblNombre = new JLabel("Nombre: ");
+		lblNombre.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblApellidos = new JLabel("Apellidos: ");
+		lblApellidos.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblDNI = new JLabel("DNI: ");
+		lblDNI.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblDireccion = new JLabel("Dirección: ");
+		lblDireccion.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblCodigoPostal = new JLabel("Código Postal: ");
+		lblCodigoPostal.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblEmail = new JLabel("E-mail: ");
+		lblEmail.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblTelefono = new JLabel("Teléfono: ");
-		
-		
+		lblTelefono.setFont(new Font("Arial", Font.PLAIN, 30));
+
 		pnlIzquierda.add(lblNombre);		
 		pnlIzquierda.add(lblApellidos);
 		pnlIzquierda.add(lblDNI);
@@ -65,14 +76,76 @@ public class RegistrarseCiudadano extends JFrame{
 		pnlIzquierda.add(lblTelefono);
 		
 		/// Panel de la Derecha
-		tfNombre = new JTextField( "", 20);
-		tfApellidos= new JTextField("",20);
-		tfDNI = new JTextField( "", 20);
-		tfDireccion= new JTextField("",20);
-		tfCodigoPostal= new JTextField("",20);
-		tfEmail = new JTextField( "", 20);
-		tfTelefono= new JTextField("",20);
+		tfNombre = new JTextField(20);
+		tfApellidos= new JTextField(20);
+		tfDNI = new JTextField(20);
+		tfDireccion= new JTextField(20);
+		tfCodigoPostal= new JTextField(20);
+		tfEmail = new JTextField(20);
+		tfTelefono= new JTextField(20);
 		
+		///Es otra manera de hacerlo, desactivando el textfield
+//		tfCodigoPostal.addKeyListener(new KeyAdapter() { //https://www.tutorialspoint.com/how-can-we-make-jtextfield-accept-only-numbers-in-java
+//		public void keyPressed(KeyEvent p) {
+//            if (p.getKeyChar() >= '0' && p.getKeyChar() <= '9' || p.getKeyChar()==KeyEvent.VK_BACK_SPACE) {
+//            	tfCodigoPostal.setEditable(true);
+//            } else {
+//            	tfCodigoPostal.setEditable(false);
+//            }
+//         }
+//		public void keyTyped(KeyEvent t) {
+//	        if (tfCodigoPostal.getText().length() >= 5 )
+//	            t.consume(); 
+//		}
+//      	
+//	});
+		
+		tfCodigoPostal.addKeyListener(new KeyAdapter() { //https://www.tutorialspoint.com/how-can-we-make-jtextfield-accept-only-numbers-in-java
+		public void keyPressed(KeyEvent p) {
+            if (p.getKeyChar() >= '0' && p.getKeyChar() <= '9' || p.getKeyChar()==KeyEvent.VK_BACK_SPACE) {
+            	tfCodigoPostal.setEditable(true);
+
+            } else {
+            	tfCodigoPostal.setEditable(false);
+                JOptionPane.showMessageDialog(null, "Recuerde no incluir letras");
+           	
+            }
+         }
+		
+		public void keyTyped(KeyEvent t) {
+	        if (tfCodigoPostal.getText().length() >= 5 )
+	            t.consume(); 
+		}
+      	
+	});
+		
+
+		tfTelefono.addKeyListener(new KeyAdapter() { //https://www.tutorialspoint.com/how-can-we-make-jtextfield-accept-only-numbers-in-java
+		public void keyPressed(KeyEvent p) {
+            if (p.getKeyChar() >= '0' && p.getKeyChar() <= '9' || p.getKeyChar()==KeyEvent.VK_BACK_SPACE) {
+            	tfTelefono.setEditable(true);
+            } else {
+            	tfTelefono.setEditable(false);
+                JOptionPane.showMessageDialog(null, "Recuerde no incluir letras");
+
+            }
+         }
+		public void keyTyped(KeyEvent t) {
+	        if (tfTelefono.getText().length() >= 9 )
+	            t.consume(); 
+		}
+      	
+	});
+
+			
+		tfNombre.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfApellidos.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfDNI.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfDireccion.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfCodigoPostal.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfEmail.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfTelefono.setFont(new Font("Arial", Font.PLAIN, 20));
+
 		pnlDerecha.add(tfNombre);
 		pnlDerecha.add(tfApellidos);
 		pnlDerecha.add(tfDNI);
@@ -83,30 +156,28 @@ public class RegistrarseCiudadano extends JFrame{
 
 		
 		///Panel de condiciones de uso
-		JLabel lblCondicionesUso = new JLabel();
-		pnlAbajo.add(lblCondicionesUso);
+        JCheckBox cboxCondicionesUso = new JCheckBox("Acepto los términos de uso");
+        cboxCondicionesUso.setFont(new Font("Arial", Font.PLAIN, 20));
+        pnlAbajo.add(cboxCondicionesUso);
 
+        ///Mostrar error
 
+        
+        
 		/// Panel principal
-//		pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.X_AXIS));
-//		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-//		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
-//		pnlMain.add(pnlDerecha, BorderLayout.EAST);
-//		pnlMain.add(pnlCentro, BorderLayout.CENTER);
-		
 		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
 		pnlMain.add(pnlDerecha, BorderLayout.EAST);
 		pnlMain.add(pnlAbajo, BorderLayout.SOUTH);
-		add(pnlMain, BorderLayout.NORTH);
+		getContentPane().add(pnlMain);
 
 
 		setVisible(true);
 		
 		
 		
+		
+		
 	}
-	
-	
 	
 
 }
