@@ -1,15 +1,14 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -54,6 +53,7 @@ public class RegistrarseInstitucion extends JFrame{
 		pnlMain.setLayout(new BorderLayout());
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
+		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.Y_AXIS));
 		
 		/// Panel de la Izquierda
 		JLabel lblNombre = new JLabel("Nombre: ");
@@ -98,12 +98,19 @@ public class RegistrarseInstitucion extends JFrame{
 		pnlDerecha.add(tfTelefono);
 
 		
-		///Panel central
+		///Panel abajo
+        JCheckBox cboxCondicionesUso = new JCheckBox("Acepto los términos de uso");
+        cboxCondicionesUso.setFont(new Font("Arial", Font.PLAIN, 20));
+        pnlAbajo.add(cboxCondicionesUso);
+        
+        JButton bRegistrar = new JButton("Registrar");
+        pnlAbajo.add(bRegistrar);
 
 		/// Panel principal
 		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
 		pnlMain.add(pnlDerecha, BorderLayout.EAST);
-		getContentPane().add(pnlMain, BorderLayout.NORTH);
+		pnlMain.add(pnlAbajo, BorderLayout.SOUTH);
+		getContentPane().add(pnlMain);
 
 
 		setVisible(true);

@@ -3,10 +3,8 @@ package Ventanas;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.text.NumberFormat;
 
 import javax.swing.*;
-import javax.swing.text.NumberFormatter;
 
 public class RegistrarseCiudadano extends JFrame{
 
@@ -161,8 +159,9 @@ public class RegistrarseCiudadano extends JFrame{
         JCheckBox cboxCondicionesUso = new JCheckBox("Acepto los términos de uso");
         cboxCondicionesUso.setFont(new Font("Arial", Font.PLAIN, 20));
         pnlAbajo.add(cboxCondicionesUso);
-
-        ///Mostrar error
+        
+        JButton bRegistrar = new JButton("Registrar");
+        pnlAbajo.add(bRegistrar);
 
         
         
