@@ -3,12 +3,16 @@ package Ventanas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -33,45 +37,61 @@ public class RegistrarseInstitucion extends JFrame{
 	
 	
 	public RegistrarseInstitucion() {
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setBounds(100, 100, 1000, 700);
-		this.setSize(400,400);
-//		this.setSize( 600, 300 );
-		getContentPane().setLayout(new FlowLayout(2));
-		this.setLocationRelativeTo(null);
-		this.setTitle("Registrarse Institucion");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Registrarse como Institución");
+		setBounds(100, 100, 1000, 700);
+		setSize(600,400);
+		setResizable(false);
+		getContentPane().setLayout(new FlowLayout());
+		setLocationRelativeTo(null);
 
-		/// Panel de la Izquierda
-		JPanel pnlMain = new JPanel(new FlowLayout(FlowLayout.CENTER, 100, 5));
+		///Paneles
+		JPanel pnlMain = new JPanel();
 		JPanel pnlIzquierda = new JPanel();
 		JPanel pnlDerecha = new JPanel();
-	
-		//espacios en blanco
-		//EmptyBorder espacio = new EmptyBorder(5,20,5,20);
-		
+		JPanel pnlAbajo = new JPanel();
+			
 		pnlMain.setLayout(new BorderLayout());
-//		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
-//		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-		pnlIzquierda.setLayout(new GridLayout(3,3));
-//		pnlIzquierda.setSize(41, 41);;
+		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-
+		
+		/// Panel de la Izquierda
 		JLabel lblNombre = new JLabel("Nombre: ");
+		lblNombre.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblEmail = new JLabel("E-mail: ");
+		lblEmail.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblTelefono = new JLabel("Teléfono: ");
-		
-		
+		lblTelefono.setFont(new Font("Arial", Font.PLAIN, 30));
+
 		pnlIzquierda.add(lblNombre);
 		pnlIzquierda.add(lblEmail);
 		pnlIzquierda.add(lblTelefono);
 
 		/// Panel de la Derecha
-		tfNombre = new JTextField( "", 20);
-		tfEmail = new JTextField( "", 20);
-		tfTelefono= new JTextField("",20);
+		tfNombre = new JTextField( 20);
+		tfEmail = new JTextField(20);
+		tfTelefono= new JTextField(20);
 		
-		
+		tfTelefono.addKeyListener(new KeyAdapter() { //https://www.tutorialspoint.com/how-can-we-make-jtextfield-accept-only-numbers-in-java
+		public void keyPressed(KeyEvent p) {
+            if (p.getKeyChar() >= '0' && p.getKeyChar() <= '9' || p.getKeyChar()==KeyEvent.VK_BACK_SPACE) {
+            	tfTelefono.setEditable(true);
+            } else {
+            	tfTelefono.setEditable(false);
+                JOptionPane.showMessageDialog(null, "Recuerde no incluir letras");
 
+            }
+         }
+		public void keyTyped(KeyEvent t) {
+	        if (tfTelefono.getText().length() >= 9 )
+	            t.consume(); 
+		}
+      	
+	});
+		
+		tfNombre.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfEmail.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfTelefono.setFont(new Font("Arial", Font.PLAIN, 20));
 		
 		pnlDerecha.add(tfNombre);
 		pnlDerecha.add(tfEmail);
@@ -81,16 +101,9 @@ public class RegistrarseInstitucion extends JFrame{
 		///Panel central
 
 		/// Panel principal
-//		pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.X_AXIS));
-//		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-//		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
-//		pnlMain.add(pnlDerecha, BorderLayout.EAST);
-//		pnlMain.add(pnlCentro, BorderLayout.CENTER);
-		
 		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
 		pnlMain.add(pnlDerecha, BorderLayout.EAST);
-//
-		add(pnlMain, BorderLayout.NORTH);
+		getContentPane().add(pnlMain, BorderLayout.NORTH);
 
 
 		setVisible(true);

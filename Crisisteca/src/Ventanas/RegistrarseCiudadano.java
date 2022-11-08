@@ -38,8 +38,8 @@ public class RegistrarseCiudadano extends JFrame{
 		setResizable(false);
 		getContentPane().setLayout(new FlowLayout());
 		setLocationRelativeTo(null);
-
-		/// Panel de la Izquierda
+		
+		///Paneles
 		JPanel pnlMain = new JPanel();
 		JPanel pnlIzquierda = new JPanel();
 		JPanel pnlDerecha = new JPanel();
@@ -51,6 +51,8 @@ public class RegistrarseCiudadano extends JFrame{
 		pnlMain.setLayout(new BorderLayout());
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
+		
+		/// Panel de la Izquierda
 
 		JLabel lblNombre = new JLabel("Nombre: ");
 		lblNombre.setFont(new Font("Arial", Font.PLAIN, 30));
