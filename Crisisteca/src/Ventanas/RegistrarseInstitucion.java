@@ -52,7 +52,7 @@ public class RegistrarseInstitucion extends JFrame{
 		pnlMain.setLayout(new BorderLayout());
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.Y_AXIS));
+		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.X_AXIS));
 		
 		/// Panel de la Izquierda
 		JLabel lblNombre = new JLabel("Nombre: ");
