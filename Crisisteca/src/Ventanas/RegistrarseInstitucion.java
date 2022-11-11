@@ -33,8 +33,7 @@ public class RegistrarseInstitucion extends JFrame{
 	private JTextField tfNombre;
 	private JTextField tfEmail;
 	private JTextField tfTelefono;
-	
-	
+		
 	public RegistrarseInstitucion() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Registrarse como Institución");
@@ -101,17 +100,16 @@ public class RegistrarseInstitucion extends JFrame{
 		///Panel abajo
         JCheckBox cboxCondicionesUso = new JCheckBox("Acepto los términos de uso");
         cboxCondicionesUso.setFont(new Font("Arial", Font.PLAIN, 20));
-        pnlAbajo.add(cboxCondicionesUso);
+        pnlAbajo.add(cboxCondicionesUso, BorderLayout.EAST);
         
         JButton bRegistrar = new JButton("Registrar");
-        pnlAbajo.add(bRegistrar);
+        pnlAbajo.add(bRegistrar, BorderLayout.SOUTH);
 
 		/// Panel principal
 		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
 		pnlMain.add(pnlDerecha, BorderLayout.EAST);
 		pnlMain.add(pnlAbajo, BorderLayout.SOUTH);
 		getContentPane().add(pnlMain);
-
 
 		setVisible(true);
 		

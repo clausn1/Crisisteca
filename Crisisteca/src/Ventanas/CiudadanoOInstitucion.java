@@ -43,6 +43,7 @@ public class CiudadanoOInstitucion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new RegistrarseCiudadano().setVisible(true);
+				setVisible(false);
 				
 			}
 		};
@@ -54,7 +55,7 @@ public class CiudadanoOInstitucion extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					new RegistrarseInstitucion().setVisible(true);
-					
+					setVisible(false);
 				}
 			};
 			
