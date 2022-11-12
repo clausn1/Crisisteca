@@ -38,7 +38,7 @@ public class RegistrarseInstitucion extends JFrame{
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Registrarse como Institución");
 		this.setBounds(100, 100, 1000, 700);
-		this.setSize(600,400);
+		this.setSize(600,200);
 		this.setResizable(false);
 		this.getContentPane().setLayout(new FlowLayout());
 		this.setLocationRelativeTo(null);

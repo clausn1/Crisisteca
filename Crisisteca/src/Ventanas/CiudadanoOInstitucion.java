@@ -21,7 +21,7 @@ public class CiudadanoOInstitucion extends JFrame{
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Escoger tipo de usuario");
 		this.setBounds(550, 250, 1000, 700);
-        this.setSize(400,100);
+        this.setSize(300,100);
 		this.setResizable(false);
 
 		
