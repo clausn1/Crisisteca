@@ -4,12 +4,12 @@ public class Ciudadano {
 	
 	String aNombre;
 	String aApellidos;
-	int aDNI;
+	String aDNI;
 	String aDireccion;
 	int aCodigoPostal;
 	int aTelefono;
 
-	public Ciudadano(String aNombre, String aApellidos, int aDNI, String aDireccion, int aCodigoPostal, int aTelefono) {
+	public Ciudadano(String aNombre, String aApellidos, String aDNI, String aDireccion, int aCodigoPostal, int aTelefono) {
 		super();
 		this.aNombre = aNombre;
 		this.aApellidos = aApellidos;
@@ -31,10 +31,10 @@ public class Ciudadano {
 	public void setaApellidos(String aApellidos) {
 		this.aApellidos = aApellidos;
 	}
-	public int getaDNI() {
+	public String getaDNI() {
 		return aDNI;
 	}
-	public void setaDNI(int aDNI) {
+	public void setaDNI(String aDNI) {
 		this.aDNI = aDNI;
 	}
 	public String getaDireccion() {
@@ -54,6 +54,12 @@ public class Ciudadano {
 	}
 	public void setaTelefono(int aTelefono) {
 		this.aTelefono = aTelefono;
+	}
+
+	@Override
+	public String toString() {
+		return "Ciudadano [aNombre=" + aNombre + ", aApellidos=" + aApellidos + ", aDNI=" + aDNI + ", aDireccion="
+				+ aDireccion + ", aCodigoPostal=" + aCodigoPostal + ", aTelefono=" + aTelefono + "]";
 	}
 	
 	
