@@ -3,6 +3,8 @@ package Ventanas;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
@@ -27,6 +29,7 @@ public class RegistrarseCiudadano extends JFrame{
 	private JTextField tfCodigoPostal;
 	private JTextField tfEmail;
 	private JTextField tfTelefono;
+    private JFrame tyc;
 
 	public RegistrarseCiudadano() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -162,6 +165,43 @@ public class RegistrarseCiudadano extends JFrame{
         
         JButton bRegistrar = new JButton("Registrar");
         pnlAbajo.add(bRegistrar);
+ //añadir color al pasar por encima y listener a los terminos y condiciones
+        
+        
+        cboxCondicionesUso.addMouseListener(new MouseAdapter(){
+        
+        public void mouseClicked(MouseEvent e) {
+        		if(tyc==null || !tyc.isDisplayable()){
+        	tyc = new JFrame("Leer");
+        	tyc.setSize(new Dimension(500,600));
+        	tyc.setVisible(true);
+        	tyc.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        	//el texto de terminos y condiciones
+        	
+        	JTextArea terminos= new JTextArea();
+        	terminos.setLineWrap(true);
+        	terminos.setWrapStyleWord(true);
+        	terminos.setEditable(false);
+        	terminos.setText("USO NO AUTORIZADO\n"
+        			+ "\n"
+        			+ "En caso de que aplique (para venta de software, templetes, u otro producto de diseño y programación) usted no puede colocar uno de nuestros productos, modificado o sin modificar, en un CD, sitio web o ningún otro medio y ofrecerlos para la redistribución o la reventa de ningún tipo.\n"+"\nPROPIEDAD\n"
+        			+ "\n"
+        			+ "Usted no puede declarar propiedad intelectual o exclusiva a ninguno de nuestros productos, modificado o sin modificar. Todos los productos son propiedad  de los proveedores del contenido. En caso de que no se especifique lo contrario, nuestros productos se proporcionan  sin ningún tipo de garantía, expresa o implícita. En ningún esta compañía será  responsables de ningún daño incluyendo, pero no limitado a, daños directos, indirectos, especiales, fortuitos o consecuentes u otras pérdidas resultantes del uso o de la imposibilidad de utilizar nuestros productos.");
+        	tyc.add(terminos);
+        }
+        	}
+       
+        public void mouseEntered(MouseEvent e) {
+        	cboxCondicionesUso.setForeground(Color.blue);	
+        }
+        
+        public void mouseExited(MouseEvent e) {
+        	cboxCondicionesUso.setForeground(Color.black);
+        }
+       
+        });        
+        
+        //hasta aqui para editar los terminos y condiciones de uso
 
         
         
