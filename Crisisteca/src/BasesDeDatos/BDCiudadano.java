@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
 
 import javax.swing.SwingUtilities;
 
@@ -34,10 +35,10 @@ public class BDCiudadano {
 	
 
 	
-	public static Statement initBD( ) {
+	public static Statement initBD() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:E:\\Programas\\SQlite Setup\\bases de datos\\bdUsuario";
+			String dburl = "jdbc:sqlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 			return st;
@@ -52,24 +53,49 @@ public class BDCiudadano {
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:E:\\Programas\\SQlite Setup\\bases de datos\\bdUsuario";
+			String dburl = "jdbc:sqlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 			
-			Ciudadano ciudadano = new Ciudadano("Héctor", "Paramio García", "71474157R", "Mi casa", 489001, 646011211);
+			Ciudadano ciudadano1 = new Ciudadano("Héctor", "Paramio García", "71474157R", "Mi casa", 489001, 646011211);
+			Ciudadano ciudadano2 = new Ciudadano("Jorge", "Clausen", "79124721Y", "casa2", 48100, 61234431); 
 			
-		} 
-		catch (Exception e) 
-		{
+		}catch (Exception e) {
 			// TODO: handle exception
 		}
 		
 	}
-	
-	
-	
-	
+	    public static boolean InsertarCiudadano(Ciudadano ciudadano) {
+	        //Código para insertar ciudadanos
+	        String sentSQL = "";
+	        try {
+	        	
+	            sentSQL = "insert into Ciudadano values(" +
+	                    ""+ ciudadano.getaNombre() + "," +
+	                    "'" + ciudadano.getaApellidos() + "'," +
+	                    "'" + ciudadano.getaDNI() + "'," +
+	                    "'" + ciudadano.getaDireccion() + "'," +
+	                    "" + ciudadano.getaCodigoPostal() + "," +
+	                    "'" + ciudadano.getaTelefono() + ")";
+	            
+	            Statement st = initBD();
+	            int val = st.executeUpdate( sentSQL );
+	           
+	            if (val!=1) {  // Se tiene que a�adir 1 - error si no
+	               
+	                return false;  
+	            }
+	            return true;
+	        } catch (SQLException e) {
+	           
+	            lastError = e;
+	            e.printStackTrace();
+	            return false;
+	        }        
+	    }
+		
+	}
 	
 	
 
-}
+
