@@ -29,13 +29,13 @@ public class RegistrarseCiudadano extends JFrame{
 	private JTextField tfTelefono;
 
 	public RegistrarseCiudadano() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Registrarse como Ciudadano");
-		setBounds(100, 100, 1000, 700);
-		setSize(600,400);
-		setResizable(false);
-		getContentPane().setLayout(new FlowLayout());
-		setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Registrarse como Ciudadano");
+		this.setBounds(100, 100, 1000, 700);
+		this.setSize(600,400);
+		this.setResizable(false);
+		this.getContentPane().setLayout(new FlowLayout());
+		this.setLocationRelativeTo(null);
 		
 		///Paneles
 		JPanel pnlMain = new JPanel();

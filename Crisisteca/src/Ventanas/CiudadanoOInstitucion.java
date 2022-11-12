@@ -18,11 +18,11 @@ public class CiudadanoOInstitucion extends JFrame{
 	}
 	
 	public CiudadanoOInstitucion() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setTitle("Escoger tipo de usuario");
-        setBounds(550, 250, 1000, 700);
-		setSize(400,100);
-        setResizable(false);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Escoger tipo de usuario");
+		this.setBounds(550, 250, 1000, 700);
+        this.setSize(400,100);
+		this.setResizable(false);
 
 		
         JButton bCiudadano = new JButton("Ciudadano");
