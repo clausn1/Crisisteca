@@ -58,6 +58,6 @@ public class VentanaInicio extends JFrame {
 		add(pnl_main, BorderLayout.SOUTH);
 		
 		setVisible(true);
-		
+		//a
 	}
 }
