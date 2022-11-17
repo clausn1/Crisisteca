@@ -58,6 +58,21 @@ public class VentanaInicio extends JFrame {
 		add(pnl_main, BorderLayout.SOUTH);
 		
 		setVisible(true);
-		//a
+		
+		 ActionListener albRegistrarse = new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new CiudadanoOInstitucion().setVisible(true);
+					setVisible(false);
+					
+				}
+			};
+			
+		btnRegistrarse.addActionListener(albRegistrarse);
+			
+		
+		
+		
 	}
 }

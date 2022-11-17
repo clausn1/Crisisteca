@@ -212,7 +212,7 @@ public class RegistrarseCiudadano extends JFrame{
 		getContentPane().add(pnlMain);
 
 
-		setVisible(true);
+		this.setVisible(true);
 		
 		
 		
