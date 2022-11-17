@@ -25,6 +25,9 @@ public class IniciarSesion extends JFrame{
 
 	}
 	
+	
+	
+	
 	private JTextField tfNombre;
 	private JTextField tfApellidos;
 	

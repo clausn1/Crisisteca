@@ -215,7 +215,13 @@ public class RegistrarseCiudadano extends JFrame{
 		this.setVisible(true);
 		
 		
-		
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+				new CiudadanoOInstitucion().setVisible(true);
+                setVisible(false);
+            }
+        });
+    
 		
 		
 	}

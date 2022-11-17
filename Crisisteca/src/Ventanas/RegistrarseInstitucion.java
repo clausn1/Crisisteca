@@ -160,7 +160,13 @@ public class RegistrarseInstitucion extends JFrame{
 
 		setVisible(true);
 		
-		
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+				new CiudadanoOInstitucion().setVisible(true);
+                setVisible(false);
+            }
+        });
+    
 		
 	}
 	

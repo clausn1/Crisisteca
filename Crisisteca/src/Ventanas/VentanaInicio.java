@@ -59,6 +59,8 @@ public class VentanaInicio extends JFrame {
 		
 		setVisible(true);
 		
+		
+		
 		 ActionListener albRegistrarse = new ActionListener() {
 				
 				@Override
@@ -68,6 +70,8 @@ public class VentanaInicio extends JFrame {
 					
 				}
 			};
+			
+			
 			
 		btnRegistrarse.addActionListener(albRegistrarse);
 			
