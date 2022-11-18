@@ -9,11 +9,12 @@ import java.util.logging.Level;
 import javax.swing.SwingUtilities;
 
 import Entidades.Ciudadano;
+import Principal.Servicio;
 import Ventanas.VentanaInicio;
 
 
 
-public class BDCiudadano {
+public class BDCiudadano implements Servicio{
 
 	private static Exception lastError = null;
 	
@@ -34,8 +35,8 @@ public class BDCiudadano {
 	
 	
 
-	
-	public static Statement initBD() {
+	@Override
+	public Statement initBD() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			String dburl = "jdbc:sqlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdUsuario.db";
@@ -49,7 +50,7 @@ public class BDCiudadano {
 		}
 	}
 	
-	public static void Insertar()throws SQLException	{
+	public void Insertar()throws SQLException	{
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
@@ -65,7 +66,7 @@ public class BDCiudadano {
 		}
 		
 	}
-	    public static boolean InsertarCiudadano(Ciudadano ciudadano) {
+	    public boolean InsertarCiudadano(Ciudadano ciudadano) {
 	        //Código para insertar ciudadanos
 	        String sentSQL = "";
 	        try {
