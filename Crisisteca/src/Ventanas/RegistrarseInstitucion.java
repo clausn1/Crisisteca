@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -142,7 +144,8 @@ public class RegistrarseInstitucion extends JFrame{
         	cboxCondicionesUso.setForeground(Color.black);
         }
        
-        });        
+        }); 
+
         
         //hasta aqui para editar los terminos y condiciones de uso
 
@@ -150,6 +153,7 @@ public class RegistrarseInstitucion extends JFrame{
         
         
         JButton bRegistrar = new JButton("Registrar");
+        bRegistrar.setEnabled(false);
         pnlAbajo.add(bRegistrar, BorderLayout.SOUTH);
 
 		/// Panel principal
@@ -159,6 +163,18 @@ public class RegistrarseInstitucion extends JFrame{
 		getContentPane().add(pnlMain);
 
 		setVisible(true);
+        cboxCondicionesUso.addItemListener((ItemListener) new ItemListener() {
+
+    		@Override
+    		public void itemStateChanged(ItemEvent e) {
+    			 if (e.getStateChange()==ItemEvent.SELECTED)
+      			   bRegistrar.setEnabled(true);
+      	   else
+      		   
+      	        bRegistrar.setEnabled(false);
+         }
+    			
+           });
 		
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent e) {

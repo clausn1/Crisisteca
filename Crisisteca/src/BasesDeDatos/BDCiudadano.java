@@ -39,7 +39,7 @@ public class BDCiudadano implements Servicio{
 	public Statement initBD() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdUsuario.db";
+			String dburl = "jdbc:s	qlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 			return st;

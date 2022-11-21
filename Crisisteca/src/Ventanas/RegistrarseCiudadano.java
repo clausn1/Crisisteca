@@ -1,6 +1,8 @@
 package Ventanas;
 
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -164,6 +166,7 @@ public class RegistrarseCiudadano extends JFrame{
         pnlAbajo.add(cboxCondicionesUso);
         
         JButton bRegistrar = new JButton("Registrar");
+        bRegistrar.setEnabled(false);
         pnlAbajo.add(bRegistrar);
  //añadir color al pasar por encima y listener a los terminos y condiciones
         
@@ -199,7 +202,22 @@ public class RegistrarseCiudadano extends JFrame{
         	cboxCondicionesUso.setForeground(Color.black);
         }
        
-        });        
+        });
+       
+       cboxCondicionesUso.addItemListener((ItemListener) new ItemListener() {
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			 if (e.getStateChange()==ItemEvent.SELECTED)
+  			   bRegistrar.setEnabled(true);
+  	   else
+  		   
+  	        bRegistrar.setEnabled(false);
+     }
+			
+       });
+        
+        
         
         //hasta aqui para editar los terminos y condiciones de uso
 
