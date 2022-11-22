@@ -2,22 +2,33 @@ package Entidades;
 
 public class Institucion {
 	
+	private String iCodigo;
 	private String iNombre;
 	private String iEmail;
 	private int iTelefono;
 	
-	public Institucion() {}
 	
-	public Institucion (String iNombre, String iEmail, int iTelefono) {
+	public Institucion (String iCodigo, String iNombre, String iEmail, int iTelefono) {
+		this.iCodigo = iCodigo;
 		this.iNombre = iNombre;
 		this.iEmail = iEmail;
 		this.iTelefono = iTelefono;
 	}
 
-	public String getiNombre() {
-		return iNombre;
+	
+	
+	public String getiCodigo() {
+		return iCodigo;
 	}
 
+	public void setiCodigo(String iCodigo) {
+		this.iCodigo = iCodigo;
+	}
+
+	public String getiNombre() {
+		return iNombre;
+	}	
+	
 	public void setiNombre(String iNombre) {
 		this.iNombre = iNombre;
 	}
@@ -40,6 +51,7 @@ public class Institucion {
 
 	@Override
 	public String toString() {
-		return "Institucion [iNombre=" + iNombre + ", iEmail=" + iEmail + ", iTelefono=" + iTelefono + "]";
+		return "Institucion [iCodigo=" + iCodigo + ", iNombre=" + iNombre + ", iEmail=" + iEmail + ", iTelefono="
+				+ iTelefono + "]";
 	}
 }

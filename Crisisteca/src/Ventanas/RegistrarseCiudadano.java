@@ -1,14 +1,18 @@
 package Ventanas;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.security.PublicKey;
 import javax.swing.*;
+import BasesDeDatos.BDCiudadano;
+import Entidades.Ciudadano;
 
 public class RegistrarseCiudadano extends JFrame{
 
@@ -242,6 +246,21 @@ public class RegistrarseCiudadano extends JFrame{
     
 		
 		
+		ActionListener albRegistrar = new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText())); 
+					
+					BDCiudadano.InsertarCiudadano(ciudadanonuevo);
+					
+
+					
+				}
+			};  
+        
+		bRegistrar.addActionListener(albRegistrar);
+
 	}
 	
 

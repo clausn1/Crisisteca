@@ -34,18 +34,13 @@ public class BDCiudadano {
 	}
 	
 	
-public Statement initBD() {
+public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
 			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
-//			ResultSet rs = st.executeQuery(dburl);
-//			if(!rs.next()) {
-//				Statement stCrearTabla = conexion.createStatement();
-//				String create = "create table Ciudadano (  Nombre varchar(255), Apellidos varchar(255), DNI varchar(9) PRIMARY KEY, Direccion varchar(255), CodigoPostal int(5), Telefono int(9))";
-//				stCrearTabla.executeUpdate(create);
-//			}
+
 			return st;
 						
 			} 
@@ -57,16 +52,8 @@ public Statement initBD() {
 	public void Insertar()throws SQLException	{
 		try 
 		{
-			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
-			Connection conexion = DriverManager.getConnection(dburl);
-			Statement st = conexion.createStatement();
-		//	ResultSet rs = st.executeQuery(dburl);
-////			if(!rs.next()) {
-//				Statement stCrearTabla = conexion.createStatement();
-//				String create = "create table Ciudadano (  Nombre varchar(255), Apellidos varchar(255), DNI varchar(9) PRIMARY KEY, Direccion varchar(255), CodigoPostal int(5), Telefono int(9))";
-//				stCrearTabla.executeUpdate(create);
-////			}
+			Statement st = initBD();
+			
 			st.executeUpdate("create table if not exists Ciudadano (  Nombre string, Apellidos string, DNI string, Direccion string, CodigoPostal integer, Telefono integer)");
 			Ciudadano ciudadano1 = new Ciudadano("Héctor", "Paramio García", "71474157R", "Mi casa", 489001, 646011211);
 			Ciudadano ciudadano2 = new Ciudadano("Jorge", "Clausen", "79124721Y", "casa2", 48100, 61234431); 
@@ -86,34 +73,27 @@ public Statement initBD() {
 		
 	}
 	
-//	    public boolean InsertarCiudadano(Ciudadano ciudadano) {
-//	        //Código para insertar ciudadanos
-//	        String sentSQL = "";
-//	        try {
-//	        	
-//	            sentSQL = "insert into Ciudadano values(" +
-//	                    ""+ ciudadano.getaNombre() + "," +
-//	                    "'" + ciudadano.getaApellidos() + "'," +
-//	                    "'" + ciudadano.getaDNI() + "'," +
-//	                    "'" + ciudadano.getaDireccion() + "'," +
-//	                    "" + ciudadano.getaCodigoPostal() + "," +
-//	                    "'" + ciudadano.getaTelefono() + ")";
-//	            
-//	            Statement st = initBD();
-//	            int val = st.executeUpdate( sentSQL );
-//	           
-//	            if (val!=1) {  // Se tiene que a�adir 1 - error si no
-//	               
-//	                return false;  
-//	            }
-//	            return true;
-//	        } catch (SQLException e) {
-//	           
-//	            lastError = e;
-//	            e.printStackTrace();
-//	            return false;
-//	        }        
-//	    }
+	    public static boolean InsertarCiudadano(Ciudadano ciudadano) {
+	        //Código para insertar ciudadanos
+	    	
+	    	try 
+			{
+				Statement st = initBD();		
+				st.executeUpdate("create table if not exists Ciudadano (  Nombre string, Apellidos string, DNI string, Direccion string, CodigoPostal integer, Telefono integer)");
+				String sentSQL ="";
+				sentSQL = "insert into Ciudadano values(" +
+	                    "'"+ ciudadano.getaNombre() + "'," +
+	                    "'" + ciudadano.getaApellidos() + "'," +
+	                    "'" + ciudadano.getaDNI() + "'," +
+	                    "'" + ciudadano.getaDireccion() + "'," +
+	                    "" + ciudadano.getaCodigoPostal() + "," +
+	                    "" + ciudadano.getaTelefono() + ")";
+				st.executeUpdate( sentSQL );
+				return true;
+			}catch (Exception e) {
+				return false;
+			}  
+	    }
 	
 	
 	public void selectPrueba() throws SQLException {
@@ -133,10 +113,11 @@ public Statement initBD() {
 			System.out.println("no ha funcionao");
 			e.printStackTrace();
 		}
-		
-		
-		
+					
 	}
+	
+
+	
 		
 		
 	}

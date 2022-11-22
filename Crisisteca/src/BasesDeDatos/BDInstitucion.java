@@ -34,9 +34,8 @@ public class BDInstitucion {
 	
 	public static Statement initBD() {
 		try {
-			Class.forName("org.sqlite.JDBC");
-			//cambiar
-			String dburl = "jdbc:sqlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdInstitucion.db";
+	 		Class.forName("org.sqlite.JDBC");
+			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 			return st;
@@ -47,47 +46,50 @@ public class BDInstitucion {
 		}
 	}
 	
+	
 	public static void Insertar()throws SQLException	{
 		try 
 		{
-			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdInstitucion.db";
-			Connection conexion = DriverManager.getConnection(dburl);
-			Statement st = conexion.createStatement();
 			
-			Institucion institucion1 = new Institucion("Nombre 1", "institucion1@gmail.com", 32000);
-			Institucion institucion2 = new Institucion("Nombre 2", "institucion2@gmail.com", 32001);
+			Statement st = initBD();
 			
-			 
 			
+			st.executeUpdate("create table if not exists Institucion ( Codigo string, Nombre string, Email string,Telefono integer)");
+			Institucion institucion1 = new Institucion("AAA","Nombre 1", "institucion1@gmail.com", 32000);
+			Institucion institucion2 = new Institucion("AAB", "Nombre 2", "institucion2@gmail.com", 32001); 
+			String sentSQL ="";
+			sentSQL = "insert into Ciudadano values(" +
+                    "'"+ institucion1.getiCodigo() + "'," +
+                    "'" + institucion1.getiNombre() + "'," +
+                    "'" + institucion1.getiEmail() + "'," +
+                    "" + institucion1.getiTelefono() + ")";
+			st.executeUpdate( sentSQL );
+		
+
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
 		
+		
 	}
 	    public static boolean InsertarInstitucion(Institucion institucion) {
 	        //Código para insertar ciudadanos
-	        String sentSQL = "";
 	        try {
 	        	
+				Statement st = initBD();		
+				st.executeUpdate("create table if not exists Institucion ( Codigo string, Nombre string, Email string,Telefono integer)");
+		        String sentSQL = "";
 	            sentSQL = "insert into Institucion values(" +
-	                    ""+ institucion.getiNombre() + "," +
+	            		"'" + institucion.getiCodigo()+ "'," +
+	                    "'"+ institucion.getiNombre() + "," +
 	                    "'" + institucion.getiEmail() + "'," +
-	                    "'" + institucion.getiTelefono();
+	                    "" + institucion.getiTelefono();
 	            
-	            Statement st = initBD();
-	            int val = st.executeUpdate( sentSQL );
-	           
-	            if (val!=1) {  // Se tiene que a�adir 1 - error si no
-	               
-	                return false;  
-	            }
-	            return true;
+	           st.executeUpdate( sentSQL );
+	           return true;  
+	            
 	        } catch (SQLException e) {
-	           
-	            lastError = e;
-	            e.printStackTrace();
-	            return false;
+	           return false;
 	        }        
 	    }
 		
