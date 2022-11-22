@@ -58,8 +58,8 @@ public Statement initBD() {
 			ResultSet rs = st.executeQuery(dburl);
 			if(!rs.next()) {
 				Statement stCrearTabla = conexion.createStatement();
-				String create = "create table Ciudadano";
-				
+				String create = "create table Ciudadano (  Nombre varchar(255), Apellidos varchar(255), DNI varchar(9) PRIMARY KEY, Direccion varchar(255), CodigoPostal int(5), Telefono int(9))";
+				stCrearTabla.executeUpdate(create);
 			}
 			
 			Ciudadano ciudadano1 = new Ciudadano("Héctor", "Paramio García", "71474157R", "Mi casa", 489001, 646011211);
