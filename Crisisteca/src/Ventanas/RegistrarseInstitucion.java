@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
@@ -23,6 +25,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import BasesDeDatos.BDCiudadano;
+import BasesDeDatos.BDInstitucion;
+import Entidades.Institucion;
+
 public class RegistrarseInstitucion extends JFrame{
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -37,6 +43,7 @@ public class RegistrarseInstitucion extends JFrame{
 
 	}
 	
+	private JTextField tfCodigo;
 	private JTextField tfNombre;
 	private JTextField tfEmail;
 	private JTextField tfTelefono;
@@ -46,7 +53,7 @@ public class RegistrarseInstitucion extends JFrame{
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Registrarse como Institución");
 		this.setBounds(100, 100, 1000, 700);
-		this.setSize(600,200);
+		this.setSize(600,500);
 		this.setResizable(false);
 		this.getContentPane().setLayout(new FlowLayout());
 		this.setLocationRelativeTo(null);
@@ -63,6 +70,8 @@ public class RegistrarseInstitucion extends JFrame{
 		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.X_AXIS));
 		
 		/// Panel de la Izquierda
+		JLabel lblCodigo= new JLabel("Nombre: ");
+		lblCodigo.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblNombre = new JLabel("Nombre: ");
 		lblNombre.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblEmail = new JLabel("E-mail: ");
@@ -70,12 +79,14 @@ public class RegistrarseInstitucion extends JFrame{
 		JLabel lblTelefono = new JLabel("Teléfono: ");
 		lblTelefono.setFont(new Font("Arial", Font.PLAIN, 30));
 
+		pnlIzquierda.add(lblCodigo);
 		pnlIzquierda.add(lblNombre);
 		pnlIzquierda.add(lblEmail);
 		pnlIzquierda.add(lblTelefono);
 
 		/// Panel de la Derecha
-		tfNombre = new JTextField( 20);
+		tfCodigo = new JTextField(20);
+		tfNombre = new JTextField(20);
 		tfEmail = new JTextField(20);
 		tfTelefono= new JTextField(20);
 		
@@ -95,11 +106,12 @@ public class RegistrarseInstitucion extends JFrame{
 		}
       	
 	});
-		
+		tfCodigo.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfNombre.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfEmail.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfTelefono.setFont(new Font("Arial", Font.PLAIN, 20));
 		
+		pnlDerecha.add(tfCodigo);
 		pnlDerecha.add(tfNombre);
 		pnlDerecha.add(tfEmail);
 		pnlDerecha.add(tfTelefono);
@@ -184,6 +196,22 @@ public class RegistrarseInstitucion extends JFrame{
         });
     
 		
+        ActionListener albRegistrar = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Institucion institucionnueva = new Institucion( tfCodigo.getText(),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()));
+
+				BDInstitucion.InsertarInstitucion(institucionnueva);
+
+			}
+		};
+        
+		bRegistrar.addActionListener(albRegistrar);
+
+        
+        
 	}
 	
 	
