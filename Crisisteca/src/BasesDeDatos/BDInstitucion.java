@@ -35,6 +35,7 @@ public class BDInstitucion {
 	public static Statement initBD() {
 		try {
 			Class.forName("org.sqlite.JDBC");
+			//cambiar
 			String dburl = "jdbc:sqlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdInstitucion.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();

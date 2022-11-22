@@ -2,12 +2,15 @@ package Entidades;
 
 public class Ciudadano {
 	
+	
+
 	String aNombre;
 	String aApellidos;
 	String aDNI;
 	String aDireccion;
 	int aCodigoPostal;
 	int aTelefono;
+
 
 	public Ciudadano(String aNombre, String aApellidos, String aDNI, String aDireccion, int aCodigoPostal, int aTelefono) {
 		super();

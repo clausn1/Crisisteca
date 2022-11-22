@@ -2,6 +2,7 @@ package BasesDeDatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -9,12 +10,11 @@ import java.util.logging.Level;
 import javax.swing.SwingUtilities;
 
 import Entidades.Ciudadano;
-import Principal.Servicio;
 import Ventanas.VentanaInicio;
 
 
 
-public class BDCiudadano implements Servicio{
+public class BDCiudadano {
 
 	private static Exception lastError = null;
 	
@@ -34,12 +34,10 @@ public class BDCiudadano implements Servicio{
 	}
 	
 	
-
-	@Override
-	public Statement initBD() {
+public Statement initBD() {
 		try {
-			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:s	qlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdUsuario.db";
+	 		Class.forName("org.sqlite.JDBC");
+			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 			return st;
@@ -54,9 +52,15 @@ public class BDCiudadano implements Servicio{
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:C:\\Users\\jorge\\Documents\\deusto\\eclipse\\basesdeedatos\\proyecto\\bdUsuario.db";
+			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
+			ResultSet rs = st.executeQuery(dburl);
+			if(!rs.next()) {
+				Statement stCrearTabla = conexion.createStatement();
+				String create = "create table Ciudadano";
+				
+			}
 			
 			Ciudadano ciudadano1 = new Ciudadano("Héctor", "Paramio García", "71474157R", "Mi casa", 489001, 646011211);
 			Ciudadano ciudadano2 = new Ciudadano("Jorge", "Clausen", "79124721Y", "casa2", 48100, 61234431); 
@@ -94,6 +98,8 @@ public class BDCiudadano implements Servicio{
 	            return false;
 	        }        
 	    }
+
+		
 		
 	}
 	
