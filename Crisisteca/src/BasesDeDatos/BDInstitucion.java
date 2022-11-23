@@ -2,6 +2,7 @@ package BasesDeDatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -68,6 +69,8 @@ public class BDInstitucion {
 
 		}catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("no ha funcionao insertar ");
+			e.printStackTrace();
 		}
 		
 		
@@ -92,5 +95,25 @@ public class BDInstitucion {
 	           return false;
 	        }        
 	    }
+	    
+	    public void selectPrueba() throws SQLException {
+			try {
+			Class.forName("org.sqlite.JDBC");
+			String dburl = "jdbc:sqlite:res/bds/bdInstitucion.db";
+			Connection conexion = DriverManager.getConnection(dburl);
+			Statement st = conexion.createStatement();
+			String sql ="select * from Institucion";
+			
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				String institucion= rs.getString(1);
+				System.out.println(institucion);
+			}
+			}catch(Exception e) {
+				System.out.println("no ha funcionao");
+				e.printStackTrace();
+			}
+						
+		}
 		
 	}
