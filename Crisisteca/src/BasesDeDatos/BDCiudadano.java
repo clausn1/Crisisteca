@@ -35,6 +35,7 @@ public class BDCiudadano {
 	}
 	
 	
+	
 public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");

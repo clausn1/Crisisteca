@@ -50,7 +50,7 @@ public class VentanaInicio extends JFrame {
 		pnl_text.add(lblTexto);
 		pnl_izquierda.add(btnInicSesion);
 		pnl_derecha.add(btnRegistrarse);
-		pnl_botones.add(pnl_derecha,BorderLayout.WEST);
+		pnl_botones.add(pnl_derecha,BorderLayout.WEST); 
 		pnl_botones.add(pnl_izquierda,BorderLayout.EAST);
 		pnl_main.add(pnl_botones);
 		
