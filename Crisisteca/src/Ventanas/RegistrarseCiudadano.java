@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.security.PublicKey;
+import java.util.Random;
+
 import javax.swing.*;
 import BasesDeDatos.BDCiudadano;
 import Entidades.Ciudadano;
@@ -262,5 +264,8 @@ public class RegistrarseCiudadano extends JFrame{
 
 	}
 	
-
+	public int crearContraseña() {
+		return (int) Math.random()*(10^10+1);
+		}
+	
 }

@@ -12,7 +12,6 @@ import java.util.logging.Level;
 
 import javax.swing.SwingUtilities;
 
-import Clases.TPagoNomina;
 import Entidades.Ciudadano;
 import Ventanas.VentanaInicio;
 

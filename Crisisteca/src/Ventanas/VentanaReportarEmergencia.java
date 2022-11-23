@@ -32,7 +32,7 @@ public class VentanaReportarEmergencia extends JFrame{
 	
 	public VentanaReportarEmergencia() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setTitle("Registrarse como Ciudadano");
+		this.setTitle("Reportar Emergencia");
 		this.setBounds(100, 100, 1000, 700);
 		this.setSize(600,400);
 		this.setResizable(false);

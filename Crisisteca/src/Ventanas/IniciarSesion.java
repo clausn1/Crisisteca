@@ -95,6 +95,7 @@ public class IniciarSesion extends JFrame{
 				String Contrasenya = tfContrasenya.getText();
 				
 				if (BDCiudadano.ExisteUsuario(Usuario,Contrasenya)) {
+					System.out.println("Se ha iniciado sesión");
 					
 				}
 				
