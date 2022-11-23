@@ -251,11 +251,8 @@ public class RegistrarseCiudadano extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText())); 
-					
+					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText())); 	
 					BDCiudadano.InsertarCiudadano(ciudadanonuevo);
-					
-
 					
 				}
 			};  
@@ -263,9 +260,6 @@ public class RegistrarseCiudadano extends JFrame{
 		bRegistrar.addActionListener(albRegistrar);
 
 	}
-	
-	public int crearContraseña() {
-		return (int) Math.random()*(10^10+1);
-		}
+
 	
 }
