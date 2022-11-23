@@ -145,7 +145,6 @@ public class RegistrarseCiudadano extends JFrame{
 		}
       	
 	});
-
 			
 		tfNombre.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfApellidos.setFont(new Font("Arial", Font.PLAIN, 20));

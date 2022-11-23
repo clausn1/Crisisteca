@@ -21,6 +21,9 @@ public class Ciudadano {
 		this.aCodigoPostal = aCodigoPostal;
 		this.aTelefono = aTelefono;
 	}
+	public Ciudadano() {
+		
+	}
 
 	public String getaNombre() {
 		return aNombre;

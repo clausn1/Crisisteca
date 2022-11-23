@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+
+import BasesDeDatos.BDCiudadano;
+import Entidades.Ciudadano;
 
 public class IniciarSesion extends JFrame{
 
@@ -36,7 +41,7 @@ public class IniciarSesion extends JFrame{
 	
 	public IniciarSesion() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setTitle("Registrarse como Ciudadano");
+		this.setTitle("Iniciar sesión");
 		this.setBounds(1000, 600, 1000, 700);
 		this.setSize(600,200);
 		this.setResizable(false);
@@ -73,33 +78,36 @@ public class IniciarSesion extends JFrame{
 		bIniciarsesion.setPreferredSize(new Dimension(400,50));
 		bIniciarsesion.setFont(new Font("Arial", Font.PLAIN, 30));
 
-		
-		
 		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
 		pnlMain.add(pnlDerecha, BorderLayout.EAST);
 		pnlMain.add(pnlAbajo, BorderLayout.SOUTH);
 
 		getContentPane().add(pnlMain);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		this.setVisible(true);
 
+		ActionListener albIniciarsesion = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String Usuario = tfUsuario.getText();
+				String Contrasenya = tfContrasenya.getText();
+				if (BDCiudadano.se)
+				
+				BDCiudadano.InsertarCiudadano(ciudadanonuevo);
+				
+
+				
+			}
+		};  
+    
+		bIniciarsesion.addActionListener(albIniciarsesion);
+		
+		
+		
+		
+		
 		
 	}
 	

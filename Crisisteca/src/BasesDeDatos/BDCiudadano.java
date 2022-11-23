@@ -3,13 +3,16 @@ package BasesDeDatos;
 import java.sql.Connection;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import javax.swing.SwingUtilities;
 
+import Clases.TPagoNomina;
 import Entidades.Ciudadano;
 import Ventanas.VentanaInicio;
 
@@ -69,10 +72,9 @@ public static Statement initBD() {
                     "" + ciudadano1.getaTelefono() + ")";
 			st.executeUpdate( sentSQL );
 		}catch (Exception e) {
-			System.out.println("no ha funcionao insertar ");
 			e.printStackTrace();
 		}
-		
+	
 	}
 	
 	    public static boolean InsertarCiudadano(Ciudadano ciudadano) {
@@ -112,15 +114,46 @@ public static Statement initBD() {
 			System.out.println(ciudadano);
 		}
 		}catch(Exception e) {
-			System.out.println("no ha funcionao");
 			e.printStackTrace();
 		}
 					
 	}
 	
+	
 
 	
+	public boolean ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 		
+		try{
+		 	Class.forName("org.sqlite.JDBC");
+			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
+			Connection conexion = DriverManager.getConnection(dburl);
+			String sql ="select * from Ciudadano where Telefono = ? and Contrasena = ?";
+			PreparedStatement st = conexion.prepareStatement(sql);
+			st.setString(1, usuarioQueBuscamos);
+			st.setString(2, contrasenyaQueBuscamos);
+			ResultSet rs = st.executeQuery();
+						
+			if (rs.next()== true) {
+				System.out.println("SI existe el usuario");
+				
+			}else {
+				System.out.println("NO existe el usuario");
+			}
+			
+			return rs.next();
+
+			
+		}catch(Exception e){
+			
+			return false;
+			
+		}
+		
+	
+	}
+
+
 		
 	}
 	
