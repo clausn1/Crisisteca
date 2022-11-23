@@ -1,10 +1,12 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,15 +30,15 @@ public class IniciarSesion extends JFrame{
 	
 	
 	
-	private JTextField tfNombre;
-	private JTextField tfApellidos;
+	private JTextField tfUsuario;
+	private JTextField tfContrasenya;
 	
 	
 	public IniciarSesion() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Registrarse como Ciudadano");
-		this.setBounds(100, 100, 1000, 700);
-		this.setSize(600,400);
+		this.setBounds(1000, 600, 1000, 700);
+		this.setSize(600,200);
 		this.setResizable(false);
 		this.getContentPane().setLayout(new FlowLayout());
 		this.setLocationRelativeTo(null);
@@ -50,16 +52,34 @@ public class IniciarSesion extends JFrame{
 		pnlMain.setLayout(new BorderLayout());
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-		
-		JLabel lblNombreYApellidos = new JLabel("Nombre y Apellidos: ");
-		lblNombreYApellidos.setFont(new Font("Arial", Font.PLAIN, 30));
-		JLabel lblConotranyesa = new JLabel("Contraseña: ");
-		lblConotranyesa.setFont(new Font("Arial", Font.PLAIN, 30));
 
-		pnlIzquierda.add(lblNombreYApellidos);
-		pnlIzquierda.add(lblConotranyesa);
+		JLabel lblUsuario = new JLabel("Usuario: ");
+		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 30));
+		JLabel lblContrasenya = new JLabel("Contraseña: ");
+		lblContrasenya.setFont(new Font("Arial", Font.PLAIN, 30));
+		
+		tfUsuario = new JTextField(15);
+		tfUsuario.setFont(new Font("Arial", Font.PLAIN, 20));
+		tfContrasenya= new JTextField(15);
+		tfContrasenya.setFont(new Font("Arial", Font.PLAIN, 20));
+
+		pnlIzquierda.add(lblUsuario);
+		pnlIzquierda.add(lblContrasenya);
+		pnlDerecha.add(tfUsuario);
+		pnlDerecha.add(tfContrasenya);
+		
+        JButton bIniciarsesion = new JButton("Iniciar sesión");
+        pnlAbajo.add(bIniciarsesion);
+		bIniciarsesion.setPreferredSize(new Dimension(400,50));
+		bIniciarsesion.setFont(new Font("Arial", Font.PLAIN, 30));
+
 		
 		
+		pnlMain.add(pnlIzquierda, BorderLayout.WEST);
+		pnlMain.add(pnlDerecha, BorderLayout.EAST);
+		pnlMain.add(pnlAbajo, BorderLayout.SOUTH);
+
+		getContentPane().add(pnlMain);
 		
 		
 		
