@@ -93,9 +93,12 @@ public class IniciarSesion extends JFrame{
 				
 				String Usuario = tfUsuario.getText();
 				String Contrasenya = tfContrasenya.getText();
-				if (BDCiudadano.se)
 				
-				BDCiudadano.InsertarCiudadano(ciudadanonuevo);
+				if (BDCiudadano.ExisteUsuario(Usuario,Contrasenya)) {
+					
+				}
+				
+//				BDCiudadano.InsertarCiudadano(ciudadanonuevo);
 				
 
 				

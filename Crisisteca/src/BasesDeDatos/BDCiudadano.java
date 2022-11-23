@@ -122,7 +122,7 @@ public static Statement initBD() {
 	
 
 	
-	public boolean ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
+	public static boolean ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 		
 		try{
 		 	Class.forName("org.sqlite.JDBC");
