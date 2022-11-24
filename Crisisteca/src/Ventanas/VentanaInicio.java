@@ -75,8 +75,29 @@ public class VentanaInicio extends JFrame {
 			
 		btnRegistrarse.addActionListener(albRegistrarse);
 			
+			 ActionListener albIniciarSesion = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IniciarSesion().setVisible(true);
+				setVisible(false);
+				
+			}
+		};
 		
+		btnInicSesion.addActionListener(albIniciarSesion);
 		
 		
 	}
+
+
+		
+		
+		
+	
+		
+	
+	
+	
 }
+
