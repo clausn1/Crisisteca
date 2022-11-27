@@ -5,21 +5,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.SwingUtilities;
-
-import Entidades.Ciudadano;
 import Entidades.Institucion;
 
 public class BDInstitucion {
 
-	private static Exception lastError = null;
 	
-//	private String dbName = "dbCiudadano_guntaxmeal";
-//	private String server ="mysql://dbCiudadano_guntaxmeal:444f27bd00d34d770a5894007a46b43db133c8d1@mxy.h.filess.io:3307/dbCiudadano_guntaxmeal";
-//	private String user="dbCiudadano_guntaxmeal";
-//	private String pass="444f27bd00d34d770a5894007a46b43db133c8d1";
-	
+	//Tenemos esto para cargar BDInstitucion		
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			
@@ -32,7 +25,8 @@ public class BDInstitucion {
 	
 	
 
-	
+	//Creamos esto para conectarse a la BD y no tenere que escribir lo mismo en cada funcion nueva que escribamos luego
+
 	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
@@ -47,7 +41,7 @@ public class BDInstitucion {
 		}
 	}
 	
-	
+	// Prueba para ver si realmente instertamos instituciones dentro del database
 	public static void Insertar()throws SQLException	{
 		try 
 		{
@@ -75,6 +69,10 @@ public class BDInstitucion {
 		
 		
 	}
+	
+	
+	//Función que permite insertar instituciones detro del database
+
 	    public static boolean InsertarInstitucion(Institucion institucion) {
 	        //Código para insertar ciudadanos
 	        try {
@@ -96,6 +94,8 @@ public class BDInstitucion {
 	        }        
 	    }
 	    
+	    // Prueba para ver si realmente seleccionamos una institución dentro del database
+
 	    public void selectPrueba() throws SQLException {
 			try {
 			Class.forName("org.sqlite.JDBC");

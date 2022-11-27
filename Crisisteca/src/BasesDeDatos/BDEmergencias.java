@@ -5,15 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.SwingUtilities;
-
 import Entidades.Emergencias;
 
 public class BDEmergencias {
 	
-	private static Exception lastError = null;
-	
+//Tenemos esto para cargar BDEmergencias		
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			
@@ -23,7 +21,8 @@ public class BDEmergencias {
 			}
 		});
 	}
-	
+
+	//Creamos esto para conectarse a la BD y no tenere que escribir lo mismo en cada funcion nueva que escribamos luego
 	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
@@ -39,6 +38,7 @@ public class BDEmergencias {
 		}
 	}
 	
+// Prueba para ver si realmente instertamos Emergencias dentro del database
 	public void Insertar() throws SQLException {
 		try {
 			Statement st = initBD();
@@ -58,7 +58,8 @@ public class BDEmergencias {
 			e.printStackTrace();
 		}
 	}
-	
+
+//Función que permite insertar emergencias detro del database
 	public static boolean InsertarEmergencia( Emergencias emergencia) {
 		try 
 		{
@@ -76,6 +77,8 @@ public class BDEmergencias {
 			return false;
 		}  
 	}
+	
+// Prueba para ver si realmente seleccionamos emergencias dentro del database
 	
 	public void selectPrueba() throws SQLException {
 		try {
