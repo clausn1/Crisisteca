@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import javax.swing.SwingUtilities;
 
 import Entidades.Ciudadano;
+import Principal.FuncionesEspeciales;
 import Ventanas.VentanaInicio;
 
 
@@ -54,8 +55,8 @@ public static Statement initBD() {
 			Statement st = initBD();
 			
 			st.executeUpdate("create table if not exists Ciudadano (  Nombre string, Apellidos string, DNI string, Direccion string, CodigoPostal integer, Telefono integer)");
-			Ciudadano ciudadano1 = new Ciudadano("Héctor", "Paramio García", "71474157R", "Mi casa", 489001, 646011211);
-			Ciudadano ciudadano2 = new Ciudadano("Jorge", "Clausen", "79124721Y", "casa2", 48100, 61234431); 
+			Ciudadano ciudadano1 = new Ciudadano("Héctor", "Paramio García", "71474157R", "Mi casa", 489001, 646011211, FuncionesEspeciales.crearContraseña());
+			Ciudadano ciudadano2 = new Ciudadano("Jorge", "Clausen", "79124721Y", "casa2", 48100, 61234431, FuncionesEspeciales.crearContraseña()); 
 			String sentSQL ="";
 			sentSQL = "insert into Ciudadano values(" +
                     "'"+ ciudadano1.getaNombre() + "'," +
@@ -63,7 +64,8 @@ public static Statement initBD() {
                     "'" + ciudadano1.getaDNI() + "'," +
                     "'" + ciudadano1.getaDireccion() + "'," +
                     "" + ciudadano1.getaCodigoPostal() + "," +
-                    "" + ciudadano1.getaTelefono() + ")";
+                    "" + ciudadano1.getaTelefono() + ")"+
+                    "'" + ciudadano1.getaContrasenya() + "'";
 			st.executeUpdate( sentSQL );
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -78,7 +80,7 @@ public static Statement initBD() {
 	    	try 
 			{
 				Statement st = initBD();		
-				st.executeUpdate("create table if not exists Ciudadano (  Nombre string, Apellidos string, DNI string, Direccion string, CodigoPostal integer, Telefono integer)");
+				st.executeUpdate("create table if not exists Ciudadano (  Nombre string, Apellidos string, DNI string, Direccion string, CodigoPostal integer, Telefono integer, Contrasenya string)");
 				String sentSQL ="";
 				sentSQL = "insert into Ciudadano values(" +
 	                    "'"+ ciudadano.getaNombre() + "'," +
@@ -86,7 +88,9 @@ public static Statement initBD() {
 	                    "'" + ciudadano.getaDNI() + "'," +
 	                    "'" + ciudadano.getaDireccion() + "'," +
 	                    "" + ciudadano.getaCodigoPostal() + "," +
-	                    "" + ciudadano.getaTelefono() + ")";
+	                    "" + ciudadano.getaTelefono() + ")" + 
+	                    "'" + ciudadano.getaContrasenya() + "'";
+
 				st.executeUpdate( sentSQL );
 				return true;
 			}catch (Exception e) {
@@ -115,7 +119,26 @@ public static Statement initBD() {
 					
 	}
 	
-	//Función que permite saber si existe un usuario
+	//F
+	public static boolean DuplicadoUsuario (String dniQuizasDuplicado) {
+		try {
+			Statement st = initBD();
+			String sql ="select * from Ciudadano where DNI =" + dniQuizasDuplicado;
+			ResultSet rs = st.executeQuery(sql);
+			
+			return rs.next();
+
+		}catch(Exception e){
+			return false;
+		}
+
+	}
+	
+	
+	
+	
+	
+	//Función que permite saber si existe un usuario al iniciar sesion, al usar la contraseña preferimos usar un prepared statement
 	public static boolean ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 		
 		try{
@@ -128,12 +151,12 @@ public static Statement initBD() {
 			st.setString(2, contrasenyaQueBuscamos);
 			ResultSet rs = st.executeQuery();
 						
-			if (rs.next()== true) {
-				System.out.println("SI existe el usuario");
-				
-			}else {
-				System.out.println("NO existe el usuario");
-			}
+//			if (rs.next()== true) {
+//				System.out.println("SI existe el usuario");
+//				
+//			}else {
+//				System.out.println("NO existe el usuario");
+//			}
 			
 			return rs.next();
 

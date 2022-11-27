@@ -10,9 +10,10 @@ public class Ciudadano {
 	String aDireccion;
 	int aCodigoPostal;
 	int aTelefono;
+	String aContrasenya;
 
 
-	public Ciudadano(String aNombre, String aApellidos, String aDNI, String aDireccion, int aCodigoPostal, int aTelefono) {
+	public Ciudadano(String aNombre, String aApellidos, String aDNI, String aDireccion, int aCodigoPostal, int aTelefono, String aContrasenya) {
 		super();
 		this.aNombre = aNombre;
 		this.aApellidos = aApellidos;
@@ -20,6 +21,7 @@ public class Ciudadano {
 		this.aDireccion = aDireccion;
 		this.aCodigoPostal = aCodigoPostal;
 		this.aTelefono = aTelefono;
+		this.aContrasenya = aContrasenya;
 	}
 	public Ciudadano() {
 		
@@ -61,7 +63,14 @@ public class Ciudadano {
 	public void setaTelefono(int aTelefono) {
 		this.aTelefono = aTelefono;
 	}
-
+	
+	public String getaContrasenya() {
+		return aContrasenya;
+	}
+	public void setaContrasenya(String aContrasenya) {
+		this.aContrasenya = aContrasenya;
+	}
+	
 	@Override
 	public String toString() {
 		return "Ciudadano [aNombre=" + aNombre + ", aApellidos=" + aApellidos + ", aDNI=" + aDNI + ", aDireccion="

@@ -15,6 +15,7 @@ import java.util.Random;
 import javax.swing.*;
 import BasesDeDatos.BDCiudadano;
 import Entidades.Ciudadano;
+import Principal.FuncionesEspeciales;
 
 public class RegistrarseCiudadano extends JFrame{
 
@@ -251,7 +252,11 @@ public class RegistrarseCiudadano extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText())); 	
+					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña()); 	
+					if (BDCiudadano.DuplicadoUsuario(tfDNI.getText())) {
+						JOptionPane.showMessageDialog(null, "El usuario ya existe");
+					}
+					System.out.println(ciudadanonuevo.getaContrasenya());
 					BDCiudadano.InsertarCiudadano(ciudadanonuevo);
 					
 				}
