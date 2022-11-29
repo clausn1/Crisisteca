@@ -33,39 +33,33 @@ public class FuncionesEspeciales {
 				Connection conexion = DriverManager.getConnection(dburl);
 				
 				
-				//Buscar el ciudadano
-				String sqlCiudadano ="select * from Ciudadano where Telefono = ? and Contrasenya = ?";
-				PreparedStatement stC = conexion.prepareStatement(sqlCiudadano);
-				stC.setInt(1,Integer.parseInt(usuarioQueBuscamos) );
-				stC.setString(2, contrasenyaQueBuscamos);
-				ResultSet rsC = stC.executeQuery();
-				
-				//Buscar la institución
-				String sqlInstitucion = "select * from Institucion where Codigo = ? and Contrasenya = ?";		
-				PreparedStatement stI = conexion.prepareStatement(sqlInstitucion);
-				stI.setString(1, usuarioQueBuscamos );
-				stI.setString(2, contrasenyaQueBuscamos);
-				ResultSet rsI = stI.executeQuery();
-				int x =3 ;
-				
-				//Si existe el ciudadano devuelve 0
-				if( rsC.next())return 0;
-				
-				//Si existe la institucion devuelve 1
-//				else if (rsI.next()) {
-//				if (x == 3) {
-				if (rsI.next()) {
-
-					return 1;
-				}	
-				
-				//Si no existe ni en la tabla Ciudadano ni en la tabla Institución devuelve -1
-				else return -1;
+				if (puedeSerNumero(usuarioQueBuscamos)== true){
+					//Buscar el ciudadano
+					String sqlCiudadano ="select * from Ciudadano where Telefono = ? and Contrasenya = ?";
+					PreparedStatement stC = conexion.prepareStatement(sqlCiudadano);
+					stC.setInt(1,Integer.parseInt(usuarioQueBuscamos) );
+					stC.setString(2, contrasenyaQueBuscamos);
+					ResultSet rsC = stC.executeQuery();
+					
+					//Si existe el ciudadano devuelve 0
+					if( rsC.next())return 0;
+				}
+				else {
+					//Buscar la institución
+					String sqlInstitucion = "select * from Institucion where Codigo = ? and Contrasenya = ?";		
+					PreparedStatement stI = conexion.prepareStatement(sqlInstitucion);
+					stI.setString(1, usuarioQueBuscamos );
+					stI.setString(2, contrasenyaQueBuscamos);
+					ResultSet rsI = stI.executeQuery();
+					//Si existe la institucion devuelve 1
+					if( rsI.next())return 1;			
+				}
+	
 				
 			}catch(Exception e){
-				System.out.println("Error en ExisteUsuario");
-				return -1;
+				return null;
 			}
+			return -1;
 			
 		}
 	
@@ -73,7 +67,7 @@ public class FuncionesEspeciales {
 		public static boolean puedeSerNumero(String palabra) {
 		    try {
 		        int num = Integer.parseInt(palabra);
-		    } catch (NumberFormatException nfe) {
+		    } catch (Exception e) {
 		        return false;
 		    }
 		    return true;
