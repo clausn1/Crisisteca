@@ -17,6 +17,7 @@ import javax.swing.SwingUtilities;
 
 import BasesDeDatos.BDCiudadano;
 import Entidades.Ciudadano;
+import Principal.FuncionesEspeciales;
 
 public class IniciarSesion extends JFrame{
 
@@ -94,10 +95,10 @@ public class IniciarSesion extends JFrame{
 				String Usuario = tfUsuario.getText() ;
 				String Contrasenya = tfContrasenya.getText();
 				
-				if (BDCiudadano.ExisteUsuario(Usuario,Contrasenya)==0) {
+				if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==0) {
 					System.out.println("Se ha iniciado sesión como Ciudadano");				
 				}
-				else if (BDCiudadano.ExisteUsuario(Usuario,Contrasenya)==1) {
+				else if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==1) {
 					System.out.println("Se ha iniciado sesión como Institucion");				
 				}
 				else {

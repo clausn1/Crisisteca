@@ -71,7 +71,7 @@ public class RegistrarseInstitucion extends JFrame{
 		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.X_AXIS));
 		
 		/// Panel de la Izquierda
-		JLabel lblCodigo= new JLabel("Nombre: ");
+		JLabel lblCodigo= new JLabel("Código: ");
 		lblCodigo.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblNombre = new JLabel("Nombre: ");
 		lblNombre.setFont(new Font("Arial", Font.PLAIN, 30));

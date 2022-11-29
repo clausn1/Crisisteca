@@ -1,6 +1,10 @@
 package Principal;
 
 import java.security.SecureRandom;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class FuncionesEspeciales {
 
@@ -19,9 +23,61 @@ public class FuncionesEspeciales {
 	    }
 	
 	
+		//Función que permite saber si existe un usuario al iniciar sesion, al usar la contraseña preferimos usar un prepared statement
+		public static Integer ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
+			
+			try{
+				//Conectarnos
+			 	Class.forName("org.sqlite.JDBC");
+				String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
+				Connection conexion = DriverManager.getConnection(dburl);
+				
+				
+				//Buscar el ciudadano
+				String sqlCiudadano ="select * from Ciudadano where Telefono = ? and Contrasenya = ?";
+				PreparedStatement stC = conexion.prepareStatement(sqlCiudadano);
+				stC.setInt(1,Integer.parseInt(usuarioQueBuscamos) );
+				stC.setString(2, contrasenyaQueBuscamos);
+				ResultSet rsC = stC.executeQuery();
+				
+				//Buscar la institución
+				String sqlInstitucion = "select * from Institucion where Codigo = ? and Contrasenya = ?";		
+				PreparedStatement stI = conexion.prepareStatement(sqlInstitucion);
+				stI.setString(1, usuarioQueBuscamos );
+				stI.setString(2, contrasenyaQueBuscamos);
+				ResultSet rsI = stI.executeQuery();
+				int x =3 ;
+				
+				//Si existe el ciudadano devuelve 0
+				if( rsC.next())return 0;
+				
+				//Si existe la institucion devuelve 1
+//				else if (rsI.next()) {
+//				if (x == 3) {
+				if (rsI.next()) {
+
+					return 1;
+				}	
+				
+				//Si no existe ni en la tabla Ciudadano ni en la tabla Institución devuelve -1
+				else return -1;
+				
+			}catch(Exception e){
+				System.out.println("Error en ExisteUsuario");
+				return -1;
+			}
+			
+		}
 	
-	
-	
+	//Funcion que permite saber si el String se puede volver numero o no (lo necesitamos para que no error el iniciar sesion)
+		public static boolean puedeSerNumero(String palabra) {
+		    try {
+		        int num = Integer.parseInt(palabra);
+		    } catch (NumberFormatException nfe) {
+		        return false;
+		    }
+		    return true;
+		}
 	
 	
 	
