@@ -91,7 +91,7 @@ public class IniciarSesion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String Usuario = tfUsuario.getText();
+				String Usuario = tfUsuario.getText() ;
 				String Contrasenya = tfContrasenya.getText();
 				
 				if (BDCiudadano.ExisteUsuario(Usuario,Contrasenya)) {

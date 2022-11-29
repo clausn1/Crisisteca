@@ -20,6 +20,12 @@ import Ventanas.VentanaInicio;
 
 public class BDCiudadano {
 
+private static final String String = null;
+
+
+
+
+
 //Tenemos esto para cargar BDCiudadano		
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -139,31 +145,30 @@ public static Statement initBD() {
 	
 	
 	//Función que permite saber si existe un usuario al iniciar sesion, al usar la contraseña preferimos usar un prepared statement
-	public static boolean ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
+	public static Integer ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 		
 		try{
 		 	Class.forName("org.sqlite.JDBC");
 			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
-			String sql ="select * from Ciudadano where Telefono = ? and Contrasenya = ?";
-			PreparedStatement st = conexion.prepareStatement(sql);
-			st.setString(1, usuarioQueBuscamos);
-			st.setString(2, contrasenyaQueBuscamos);
-			ResultSet rs = st.executeQuery();
-						
-//			if (rs.next()== true) {
-//				System.out.println("SI existe el usuario");
-//				
-//			}else {
-//				System.out.println("NO existe el usuario");
-//			}
+			String sqlCiudadano ="select * from Ciudadano where Telefono = ? and Contrasenya = ?";
+			PreparedStatement stC = conexion.prepareStatement(sqlCiudadano);
+			stC.setInt(1,Integer.parseInt(usuarioQueBuscamos) );
+			stC.setString(2, contrasenyaQueBuscamos);
+			ResultSet rsC = stC.executeQuery();
 			
-			return rs.next();
-
+			if( rsC.next())return 1;
+			else(
+			String sqlInstitucion = "select * from Institucion where Codigo = ? and Contrasenya = ?";
+			PreparedStatement stI = conexion.prepareStatement(sqlCiudadano);
+			stI.setInt(1,Integer.parseInt(usuarioQueBuscamos) );
+			stI.setString(2, contrasenyaQueBuscamos);
+			ResultSet rsI = stI.executeQuery();
+//	)
 			
 		}catch(Exception e){
 			
-			return false;
+			return -1;
 			
 		}
 		
