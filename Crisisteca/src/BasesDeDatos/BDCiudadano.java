@@ -148,27 +148,41 @@ public static Statement initBD() {
 	public static Integer ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 		
 		try{
+			//Conectarnos
 		 	Class.forName("org.sqlite.JDBC");
 			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
+			
+			
+			//Buscar el ciudadano
 			String sqlCiudadano ="select * from Ciudadano where Telefono = ? and Contrasenya = ?";
 			PreparedStatement stC = conexion.prepareStatement(sqlCiudadano);
 			stC.setInt(1,Integer.parseInt(usuarioQueBuscamos) );
 			stC.setString(2, contrasenyaQueBuscamos);
 			ResultSet rsC = stC.executeQuery();
 			
-			if( rsC.next())return 1;
-			else(
-			String sqlInstitucion = "select * from Institucion where Codigo = ? and Contrasenya = ?";
-			PreparedStatement stI = conexion.prepareStatement(sqlCiudadano);
-			stI.setInt(1,Integer.parseInt(usuarioQueBuscamos) );
+			//Buscar la institución
+			String sqlInstitucion = "select * from Institucion where Codigo = ? and Contrasenya = ?";		
+			PreparedStatement stI = conexion.prepareStatement(sqlInstitucion);
+			stI.setString(1, usuarioQueBuscamos );
 			stI.setString(2, contrasenyaQueBuscamos);
 			ResultSet rsI = stI.executeQuery();
-//	)
+			
+			//Si existe el ciudadano devuelve 0
+			if( rsC.next())return 0;
+			
+			//Si existe la institucion devuelve 1
+			else if (rsI.next()) {
+				return 1;
+			}	
+			
+			//Si no existe ni en la tabla Ciudadano ni en la tabla Institución devuelve -1
+			else return -1;
 			
 		}catch(Exception e){
-			
-			return -1;
+			System.out.println("Error en ExisteUsuario");
+			return null;
+
 			
 		}
 		
