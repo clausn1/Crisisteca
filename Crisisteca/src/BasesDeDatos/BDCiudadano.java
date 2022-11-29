@@ -54,30 +54,7 @@ public static Statement initBD() {
 		}
 	}
 	
-// Prueba para ver si realmente instertamos ciudadanos dentro del database
-	public void Insertar()throws SQLException	{
-		try 
-		{
-			Statement st = initBD();
-			
-			st.executeUpdate("create table if not exists Ciudadano (  Nombre string, Apellidos string, DNI string, Direccion string, CodigoPostal integer, Telefono integer)");
-			Ciudadano ciudadano1 = new Ciudadano("Héctor", "Paramio García", "71474157R", "Mi casa", 489001, 646011211, FuncionesEspeciales.crearContraseña());
-			Ciudadano ciudadano2 = new Ciudadano("Jorge", "Clausen", "79124721Y", "casa2", 48100, 61234431, FuncionesEspeciales.crearContraseña()); 
-			String sentSQL ="";
-			sentSQL = "insert into Ciudadano values(" +
-                    "'"+ ciudadano1.getaNombre() + "'," +
-                    "'" + ciudadano1.getaApellidos() + "'," +
-                    "'" + ciudadano1.getaDNI() + "'," +
-                    "'" + ciudadano1.getaDireccion() + "'," +
-                    "" + ciudadano1.getaCodigoPostal() + "," +
-                    "" + ciudadano1.getaTelefono() + ")"+
-                    "'" + ciudadano1.getaContrasenya() + "'";
-			st.executeUpdate( sentSQL );
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	
-	}
+
 	
 //Función que permite insertar ciudadanos detro del database
 	    public static boolean InsertarCiudadano(Ciudadano ciudadano) {
@@ -167,7 +144,6 @@ public static Statement initBD() {
 			stI.setString(1, usuarioQueBuscamos );
 			stI.setString(2, contrasenyaQueBuscamos);
 			ResultSet rsI = stI.executeQuery();
-			
 			//Si existe el ciudadano devuelve 0
 			if( rsC.next())return 0;
 			
@@ -182,11 +158,8 @@ public static Statement initBD() {
 		}catch(Exception e){
 			System.out.println("Error en ExisteUsuario");
 			return null;
-
-			
 		}
 		
-	
 	}
 
 

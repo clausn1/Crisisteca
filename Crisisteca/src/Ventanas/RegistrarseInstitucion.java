@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 import BasesDeDatos.BDCiudadano;
 import BasesDeDatos.BDInstitucion;
 import Entidades.Institucion;
+import Principal.FuncionesEspeciales;
 
 public class RegistrarseInstitucion extends JFrame{
 	public static void main(String[] args) {
@@ -201,8 +202,7 @@ public class RegistrarseInstitucion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Institucion institucionnueva = new Institucion( tfCodigo.getText(),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()));
-
+				Institucion institucionnueva = new Institucion( tfCodigo.getText(),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña());
 				BDInstitucion.InsertarInstitucion(institucionnueva);
 
 			}

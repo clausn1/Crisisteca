@@ -2,56 +2,86 @@ package Entidades;
 
 public class Institucion {
 	
-	private String iCodigo;
-	private String iNombre;
-	private String iEmail;
-	private int iTelefono;
+	private String aCodigo;
+	private String aNombre;
+	private String aEmail;
+	private int aTelefono;
+	private String aContrasenya;
 	
 	
-	public Institucion (String iCodigo, String iNombre, String iEmail, int iTelefono) {
-		this.iCodigo = iCodigo;
-		this.iNombre = iNombre;
-		this.iEmail = iEmail;
-		this.iTelefono = iTelefono;
+	public Institucion (String aCodigo, String aNombre, String aEmail, int aTelefono, String aContrasenya) {
+		this.aCodigo = aCodigo;
+		this.aNombre = aNombre;
+		this.aEmail = aEmail;
+		this.aTelefono = aTelefono;
+		this.aContrasenya = aContrasenya;
 	}
 
 	
-	
-	public String getiCodigo() {
-		return iCodigo;
+
+	public String getaCodigo() {
+		return aCodigo;
 	}
 
-	public void setiCodigo(String iCodigo) {
-		this.iCodigo = iCodigo;
+
+
+	public void setaCodigo(String aCodigo) {
+		this.aCodigo = aCodigo;
 	}
 
-	public String getiNombre() {
-		return iNombre;
-	}	
-	
-	public void setiNombre(String iNombre) {
-		this.iNombre = iNombre;
+
+
+	public String getaNombre() {
+		return aNombre;
 	}
 
-	public String getiEmail() {
-		return iEmail;
+
+
+	public void setaNombre(String aNombre) {
+		this.aNombre = aNombre;
 	}
 
-	public void setiEmail(String iEmail) {
-		this.iEmail = iEmail;
+
+
+	public String getaEmail() {
+		return aEmail;
 	}
 
-	public int getiTelefono() {
-		return iTelefono;
+
+
+	public void setaEmail(String aEmail) {
+		this.aEmail = aEmail;
 	}
 
-	public void setiTelefono(int iTelefono) {
-		this.iTelefono = iTelefono;
+
+
+	public int getaTelefono() {
+		return aTelefono;
 	}
+
+
+
+	public void setaTelefono(int aTelefono) {
+		this.aTelefono = aTelefono;
+	}
+
+
+
+	public String getaContrasenya() {
+		return aContrasenya;
+	}
+
+
+
+	public void setaContrasenya(String aContrasenya) {
+		this.aContrasenya = aContrasenya;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "Institucion [iCodigo=" + iCodigo + ", iNombre=" + iNombre + ", iEmail=" + iEmail + ", iTelefono="
-				+ iTelefono + "]";
+		return "Institucion [aCodigo=" + aCodigo + ", aNombre=" + aNombre + ", aEmail=" + aEmail + ", aTelefono="
+				+ aTelefono + ", aContrasenya=" + aContrasenya + "]";
 	}
 }

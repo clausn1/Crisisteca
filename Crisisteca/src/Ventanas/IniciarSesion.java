@@ -94,9 +94,14 @@ public class IniciarSesion extends JFrame{
 				String Usuario = tfUsuario.getText() ;
 				String Contrasenya = tfContrasenya.getText();
 				
-				if (BDCiudadano.ExisteUsuario(Usuario,Contrasenya)) {
-					System.out.println("Se ha iniciado sesión");
-					
+				if (BDCiudadano.ExisteUsuario(Usuario,Contrasenya)==0) {
+					System.out.println("Se ha iniciado sesión como Ciudadano");				
+				}
+				else if (BDCiudadano.ExisteUsuario(Usuario,Contrasenya)==1) {
+					System.out.println("Se ha iniciado sesión como Institucion");				
+				}
+				else {
+					System.out.println("No existe ese usuario con esa contraseña");
 				}
 				
 //				BDCiudadano.InsertarCiudadano(ciudadanonuevo);

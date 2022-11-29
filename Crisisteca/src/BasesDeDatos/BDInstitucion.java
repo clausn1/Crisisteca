@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.SwingUtilities;
 import Entidades.Institucion;
+import Principal.FuncionesEspeciales;
 
 public class BDInstitucion {
 
@@ -41,35 +42,6 @@ public class BDInstitucion {
 		}
 	}
 	
-	// Prueba para ver si realmente instertamos instituciones dentro del database
-	public static void Insertar()throws SQLException	{
-		try 
-		{
-			
-			Statement st = initBD();
-			
-			
-			st.executeUpdate("create table if not exists Institucion ( Codigo string, Nombre string, Email string,Telefono integer)");
-			Institucion institucion1 = new Institucion("AAA","Nombre 1", "institucion1@gmail.com", 32000);
-			Institucion institucion2 = new Institucion("AAB", "Nombre 2", "institucion2@gmail.com", 32001); 
-			String sentSQL ="";
-			sentSQL = "insert into Ciudadano values(" +
-                    "'"+ institucion1.getiCodigo() + "'," +
-                    "'" + institucion1.getiNombre() + "'," +
-                    "'" + institucion1.getiEmail() + "'," +
-                    "" + institucion1.getiTelefono() + ")";
-			st.executeUpdate( sentSQL );
-		
-
-		}catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("no ha funcionao insertar ");
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
 	
 	//Función que permite insertar instituciones detro del database
 
@@ -78,13 +50,14 @@ public class BDInstitucion {
 	        try {
 	        	
 				Statement st = initBD();		
-				st.executeUpdate("create table if not exists Institucion ( Codigo string, Nombre string, Email string,Telefono integer)");
+				st.executeUpdate("create table if not exists Institucion ( Codigo string, Nombre string, Email string,Telefono integer, Contrasenya string)");
 		        String sentSQL = "";
 	            sentSQL = "insert into Institucion values(" +
-	            		"'" + institucion.getiCodigo()+ "'," +
-	                    "'"+ institucion.getiNombre() + "," +
-	                    "'" + institucion.getiEmail() + "'," +
-	                    "" + institucion.getiTelefono();
+	            		"'" + institucion.getaCodigo()+ "'," +
+	                    "'"+ institucion.getaNombre() + "'," +
+	                    "'" + institucion.getaEmail() + "'," +
+	                    "" + institucion.getaTelefono() + "," +
+	                    "'" + institucion.getaContrasenya() + "')";
 	            
 	           st.executeUpdate( sentSQL );
 	           return true;  
