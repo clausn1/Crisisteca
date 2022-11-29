@@ -88,8 +88,8 @@ public static Statement initBD() {
 	                    "'" + ciudadano.getaDNI() + "'," +
 	                    "'" + ciudadano.getaDireccion() + "'," +
 	                    "" + ciudadano.getaCodigoPostal() + "," +
-	                    "" + ciudadano.getaTelefono() + ")" + 
-	                    "'" + ciudadano.getaContrasenya() + "'";
+	                    "" + ciudadano.getaTelefono() + "," + 
+	                    "'" + ciudadano.getaContrasenya() + "')";
 
 				st.executeUpdate( sentSQL );
 				return true;
@@ -145,7 +145,7 @@ public static Statement initBD() {
 		 	Class.forName("org.sqlite.JDBC");
 			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
 			Connection conexion = DriverManager.getConnection(dburl);
-			String sql ="select * from Ciudadano where Telefono = ? and Contrasena = ?";
+			String sql ="select * from Ciudadano where Telefono = ? and Contrasenya = ?";
 			PreparedStatement st = conexion.prepareStatement(sql);
 			st.setString(1, usuarioQueBuscamos);
 			st.setString(2, contrasenyaQueBuscamos);
