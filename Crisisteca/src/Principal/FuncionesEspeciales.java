@@ -5,11 +5,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+
+import BasesDeDatos.BDCiudadano;
 
 public class FuncionesEspeciales {
 
-	
-	   public static String crearContraseña()
+	//Crear una contraseña
+	public static String crearContraseña()
 	    {
 	        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	        SecureRandom sr = new SecureRandom();
@@ -23,8 +26,8 @@ public class FuncionesEspeciales {
 	    }
 	
 	
-		//Función que permite saber si existe un usuario al iniciar sesion, al usar la contraseña preferimos usar un prepared statement
-		public static Integer ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
+	//Función que permite saber si existe un usuario al iniciar sesion, al usar la contraseña preferimos usar un prepared statement
+	public static Integer ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 			
 			try{
 				//Conectarnos
@@ -64,7 +67,7 @@ public class FuncionesEspeciales {
 		}
 	
 	//Funcion que permite saber si el String se puede volver numero o no (lo necesitamos para que no error el iniciar sesion)
-		public static boolean puedeSerNumero(String palabra) {
+	public static boolean puedeSerNumero(String palabra) {
 		    try {
 		        int num = Integer.parseInt(palabra);
 		    } catch (Exception e) {
@@ -73,8 +76,22 @@ public class FuncionesEspeciales {
 		    return true;
 		}
 	
-	
-	
+	//Función que reconoce si dicho usuario existe
+	public static boolean DuplicadoUsuario (String dniQuizasDuplicado) {
+			try {
+				Statement st = BDCiudadano.initBD();
+				String sql ="select * from Ciudadano where DNI =" + dniQuizasDuplicado;
+				ResultSet rs = st.executeQuery(sql);
+				
+				return rs.next();
+
+			}catch(Exception e){
+				e.printStackTrace();
+				return false;
+			}
+			
+
+		}
 	
 	
 	

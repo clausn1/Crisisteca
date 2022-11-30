@@ -27,6 +27,7 @@ import javax.swing.SwingUtilities;
 
 import BasesDeDatos.BDCiudadano;
 import BasesDeDatos.BDInstitucion;
+import Entidades.Ciudadano;
 import Entidades.Institucion;
 import Principal.FuncionesEspeciales;
 

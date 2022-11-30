@@ -1,5 +1,6 @@
 package BasesDeDatos;
 
+import java.io.Closeable;
 import java.sql.Connection;
 
 import java.sql.DriverManager;
@@ -77,6 +78,7 @@ public static Statement initBD() {
 				st.executeUpdate( sentSQL );
 				return true;
 			}catch (Exception e) {
+				e.printStackTrace();
 				return false;
 			}  
 	    }
@@ -102,20 +104,7 @@ public static Statement initBD() {
 					
 	}
 	
-	//F
-	public static boolean DuplicadoUsuario (String dniQuizasDuplicado) {
-		try {
-			Statement st = initBD();
-			String sql ="select * from Ciudadano where DNI =" + dniQuizasDuplicado;
-			ResultSet rs = st.executeQuery(sql);
-			
-			return rs.next();
 
-		}catch(Exception e){
-			return false;
-		}
-
-	}
 	
 	
 	
