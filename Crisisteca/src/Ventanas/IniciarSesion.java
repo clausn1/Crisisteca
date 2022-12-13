@@ -95,10 +95,12 @@ public class IniciarSesion extends JFrame{
 				
 				if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==0) {
 					System.out.println("Se ha iniciado sesión como Ciudadano");
-					
+					//se inicia sesion y se abre la ventana con las opciones de ciudadano
+							new ReportarEmergenciasOEmergencias().setVisible(true);
+							setVisible(false);				
 				}
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==1) {
-					System.out.println("Se ha iniciado sesión como Institucion");				
+					System.out.println("Se ha iniciado sesión como Institucion");
 				}
 				else {
 					System.out.println("No existe ese usuario con esa contraseña");
