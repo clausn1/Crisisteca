@@ -1,18 +1,23 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -68,12 +73,15 @@ public class VentanaReportarEmergencia extends JFrame{
 		JPanel pnlDerecha = new JPanel();
 		JPanel pnlAbajo = new JPanel();
 		JPanel pnlArriba = new JPanel();
+		JPanel pnlReportar = new JPanel();
+		
 		
 		pnlCentro.setLayout(new BorderLayout());
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
 		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.X_AXIS));
-		pnlArriba.setLayout(new GridLayout(0,3));
+		pnlReportar.setLayout(new BoxLayout(pnlReportar, BoxLayout.PAGE_AXIS));
+		pnlArriba.setLayout(new GridLayout(0,4));
 		
 		//panel arriba
 		JLabel lblLugar = new JLabel("Lugar: ");
@@ -94,16 +102,29 @@ public class VentanaReportarEmergencia extends JFrame{
 		comboxCodigoPostal.addItem(48012);
 		
 		
+		JTextField numero=  new JTextField();
 		
+		numero.hide();
+		numero.addKeyListener(new java.awt.event.KeyAdapter() {
+		    public void keyTyped(java.awt.event.KeyEvent evt) {
+		        if(numero.getText().length()>=50&&!(evt.getKeyChar()==KeyEvent.VK_DELETE||evt.getKeyChar()==KeyEvent.VK_BACK_SPACE)) {
+		            getToolkit().beep();
+		            evt.consume();
+		         }
+		     }
+		});
+	
 		
 		comboxCalle = new JComboBox<>();
 		comboxCalle.hide();
 		comboxCalle.setEnabled(false);
+		
 		comboxCodigoPostal.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			comboxCalle.show();	
+			comboxCalle.show();
+			numero.show();
 			comboxCalle.removeAllItems();
 				Integer itemSeleecionado = (Integer)comboxCodigoPostal.getSelectedItem();
 				if(48001==itemSeleecionado) {
@@ -255,10 +276,15 @@ public class VentanaReportarEmergencia extends JFrame{
 			}
 		});
 		
+
+
+		
+		
+		
 		pnlArriba.add(lblLugar);
 		pnlArriba.add(comboxCodigoPostal);
 		pnlArriba.add(comboxCalle);
-		
+		pnlArriba.add(numero);
 		
 		
 		//Panel izquierda
@@ -268,14 +294,14 @@ public class VentanaReportarEmergencia extends JFrame{
 		lblTipoEmergencia.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblReportar = new JLabel("¿Desea reportar la emergencia a las autoridades y al resto de usuarios?");
 		lblReportar.setFont(new Font("Arial", Font.PLAIN, 30));
-		JLabel lblDetalles= new JLabel("¿Desea añadir algun tipo de información? ");
-		lblDetalles.setFont(new Font("Arial", Font.PLAIN, 30));
+		lblTipoEmergencia.setAlignmentY(BOTTOM_ALIGNMENT);
+		lblReportar.setAlignmentX(CENTER_ALIGNMENT);
 		
 		
 		
 		pnlIzquierda.add(lblTipoEmergencia);
 		pnlIzquierda.add(lblReportar);
-		
+		pnlIzquierda.add(Box.createVerticalGlue());
 		
 		//Panel derecha
 		
@@ -283,28 +309,47 @@ public class VentanaReportarEmergencia extends JFrame{
 		comboxTipoEmergencia.addItem("Coche");
 		comboxTipoEmergencia.addItem("Robo");
 		comboxTipoEmergencia.addItem("Violencia");
-		taDetalles = new JTextArea();
-		taDetalles.setLineWrap(true);
-		taDetalles.setWrapStyleWord(true);
+		comboxTipoEmergencia.setAlignmentY(BOTTOM_ALIGNMENT);
+		comboxTipoEmergencia.setAlignmentX(CENTER_ALIGNMENT);
 
 		cboxAvisar = new JCheckBox();
-		
+		cboxAvisar.setAlignmentY(CENTER_ALIGNMENT);
 
-		taDetalles.setFont(new Font("Arial", Font.PLAIN, 20));
+		
 		
 		
 		
 		pnlDerecha.add(comboxTipoEmergencia);
+		pnlDerecha.add(Box.createVerticalGlue());
+		pnlDerecha.add(Box.createVerticalGlue());
 		pnlDerecha.add(cboxAvisar);
+		pnlDerecha.add(Box.createVerticalGlue());
+		
+		
+	
+		//panel de abajo
+		JLabel lblDetalles= new JLabel("¿Desea añadir algun tipo de información? ");
+		lblDetalles.setFont(new Font("Arial", Font.PLAIN, 30));				
+		taDetalles = new JTextArea();
+		taDetalles.setLineWrap(true);
+		taDetalles.setWrapStyleWord(true);
+		taDetalles.setFont(new Font("Arial", Font.PLAIN, 20));
+		
+		JButton bReportar= new JButton("Reportar emergencia");
 		
 		
 		pnlAbajo.add(lblDetalles);
 		pnlAbajo.add(taDetalles);
 		
 		
+		//ultima linea de panel
+		bReportar.setAlignmentX(0.5f);
+		pnlReportar.add(bReportar);
+		
 		//Panel Principal
+		pnlCentro.add(pnlReportar, BorderLayout.PAGE_END);
 		pnlCentro.add(pnlIzquierda, BorderLayout.WEST);
-		pnlCentro.add(pnlDerecha, BorderLayout.EAST);
+		pnlCentro.add(pnlDerecha, BorderLayout.CENTER);
 		pnlCentro.add(pnlAbajo,BorderLayout.SOUTH);
 		pnlCentro.add(pnlArriba, BorderLayout.NORTH);
 		getContentPane().add(pnlCentro);
