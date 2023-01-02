@@ -50,8 +50,8 @@ public class VentanaReportarEmergencia extends JFrame{
 	public VentanaReportarEmergencia() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Reportar Emergencia");
-		this.setBounds(1000, 600, 1000, 700);
-		this.setSize(1500,500);
+		this.setBounds(100, 100, 1000, 700);
+		this.setSize(1200,400);
 		this.setResizable(false);
 		this.getContentPane().setLayout(new FlowLayout());
 		this.setLocationRelativeTo(null);
@@ -79,8 +79,7 @@ public class VentanaReportarEmergencia extends JFrame{
 		pnlCentro.setLayout(new BorderLayout());
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
-		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.X_AXIS));
-		pnlReportar.setLayout(new BoxLayout(pnlReportar, BoxLayout.PAGE_AXIS));
+		pnlAbajo.setLayout(new BorderLayout());
 		pnlArriba.setLayout(new GridLayout(0,4));
 		
 		//panel arriba
@@ -328,26 +327,28 @@ public class VentanaReportarEmergencia extends JFrame{
 		
 	
 		//panel de abajo
-		JLabel lblDetalles= new JLabel("¿Desea añadir algun tipo de información? ");
+		JLabel lblDetalles= new JLabel("¿Desea añadir algun tipo de información sobre el accidente? ");
 		lblDetalles.setFont(new Font("Arial", Font.PLAIN, 30));				
 		taDetalles = new JTextArea();
 		taDetalles.setLineWrap(true);
 		taDetalles.setWrapStyleWord(true);
 		taDetalles.setFont(new Font("Arial", Font.PLAIN, 20));
 		
+		
+		
 		JButton bReportar= new JButton("Reportar emergencia");
 		
 		
-		pnlAbajo.add(lblDetalles);
-		pnlAbajo.add(taDetalles);
+		pnlAbajo.add(lblDetalles, BorderLayout.NORTH);
 		
-		
-		//ultima linea de panel
-		bReportar.setAlignmentX(0.5f);
-		pnlReportar.add(bReportar);
+
+		pnlAbajo.add(taDetalles, BorderLayout.CENTER);
+		pnlAbajo.add(Box.createVerticalGlue(), BorderLayout.SOUTH);
+		pnlAbajo.add(Box.createVerticalGlue(), BorderLayout.SOUTH);
+		pnlAbajo.add(bReportar, BorderLayout.SOUTH);
 		
 		//Panel Principal
-		pnlCentro.add(pnlReportar, BorderLayout.PAGE_END);
+		pnlCentro.add(pnlReportar, BorderLayout.SOUTH);
 		pnlCentro.add(pnlIzquierda, BorderLayout.WEST);
 		pnlCentro.add(pnlDerecha, BorderLayout.CENTER);
 		pnlCentro.add(pnlAbajo,BorderLayout.SOUTH);
