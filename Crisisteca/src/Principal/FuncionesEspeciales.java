@@ -45,7 +45,12 @@ public class FuncionesEspeciales {
 					ResultSet rsC = stC.executeQuery();
 					
 					//Si existe el ciudadano devuelve 0
-					if( rsC.next())return 0;
+					boolean valorPaCerrar = rsC.next();
+				    BDCiudadano.cerrarBD(BDCiudadano.initBD().getConnection(), stC);
+					if(valorPaCerrar)return 0;
+			
+
+					
 				}
 				else {
 					//Buscar la institución
@@ -54,8 +59,11 @@ public class FuncionesEspeciales {
 					stI.setString(1, usuarioQueBuscamos );
 					stI.setString(2, contrasenyaQueBuscamos);
 					ResultSet rsI = stI.executeQuery();
+					
 					//Si existe la institucion devuelve 1
-					if( rsI.next())return 1;			
+					boolean valorPaCerrar = rsI.next();
+				    BDCiudadano.cerrarBD(BDCiudadano.initBD().getConnection(), stI);
+					if(valorPaCerrar)return 1;			
 				}
 	
 				
@@ -82,9 +90,10 @@ public class FuncionesEspeciales {
 				Statement st = BDCiudadano.initBD();
 				String sql ="select * from Ciudadano where DNI =" + dniQuizasDuplicado;
 				ResultSet rs = st.executeQuery(sql);
+				boolean valorPaCerrar = rs.next();
+			    BDCiudadano.cerrarBD(BDCiudadano.initBD().getConnection(), st);
+				return valorPaCerrar;
 				
-				return rs.next();
-
 			}catch(Exception e){
 				e.printStackTrace();
 				return false;

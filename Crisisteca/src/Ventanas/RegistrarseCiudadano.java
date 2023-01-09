@@ -257,8 +257,26 @@ public class RegistrarseCiudadano extends JFrame{
 						JOptionPane.showMessageDialog(null, "El usuario ya existe");
 					}
 					else {
+
+						
+//						(new Thread() {
+//						@Override
+//						public void run() {
+//							System.out.println(ciudadanonuevo.getaContrasenya());
+//						}
+//					}).start();
+//						
+//						(new Thread() {
+//						@Override
+//						public void run() {
+//							BDCiudadano.InsertarCiudadano(ciudadanonuevo);
+//						}
+//					}).start();
+
 						System.out.println(ciudadanonuevo.getaContrasenya());
+
 						BDCiudadano.InsertarCiudadano(ciudadanonuevo);
+
 					}
 					
 					

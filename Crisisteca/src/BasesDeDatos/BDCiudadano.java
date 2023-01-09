@@ -21,7 +21,7 @@ import Ventanas.VentanaInicio;
 
 public class BDCiudadano {
 
-private static final String String = null;
+private static Connection connected = null;
 
 
 
@@ -54,6 +54,24 @@ public static Statement initBD() {
 			return null;
 		}
 	}
+
+public static void cerrarBD( Connection con, Statement st ) {
+	try {
+		if (st!=null) st.close();
+		if (con!=null) con.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+}
+
+//public static Connection getConn() throws Exception{
+//	    if(connected == null){
+//	    Class.forName("org.sqlite.JDBC");
+//	    connected = DriverManager.getConnection("jdbc:sqlite:res/bds/bdUsuario.db");
+//	    }
+//	    return connected;
+//}
 	
 
 	
@@ -76,6 +94,7 @@ public static Statement initBD() {
 	                    "'" + ciudadano.getaContrasenya() + "')";
 
 				st.executeUpdate( sentSQL );
+			    cerrarBD(initBD().getConnection(), st);
 				return true;
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -98,6 +117,8 @@ public static Statement initBD() {
 			String ciudadano= rs.getString(1);
 			System.out.println(ciudadano);
 		}
+	    cerrarBD(initBD().getConnection(), st);
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
