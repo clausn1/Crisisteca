@@ -254,11 +254,15 @@ public class RegistrarseCiudadano extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña()); 	
 					if (FuncionesEspeciales.DuplicadoUsuario(tfDNI.getText())) {
-						JOptionPane.showMessageDialog(null, "El usuario ya existe");
+						JOptionPane.showMessageDialog(null, "Ese número de DNI ya ha sido usado");
 					}
+					
+					else if (FuncionesEspeciales.DuplicadoTelefono(Integer.parseInt(tfTelefono.getText()))) {
+						JOptionPane.showMessageDialog(null, "Ese número de teléfono ya ha sido usado");
+					}
+										
 					else {
 
-						
 						(new Thread() {
 						@Override
 						public void run() {

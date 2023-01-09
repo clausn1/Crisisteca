@@ -97,11 +97,22 @@ public class FuncionesEspeciales {
 			}catch(Exception e){
 				e.printStackTrace();
 				return false;
-			}
-			
-
+			}	
 		}
 	
-	
+	public static boolean DuplicadoTelefono (int telefonoQuizasDuplicado) {
+		try {
+			Statement st = BDCiudadano.initBD();
+			String sql ="select * from Ciudadano where Telefono = " + telefonoQuizasDuplicado;
+			ResultSet rs = st.executeQuery(sql);
+			boolean valorPaCerrar = rs.next();
+		    BDCiudadano.cerrarBD(BDCiudadano.initBD().getConnection(), st);
+			return valorPaCerrar;
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}	
+	}
 	
 }
