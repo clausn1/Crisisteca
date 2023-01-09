@@ -88,7 +88,7 @@ public class FuncionesEspeciales {
 	public static boolean DuplicadoUsuario (String dniQuizasDuplicado) {
 			try {
 				Statement st = BDCiudadano.initBD();
-				String sql ="select * from Ciudadano where DNI =" + dniQuizasDuplicado;
+				String sql ="select * from Ciudadano where DNI = '" + dniQuizasDuplicado +"'";
 				ResultSet rs = st.executeQuery(sql);
 				boolean valorPaCerrar = rs.next();
 			    BDCiudadano.cerrarBD(BDCiudadano.initBD().getConnection(), st);

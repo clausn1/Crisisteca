@@ -72,8 +72,8 @@ public class RegistrarseInstitucion extends JFrame{
 		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.X_AXIS));
 		
 		/// Panel de la Izquierda
-		JLabel lblCodigo= new JLabel("Código: ");
-		lblCodigo.setFont(new Font("Arial", Font.PLAIN, 30));
+//		JLabel lblCodigo= new JLabel("Código: ");
+//		lblCodigo.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblNombre = new JLabel("Nombre: ");
 		lblNombre.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblEmail = new JLabel("E-mail: ");
@@ -81,13 +81,13 @@ public class RegistrarseInstitucion extends JFrame{
 		JLabel lblTelefono = new JLabel("Teléfono: ");
 		lblTelefono.setFont(new Font("Arial", Font.PLAIN, 30));
 
-		pnlIzquierda.add(lblCodigo);
+//		pnlIzquierda.add(lblCodigo);
 		pnlIzquierda.add(lblNombre);
 		pnlIzquierda.add(lblEmail);
 		pnlIzquierda.add(lblTelefono);
 
 		/// Panel de la Derecha
-		tfCodigo = new JTextField(20);
+//		tfCodigo = new JTextField(20);
 		tfNombre = new JTextField(20);
 		tfEmail = new JTextField(20);
 		tfTelefono= new JTextField(20);
@@ -108,12 +108,12 @@ public class RegistrarseInstitucion extends JFrame{
 		}
       	
 	});
-		tfCodigo.setFont(new Font("Arial", Font.PLAIN, 20));
+//		tfCodigo.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfNombre.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfEmail.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfTelefono.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		pnlDerecha.add(tfCodigo);
+//		pnlDerecha.add(tfCodigo);
 		pnlDerecha.add(tfNombre);
 		pnlDerecha.add(tfEmail);
 		pnlDerecha.add(tfTelefono);
@@ -203,9 +203,10 @@ public class RegistrarseInstitucion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Institucion institucionnueva = new Institucion( tfCodigo.getText(),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña());
+//				Institucion institucionnueva = new Institucion( tfCodigo.getText(),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña());
+//				BDInstitucion.InsertarInstitucion(institucionnueva);
+				Institucion institucionnueva = new Institucion( crearCodigoInstitucion(),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña());
 				BDInstitucion.InsertarInstitucion(institucionnueva);
-
 			}
 		};
         
@@ -215,7 +216,10 @@ public class RegistrarseInstitucion extends JFrame{
         
 	}
 	
-	
+	public String crearCodigoInstitucion() {
+		return null;
+		
+	}
 	
 
 }

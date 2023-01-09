@@ -259,23 +259,20 @@ public class RegistrarseCiudadano extends JFrame{
 					else {
 
 						
-//						(new Thread() {
-//						@Override
-//						public void run() {
-//							System.out.println(ciudadanonuevo.getaContrasenya());
-//						}
-//					}).start();
-//						
-//						(new Thread() {
-//						@Override
-//						public void run() {
-//							BDCiudadano.InsertarCiudadano(ciudadanonuevo);
-//						}
-//					}).start();
+						(new Thread() {
+						@Override
+						public void run() {
+							System.out.println(ciudadanonuevo.getaContrasenya());
+						}
+					}).start();
+						
+						(new Thread() {
+						@Override
+						public void run() {
+							BDCiudadano.InsertarCiudadano(ciudadanonuevo);
+						}
+					}).start();
 
-						System.out.println(ciudadanonuevo.getaContrasenya());
-
-						BDCiudadano.InsertarCiudadano(ciudadanonuevo);
 
 					}
 					
