@@ -13,6 +13,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.security.SecureRandom;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -45,7 +46,7 @@ public class RegistrarseInstitucion extends JFrame{
 
 	}
 	
-	private JTextField tfCodigo;
+//	private JTextField tfCodigo;
 	private JTextField tfNombre;
 	private JTextField tfEmail;
 	private JTextField tfTelefono;
@@ -203,10 +204,11 @@ public class RegistrarseInstitucion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-//				Institucion institucionnueva = new Institucion( tfCodigo.getText(),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña());
-//				BDInstitucion.InsertarInstitucion(institucionnueva);
-				Institucion institucionnueva = new Institucion( crearCodigoInstitucion(),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña());
+				Institucion institucionnueva = new Institucion(FuncionesEspeciales.crearCodigo(tfNombre.getText()),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña());
 				BDInstitucion.InsertarInstitucion(institucionnueva);
+				JOptionPane.showMessageDialog(null, "El código es "+ institucionnueva.getaCodigo()+"\n Y la contraseña es " + institucionnueva.getaContrasenya());
+				System.out.println(institucionnueva.getaCodigo());
+				System.out.println(institucionnueva.getaContrasenya());
 			}
 		};
         
@@ -216,10 +218,7 @@ public class RegistrarseInstitucion extends JFrame{
         
 	}
 	
-	public String crearCodigoInstitucion() {
-		return null;
-		
-	}
+
 	
 
 }

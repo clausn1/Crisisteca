@@ -26,6 +26,21 @@ public class FuncionesEspeciales {
 	    }
 	
 	
+	public static String crearCodigo(String nombre)
+    {
+        final String chars = "0123456789";
+        SecureRandom sr = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+        sb.append(nombre.replaceAll(" ","").toUpperCase());
+        for (int i = 0; i < 4; i++)
+        {
+            int ir = sr.nextInt(chars.length());
+            sb.append(chars.charAt(ir));
+        }
+        return sb.toString();
+    }
+	
+	
 	//Función que permite saber si existe un usuario al iniciar sesion, al usar la contraseña preferimos usar un prepared statement
 	public static Integer ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 			
@@ -70,7 +85,7 @@ public class FuncionesEspeciales {
 			}catch(Exception e){
 				return null;
 			}
-			return -1;
+			return null;
 			
 		}
 	
