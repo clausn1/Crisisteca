@@ -11,7 +11,10 @@ import BasesDeDatos.BDCiudadano;
 
 public class FuncionesEspeciales {
 
-	//Crear una contraseña
+	/** Genera un serie de 20 caracteres aleatorios (formado por letras mayúsculas, minúsculas y números)
+	 *	para ser usados como contraseña
+	 *	@return String generado aleatoriamente
+	 */
 	public static String crearContraseña()
 	    {
 	        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -25,7 +28,11 @@ public class FuncionesEspeciales {
 	        return sb.toString();
 	    }
 	
-	
+	/** Genera un serie de caracteres que consiste en un String que recibe como para parámetro pero en mayúscula
+	 *	y sin espacios seguido por 4 números aleatorios para ser usado como código de una institución
+	 *	@param nombre	Nombre de la institución
+	 *	@return String generado aleatoriamente
+	 */
 	public static String crearCodigo(String nombre)
     {
         final String chars = "0123456789";
@@ -40,8 +47,11 @@ public class FuncionesEspeciales {
         return sb.toString();
     }
 	
-	
-	//Función que permite saber si existe un usuario al iniciar sesion, al usar la contraseña preferimos usar un prepared statement
+	/** Permite saber si un usuario en concreto existe en la base de datos y si es un ciudadano o una instituación
+	 *	@param usuarioQueBuscamos	Nombre del usuario que buscamos en la base de datos
+	 *	@param contrasenyaQueBuscamos	Contraseña del usuario que buscamos en la base de datos
+	 *	@return Devuelve 0 si es ciudadano, devuelve 1 si es una institución y devuelve -1 en caso de no existir en la base de datos
+	 */
 	public static Integer ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 			
 			try{
@@ -83,23 +93,31 @@ public class FuncionesEspeciales {
 	
 				
 			}catch(Exception e){
+				e.printStackTrace();
 				return null;
 			}
-			return null;
+			return -1;
 			
 		}
 	
-	//Funcion que permite saber si el String se puede volver numero o no (lo necesitamos para que no error el iniciar sesion)
+	/** Permite saber si un String está formado por solo números o no
+	 *	@param palabra	String del que queremos saber si todos sus caracteres son números
+	 *	@return Si es o no un String formado por solo números
+	 */
 	public static boolean puedeSerNumero(String palabra) {
 		    try {
 		        int num = Integer.parseInt(palabra);
 		    } catch (Exception e) {
+		    	e.printStackTrace();
 		        return false;
 		    }
 		    return true;
 		}
-	
-	//Función que reconoce si dicho usuario existe
+
+	/** Permite saber si un Ciudadano ya ha sido insertado en la base de datos según su DNI
+	 *	@param dniQuizasDuplicado	DNI que se compara con los que hay dentro de la base de datos
+	 *	@return Si existe o no un Ciudadano en la base de datos con el DNI recibido
+	 */
 	public static boolean DuplicadoUsuario (String dniQuizasDuplicado) {
 			try {
 				Statement st = BDCiudadano.initBD();
@@ -115,6 +133,10 @@ public class FuncionesEspeciales {
 			}	
 		}
 	
+	/** Permite saber si un Ciudadano ya ha sido insertado en la base de datos según su número de teléfono
+	 *	@param telefonoQuizasDuplicado	Número de teléfono que se compara con los que hay dentro de la base de datos
+	 *	@return Si existe o no un Ciudadano en la base de datos con el número de teléfono recibido
+	 */
 	public static boolean DuplicadoTelefono (int telefonoQuizasDuplicado) {
 		try {
 			Statement st = BDCiudadano.initBD();
