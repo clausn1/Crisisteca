@@ -11,7 +11,6 @@ import Entidades.Emergencias;
 public class BDEmergencias {
 	
 //Tenemos esto para cargar BDEmergencias		
-
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			
@@ -22,7 +21,9 @@ public class BDEmergencias {
 		});
 	}
 
-	//Creamos esto para conectarse a la BD y no tenere que escribir lo mismo en cada funcion nueva que escribamos luego
+	/* Crea una sentencia de base de datos
+	 * return: st (sentencia de trabajo si se crea correctamente), en caso de error devuelve null
+	 */
 	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
@@ -38,28 +39,22 @@ public class BDEmergencias {
 		}
 	}
 	
-// Prueba para ver si realmente instertamos Emergencias dentro del database
-	public void Insertar() throws SQLException {
+	/* Cierra la base de datos abierta
+	 * param: con (conexion abierta con la base de datos), st (sentencia abierta de la base de datos)
+	 */
+	public static void cerrarBD( Connection con, Statement st ) {
 		try {
-			Statement st = initBD();
-			st.executeUpdate("create table if not exists Emergencia (  Lugar string, Tipo Emergencia string, Reportar boolean, Detalles/Más Información String)");
-			Emergencias em1 = new Emergencias( "Barakaldo", "Robo", true, "Asaltante: Hombre de 1,65 aprox, moreno");
-			Emergencias em2 = new Emergencias( "Bilbo", "Robo", false, "Asaltante: Mujer de 1,60 aprox, rubia");
-			String sentSQL = "";
-			sentSQL = "Insert into Emergencias values(" + 
-					"'" + em1.geteLugar() + "'," +
-					"'" + em1.geteTipoEmergencia() + "'," +
-					"'" + em1.iseReportar() + "'," +
-					"'" + em1.geteDetalles() + "',";
-			st.executeUpdate( sentSQL );
-			
-		} catch (Exception e) {
-			System.out.println("no ha funcionao insertar ");
+			if (st!=null) st.close();
+			if (con!=null) con.close();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
-//Función que permite insertar emergencias detro del database
+	
+	/* Funcion que sirve para insertar valores (emergencias) en la base de datos
+	 * param: emergencia (Emergencia creada que cumpla con las caracteristicas de la entidad Emergencias)
+	 * return: true si se ha añadido la emergencia, false si ha habido un error y no se ha añadido
+	 */
 	public static boolean InsertarEmergencia( Emergencias emergencia) {
 		try 
 		{
@@ -72,14 +67,36 @@ public class BDEmergencias {
                     "'" + emergencia.iseReportar() + "'," +
                     "'" + emergencia.geteDetalles();
 			st.executeUpdate( sentSQL );
+			cerrarBD(initBD().getConnection(), st);
 			return true;
 		}catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}  
 	}
 	
-// Prueba para ver si realmente seleccionamos emergencias dentro del database
+	// Prueba para ver si realmente instertamos Emergencias dentro del database
+		public void Insertar() throws SQLException {
+			try {
+				Statement st = initBD();
+				st.executeUpdate("create table if not exists Emergencia (  Lugar string, Tipo Emergencia string, Reportar boolean, Detalles/Más Información String)");
+				Emergencias em1 = new Emergencias( "Barakaldo", "Robo", true, "Asaltante: Hombre de 1,65 aprox, moreno");
+				Emergencias em2 = new Emergencias( "Bilbo", "Robo", false, "Asaltante: Mujer de 1,60 aprox, rubia");
+				String sentSQL = "";
+				sentSQL = "Insert into Emergencias values(" + 
+						"'" + em1.geteLugar() + "'," +
+						"'" + em1.geteTipoEmergencia() + "'," +
+						"'" + em1.iseReportar() + "'," +
+						"'" + em1.geteDetalles() + "',";
+				st.executeUpdate( sentSQL );
+				
+			} catch (Exception e) {
+				System.out.println("no ha funcionao insertar ");
+				e.printStackTrace();
+			}
+		}
 	
+// Prueba para ver si realmente seleccionamos emergencias dentro del database
 	public void selectPrueba() throws SQLException {
 		try {
 		Class.forName("org.sqlite.JDBC");
@@ -96,9 +113,7 @@ public class BDEmergencias {
 		}catch(Exception e) {
 			System.out.println("no ha funcionao");
 			e.printStackTrace();
-		}
-					
+		}					
 	}
-	
 
 }

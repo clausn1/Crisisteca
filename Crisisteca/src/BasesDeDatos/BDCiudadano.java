@@ -17,17 +17,11 @@ import Entidades.Ciudadano;
 import Principal.FuncionesEspeciales;
 import Ventanas.VentanaInicio;
 
-
-
 public class BDCiudadano {
 
 private static Connection connected = null;
 
-
-
-
-
-//Tenemos esto para cargar BDCiudadano		
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			
@@ -38,9 +32,10 @@ private static Connection connected = null;
 		});
 	}
 	
-	
-//Creamos esto para conectarse a la BD y no tenere que escribir lo mismo en cada funcion nueva que escribamos luego
-public static Statement initBD() {
+	/* Crea una sentencia de base de datos
+	 * return: st (sentencia de trabajo si se crea correctamente), en caso de error devuelve null
+	 */
+	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
 			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
@@ -54,16 +49,18 @@ public static Statement initBD() {
 			return null;
 		}
 	}
-
-public static void cerrarBD( Connection con, Statement st ) {
-	try {
-		if (st!=null) st.close();
-		if (con!=null) con.close();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
 	
-}
+	/* Cierra la base de datos abierta
+	 * param: con (conexion abierta con la base de datos), st (sentencia abierta de la base de datos)
+	 */
+	public static void cerrarBD( Connection con, Statement st ) {
+		try {
+			if (st!=null) st.close();
+			if (con!=null) con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 //public static Connection getConn() throws Exception{
 //	    if(connected == null){
@@ -73,12 +70,12 @@ public static void cerrarBD( Connection con, Statement st ) {
 //	    return connected;
 //}
 	
-
-	
-//Función que permite insertar ciudadanos detro del database
+		/* Funcion que sirve para insertar valores (ciudadanos) en la base de datos
+		 * param: ciudadano (Ciudadano creado que cumpla con las caracteristicas de la entidad Ciudadano)
+		 * return: true si se ha añadido el ciudadano, false si ha habido un error y no se ha añadido
+		 */
 	    public static boolean InsertarCiudadano(Ciudadano ciudadano) {
 	        
-	    	
 	    	try 
 			{
 				Statement st = initBD();		
@@ -121,22 +118,7 @@ public static void cerrarBD( Connection con, Statement st ) {
 
 		}catch(Exception e) {
 			e.printStackTrace();
-		}
-					
+		}			
 	}
 	
-
-	
-	
-	
-	
-	
-
-
-
-		
-	}
-	
-	
-
-
+}

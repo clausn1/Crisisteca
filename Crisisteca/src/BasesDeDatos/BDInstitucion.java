@@ -11,9 +11,7 @@ import Principal.FuncionesEspeciales;
 
 public class BDInstitucion {
 
-	
 	//Tenemos esto para cargar BDInstitucion		
-
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			
@@ -23,11 +21,10 @@ public class BDInstitucion {
 			}
 		});
 	}
-	
-	
 
-	//Creamos esto para conectarse a la BD y no tenere que escribir lo mismo en cada funcion nueva que escribamos luego
-
+	/* Crea una sentencia de base de datos
+	 * return: st (sentencia de trabajo si se crea correctamente), en caso de error devuelve null
+	 */
 	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
@@ -42,33 +39,46 @@ public class BDInstitucion {
 		}
 	}
 	
+	/* Cierra la base de datos abierta
+	 * param: con (conexion abierta con la base de datos), st (sentencia abierta de la base de datos)
+	 */
+	public static void cerrarBD( Connection con, Statement st ) {
+		try {
+			if (st!=null) st.close();
+			if (con!=null) con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	//Función que permite insertar instituciones detro del database
-
-	    public static boolean InsertarInstitucion(Institucion institucion) {
-	        //Código para insertar ciudadanos
-	        try {
-	        	
-				Statement st = initBD();		
-				st.executeUpdate("create table if not exists Institucion ( Codigo string, Nombre string, Email string,Telefono integer, Contrasenya string)");
-		        String sentSQL = "";
-	            sentSQL = "insert into Institucion values(" +
-	            		"'" + institucion.getaCodigo()+ "'," +
-	                    "'"+ institucion.getaNombre() + "'," +
-	                    "'" + institucion.getaEmail() + "'," +
-	                    "" + institucion.getaTelefono() + "," +
-	                    "'" + institucion.getaContrasenya() + "')";
+	/* Funcion que sirve para insertar valores (instituciones) en la base de datos
+	 * param: institucion (Emergencia creada que cumpla con las caracteristicas de la entidad Institucion)
+	 * return: true si se ha añadido la institucion, false si ha habido un error y no se ha añadido
+	 */
+	public static boolean InsertarInstitucion(Institucion institucion) {
+		//Código para insertar instituciones
+	    try {
+	    	Statement st = initBD();		
+	    	st.executeUpdate("create table if not exists Institucion ( Codigo string, Nombre string, Email string,Telefono integer, Contrasenya string)");
+	    	String sentSQL = "";
+	    	sentSQL = "insert into Institucion values(" +
+  			"'" + institucion.getaCodigo()+ "'," +
+ 			"'"+ institucion.getaNombre() + "'," +
+  			"'" + institucion.getaEmail() + "'," +
+	        "" + institucion.getaTelefono() + "," +
+	        "'" + institucion.getaContrasenya() + "')";
 	            
-	           st.executeUpdate( sentSQL );
-	           return true;  
+	        st.executeUpdate( sentSQL );
+	        cerrarBD(initBD().getConnection(), st);
+	        return true;  
 	            
-	        } catch (SQLException e) {
-	           return false;
-	        }        
-	    }
+	    } catch (SQLException e) {
+	    	e.printStackTrace();
+	        return false;
+	    }        
+	}
 	    
 	    // Prueba para ver si realmente seleccionamos una institución dentro del database
-
 	    public void selectPrueba() throws SQLException {
 			try {
 			Class.forName("org.sqlite.JDBC");
@@ -82,11 +92,9 @@ public class BDInstitucion {
 				String institucion= rs.getString(1);
 				System.out.println(institucion);
 			}
-			}catch(Exception e) {
+			} catch(Exception e) {
 				System.out.println("no ha funcionao");
 				e.printStackTrace();
-			}
-						
-		}
-		
+			}				
+		}	
 	}
