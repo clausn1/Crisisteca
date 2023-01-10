@@ -18,8 +18,6 @@ public class CiudadanoOInstitucion extends JFrame{
                 new CiudadanoOInstitucion();
             }
 		});
-		
-		
 	}
 	
 	public CiudadanoOInstitucion() {
@@ -29,7 +27,6 @@ public class CiudadanoOInstitucion extends JFrame{
         this.setSize(300,100);
 		this.setResizable(false);
 
-		
         JButton bCiudadano = new JButton("Ciudadano");
         JButton bInstitucion = new JButton("Institución");
 
@@ -51,6 +48,11 @@ public class CiudadanoOInstitucion extends JFrame{
             });
         
         
+        /* El Action Listener sirve para ver que boton se elegige, dependiendo cual se eliga se abrira una u otra ventana
+         * param: evento e (click en un boton)
+         * return: si se selecciona el boton Ciudadano, se habrira la ventana RegistrarseCiudadano
+         * 		   si se selecciona el boton Institucion, se habrira la ventana RegistrarseInstitucion
+         */
         ActionListener albCiudadano = new ActionListener() {
 			
 			@Override
@@ -74,16 +76,5 @@ public class CiudadanoOInstitucion extends JFrame{
 			
 		bInstitucion.addActionListener(albInstitucion);
 			
-
-
-	 
-
-
-	
-	
-	
-	
-	
 	}	
-
 }
