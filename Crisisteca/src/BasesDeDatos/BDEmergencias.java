@@ -27,7 +27,7 @@ public class BDEmergencias {
 	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:res/bds/bdEmergencias.db";
+			String dburl = "jdbc:sqlite:res/bds/bdFinal.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 
@@ -61,11 +61,13 @@ public class BDEmergencias {
 			Statement st = initBD();		
 			st.executeUpdate("create table if not exists Emergencia (  Lugar string, Tipo Emergencia string, Reportar boolean, Detalles/Más Información String)");
 			String sentSQL ="";
-			sentSQL = "insert into Emergencias values(" +
-                    "'"+ emergencia.geteLugar() + "'," +
+			sentSQL = "insert into Emergencias values(" + emergencia.geteCodigoPostal() + "," +
+					"'"+emergencia.geteCalleYNumero()+"',"+
                     "'" + emergencia.geteTipoEmergencia() + "'," +
+					+ emergencia.geteUsuario()+","+
                     "'" + emergencia.iseReportar() + "'," +
-                    "'" + emergencia.geteDetalles();
+                    "'" + emergencia.geteDetalles()+"',"+
+                    "'"+emergencia.geteFechaYHora()+"';";
 			st.executeUpdate( sentSQL );
 			cerrarBD(initBD().getConnection(), st);
 			return true;
@@ -80,14 +82,17 @@ public class BDEmergencias {
 			try {
 				Statement st = initBD();
 				st.executeUpdate("create table if not exists Emergencia (  Lugar string, Tipo Emergencia string, Reportar boolean, Detalles/Más Información String)");
-				Emergencias em1 = new Emergencias( "Barakaldo", "Robo", true, "Asaltante: Hombre de 1,65 aprox, moreno");
-				Emergencias em2 = new Emergencias( "Bilbo", "Robo", false, "Asaltante: Mujer de 1,60 aprox, rubia");
+				Emergencias em1 = new Emergencias( 48001, "Amistad", "Robo",000000001, true, "Asaltante: Hombre de 1,65 aprox, moreno","22/01/2023-12:23");
+	//			Emergencias em2 = new Emergencias( "Bilbo", "Robo", false, "Asaltante: Mujer de 1,60 aprox, rubia");
 				String sentSQL = "";
-				sentSQL = "Insert into Emergencias values(" + 
-						"'" + em1.geteLugar() + "'," +
+				sentSQL = "Insert into Emergencias values(" +
+						+ em1.geteCodigoPostal() + ","+
+						"'" + em1.geteCalleYNumero() + "'," +
 						"'" + em1.geteTipoEmergencia() + "'," +
+						em1.geteUsuario()+
 						"'" + em1.iseReportar() + "'," +
-						"'" + em1.geteDetalles() + "',";
+						"'" + em1.geteDetalles() + "',"+
+						"'"+	em1.geteFechaYHora()+"';";
 				st.executeUpdate( sentSQL );
 				
 			} catch (Exception e) {
@@ -100,7 +105,7 @@ public class BDEmergencias {
 	public void selectPrueba() throws SQLException {
 		try {
 		Class.forName("org.sqlite.JDBC");
-		String dburl = "jdbc:sqlite:res/bds/bdEmergencias.db";
+		String dburl = "jdbc:sqlite:res/bds/bdFinal.db";
 		Connection conexion = DriverManager.getConnection(dburl);
 		Statement st = conexion.createStatement();
 		String sql ="select * from Emergencia";
@@ -117,3 +122,4 @@ public class BDEmergencias {
 	}
 
 }
+

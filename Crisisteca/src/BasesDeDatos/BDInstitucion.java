@@ -28,7 +28,7 @@ public class BDInstitucion {
 	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
+			String dburl = "jdbc:sqlite:res/bds/bdFinal.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 			return st;
@@ -82,7 +82,7 @@ public class BDInstitucion {
 	    public void selectPrueba() throws SQLException {
 			try {
 			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:res/bds/bdInstitucion.db";
+			String dburl = "jdbc:sqlite:res/bds/bdFinal.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 			String sql ="select * from Institucion";

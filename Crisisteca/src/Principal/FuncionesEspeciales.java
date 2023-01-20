@@ -60,7 +60,7 @@ public class FuncionesEspeciales {
 			try{
 				//Conectarnos
 			 	Class.forName("org.sqlite.JDBC");
-				String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
+				String dburl = "jdbc:sqlite:res/bds/bdFinal.db";
 				Connection conexion = DriverManager.getConnection(dburl);
 				
 				

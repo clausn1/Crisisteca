@@ -38,7 +38,7 @@ private static Connection connected = null;
 	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
+			String dburl = "jdbc:sqlite:res/bds/bdFinal.db";
 			Connection conexion = DriverManager.getConnection(dburl);
 			Statement st = conexion.createStatement();
 
@@ -65,7 +65,7 @@ private static Connection connected = null;
 //public static Connection getConn() throws Exception{
 //	    if(connected == null){
 //	    Class.forName("org.sqlite.JDBC");
-//	    connected = DriverManager.getConnection("jdbc:sqlite:res/bds/bdUsuario.db");
+//	    connected = DriverManager.getConnection("jdbc:sqlite:res/bds/bdFinal.db");
 //	    }
 //	    return connected;
 //}
@@ -104,7 +104,7 @@ private static Connection connected = null;
 	public void selectPrueba() throws SQLException {
 		try {
 		Class.forName("org.sqlite.JDBC");
-		String dburl = "jdbc:sqlite:res/bds/bdUsuario.db";
+		String dburl = "jdbc:sqlite:res/bds/bdFinal.db";
 		Connection conexion = DriverManager.getConnection(dburl);
 		Statement st = conexion.createStatement();
 		String sql ="select * from Ciudadano";

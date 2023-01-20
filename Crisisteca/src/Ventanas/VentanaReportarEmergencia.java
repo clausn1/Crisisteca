@@ -378,6 +378,9 @@ public class VentanaReportarEmergencia extends JFrame{
 		
 		
 		
+		
+		
 	}
 
 }
+

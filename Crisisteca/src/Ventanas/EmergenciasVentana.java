@@ -1,10 +1,12 @@
 package Ventanas;
 
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,12 +17,15 @@ import javax.swing.JScrollBar;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+
 import Ventanas.EmergenciasVentana;
+
 
 public class EmergenciasVentana extends JFrame{
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+
 
             @Override
             public void run() {
