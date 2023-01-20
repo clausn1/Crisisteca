@@ -59,7 +59,7 @@ public class BDEmergencias {
 		try 
 		{
 			Statement st = initBD();		
-			st.executeUpdate("create table if not exists Emergencia (  Lugar string, Tipo Emergencia string, Reportar boolean, Detalles/Más Información String)");
+			st.executeUpdate("create table if not exists Emergencias (  Codigo Postal integer, Calle y numero string,  Tipo Emergencia string,Tlf del Usuario integer, Reportar boolean, Detalles e Información string, Fecha y Hora string);");
 			String sentSQL ="";
 			sentSQL = "insert into Emergencias values(" + emergencia.geteCodigoPostal() + "," +
 					"'"+emergencia.geteCalleYNumero()+"',"+
@@ -67,7 +67,7 @@ public class BDEmergencias {
 					+ emergencia.geteUsuario()+","+
                     "'" + emergencia.iseReportar() + "'," +
                     "'" + emergencia.geteDetalles()+"',"+
-                    "'"+emergencia.geteFechaYHora()+"';";
+                    "'"+emergencia.geteFechaYHora()+"');";
 			st.executeUpdate( sentSQL );
 			cerrarBD(initBD().getConnection(), st);
 			return true;
@@ -81,7 +81,7 @@ public class BDEmergencias {
 		public void Insertar() throws SQLException {
 			try {
 				Statement st = initBD();
-				st.executeUpdate("create table if not exists Emergencia (  Lugar string, Tipo Emergencia string, Reportar boolean, Detalles/Más Información String)");
+				st.executeUpdate("create table if not exists Emergencia (Codigo Postal integer, Calle y numero string,  Tipo Emergencia string,Tlf del Usuario integer, Reportar boolean, Detalles e Información string, Fecha y Hora string)");
 				Emergencias em1 = new Emergencias( 48001, "Amistad", "Robo",000000001, true, "Asaltante: Hombre de 1,65 aprox, moreno","22/01/2023-12:23");
 	//			Emergencias em2 = new Emergencias( "Bilbo", "Robo", false, "Asaltante: Mujer de 1,60 aprox, rubia");
 				String sentSQL = "";

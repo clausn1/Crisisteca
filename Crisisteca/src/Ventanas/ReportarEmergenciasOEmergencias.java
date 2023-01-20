@@ -4,24 +4,32 @@ package Ventanas;
 	import java.awt.event.WindowAdapter;
 	import java.awt.event.WindowEvent;
 	import java.awt.event.WindowListener;
+import java.sql.SQLException;
 
-	import javax.swing.*;
+import javax.swing.*;
+
+import Entidades.Ciudadano;
+import Principal.FuncionesEspeciales;
 
 public class ReportarEmergenciasOEmergencias extends JFrame{
 
-		public static void main(String[] args) {
-			SwingUtilities.invokeLater(new Runnable() {
-
-	            @Override
-	            public void run() {
-	                new ReportarEmergenciasOEmergencias();
-	            }
-			});
-			
-			
-		}
+//		public static void main(String[] args) {
+//			SwingUtilities.invokeLater(new Runnable() {
+//
+//	            @Override
+//	            public void run() {
+//	                try {
+//						new ReportarEmergenciasOEmergencias(FuncionesEspeciales.devolverCiudadano(012));
+//					} catch (ClassNotFoundException | SQLException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//	            }
+//			});
+//						
+	//	}
 		
-		public ReportarEmergenciasOEmergencias() {
+		public ReportarEmergenciasOEmergencias(Ciudadano ciudadano) {
 			this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			this.setTitle("Escoger que hacer");
 			this.setBounds(550, 250, 1000, 700);
@@ -54,7 +62,7 @@ public class ReportarEmergenciasOEmergencias extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					new VentanaReportarEmergencia().setVisible(true);
+					new VentanaReportarEmergencia(ciudadano).setVisible(true);
 					setVisible(false);
 					
 				}

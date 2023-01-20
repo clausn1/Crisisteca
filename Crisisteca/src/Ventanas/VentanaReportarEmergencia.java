@@ -14,32 +14,39 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ComboBoxEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import BasesDeDatos.BDEmergencias;
+import Entidades.Ciudadano;
+import Entidades.Emergencias;
+
 public class VentanaReportarEmergencia extends JFrame{
 	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				new VentanaReportarEmergencia();
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//				new VentanaReportarEmergencia(ciudadano);
+//			}
+//		});
+//	}
 	
 	private JComboBox<String> comboxTipoEmergencia;
 	private JComboBox<Integer> comboxCodigoPostal;
@@ -47,7 +54,7 @@ public class VentanaReportarEmergencia extends JFrame{
 	private JCheckBox cboxAvisar ;
 	private JTextArea taDetalles;
 	
-	public VentanaReportarEmergencia() {
+	public VentanaReportarEmergencia(Ciudadano ciudadano) {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Reportar Emergencia");
 		this.setBounds(100, 100, 1000, 700);
@@ -337,6 +344,24 @@ public class VentanaReportarEmergencia extends JFrame{
 		
 		
 		JButton bReportar= new JButton("Reportar emergencia");
+		
+		ActionListener albReportar = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 long millis = System.currentTimeMillis();
+				Calendar calendar = Calendar.getInstance();
+				  calendar.setTimeInMillis(millis);
+				 String fechaYHora=new String(calendar.get(Calendar.DAY_OF_MONTH)+"/"+calendar.get(Calendar.MONTH)+1+"/"+calendar.get(Calendar.YEAR)  +"-" +calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
+				 Emergencias emergenciaNueva= new Emergencias(Integer.parseInt(comboxCodigoPostal.getSelectedItem().toString()),comboxCalle.getSelectedItem().toString()+"-"+numero, comboxTipoEmergencia.getSelectedItem().toString(),ciudadano.getaTelefono(), cboxAvisar.isSelected(), taDetalles.getText(),fechaYHora );
+				 BDEmergencias.InsertarEmergencia(emergenciaNueva);
+				 JOptionPane.showMessageDialog(null, "La emergencia ha sido reportada ");
+			}
+			
+			
+		};
+		bReportar.addActionListener(albReportar);
+		
 		
 		
 		pnlAbajo.add(lblDetalles, BorderLayout.NORTH);

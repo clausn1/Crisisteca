@@ -1,3 +1,4 @@
+
 package Ventanas;
 
 import java.awt.BorderLayout;
@@ -6,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -95,8 +97,19 @@ public class IniciarSesion extends JFrame{
 				
 				if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==0) {
 					System.out.println("Se ha iniciado sesión como Ciudadano");
-					//se inicia sesion y se abre la ventana con las opciones de ciudadano
-							new ReportarEmergenciasOEmergencias().setVisible(true);
+					try {
+						new ReportarEmergenciasOEmergencias(FuncionesEspeciales.devolverCiudadano(Integer.parseInt(Usuario))).setVisible(true);
+					} catch (NumberFormatException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
 							setVisible(false);				
 				}
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==1) {
