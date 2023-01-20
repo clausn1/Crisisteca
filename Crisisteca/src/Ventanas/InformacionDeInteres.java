@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -50,18 +51,18 @@ public class InformacionDeInteres extends JFrame{
 		//panel donde se van a mostrar los datos
 		DefaultTableModel tInformacion = new DefaultTableModel();
 		tInformacion.addColumn("Codigo Postal");
-		tInformacion.addColumn("Calle");
-		tInformacion.addColumn("Usuario");
 		tInformacion.addColumn("Tipo de accidente");
-		tInformacion.addColumn("Detalles del accidente");
+		tInformacion.addColumn("Fecha y hora");
+	
+		JTable tabla = new JTable(tInformacion);
 		
-		
-		
+	
 		//panel principal
 		JPanel pnlMain = new JPanel();
 		pnlMain.setLayout(new BorderLayout());
 		pnlMain.add(pnlBotones, BorderLayout.NORTH);
 		pnlMain.add(bLimpiar, BorderLayout.SOUTH);
+		pnlMain.add(new JScrollPane(tabla), BorderLayout.CENTER);
 
 		
 		
