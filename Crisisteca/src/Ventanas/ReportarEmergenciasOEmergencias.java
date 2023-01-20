@@ -62,17 +62,16 @@ public class ReportarEmergenciasOEmergencias extends JFrame{
 		
 			bReportarEmergencia.addActionListener(albReportarEmergencia);
 			//crear ventana emergencias para poder usar esta parte del codigo
-//			
-//			ActionListener albEmergencias = new ActionListener() {
-//					
-//					@Override
-//					public void actionPerformed(ActionEvent e) {
-//						new Emergencias().setVisible(true);
-//						setVisible(false);
-//					}
-//				};
-//				
-//			bEmergencias.addActionListener(albEmergencias);
+			ActionListener albEmergencias = new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new EmergenciasVentana().setVisible(true);
+					setVisible(false);
+				}
+			};
+
+			bEmergencias.addActionListener(albEmergencias);
 				
 
 
