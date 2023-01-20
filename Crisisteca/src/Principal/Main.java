@@ -17,7 +17,7 @@ public class Main {
 		
 		
 		BDInstitucion bdin = new BDInstitucion();
-		
+		BDCiudadano bdciu = new BDCiudadano();
 //		Institucion institucion1 = new Institucion("AAA","Nombre 1", "institucion1@gmail.com", 32000, FuncionesEspeciales.crearContraseña());
 		Institucion institucion2 = new Institucion("AAB", "Nombre 2", "institucion2@gmail.com", 32001, FuncionesEspeciales.crearContraseña()); 
 
