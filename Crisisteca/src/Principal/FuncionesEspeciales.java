@@ -5,9 +5,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import BasesDeDatos.BDCiudadano;
+import Entidades.Ciudadano;
+import Entidades.Institucion;
 
 public class FuncionesEspeciales {
 
@@ -151,5 +154,46 @@ public class FuncionesEspeciales {
 			return false;
 		}	
 	}
+	
+	/** Permite recoger el Ciudadano deseado una vez se inicie sesión para que lo recoja las siguientes ventanas
+	 *	@param telefono	Número de teléfono que se compara con los que hay dentro de la base de datos
+	 *	@return El Ciudadano que sabemos ya que existe y buscamos
+	 */
+	public static Ciudadano devolverCiudadano(int telefono) throws ClassNotFoundException, SQLException {
+        Statement st = BDCiudadano.initBD();
+        String sql ="select * from Ciudadano where Telefono = " + telefono ;
+        ResultSet rs = st.executeQuery(sql);
+        Ciudadano ciudadano = null;
+        while (rs.next()) {
+            ciudadano = new Ciudadano(rs.getString("Nombre"), rs.getString("Apellidos"), rs.getString("DNI"), rs.getString("Direccion"), rs.getInt("CodigoPostal"), telefono, rs.getString("Contrasenya"));
+
+        }
+        BDCiudadano.cerrarBD(BDCiudadano.initBD().getConnection(), st);
+
+        
+        return ciudadano;
+        
+    }
+	
+	/** Permite recoger la Institución deseada una vez se inicie sesión para que lo recoja las siguientes ventanas
+	 *	@param codigo	Código de institución que se compara con las que hay dentro de la base de datos
+	 *	@return La Institución que sabemos ya que existe y buscamos
+	 */
+	public static Institucion devolverInstitucion(String codigo) throws ClassNotFoundException, SQLException {
+        Statement st = BDCiudadano.initBD();
+        String sql ="select * from Institucion where Codigo = '" + codigo +"'";
+        ResultSet rs = st.executeQuery(sql);
+        Institucion institucion = null;
+        while (rs.next()) {
+        	institucion = new Institucion(rs.getString("Codigo"), rs.getString("Nombre"), rs.getString("Email"), rs.getInt("telefono"), rs.getString("Contrasenya"));
+
+        }
+        BDCiudadano.cerrarBD(BDCiudadano.initBD().getConnection(), st);
+
+        
+        return institucion;
+        
+    }
+	
 	
 }
