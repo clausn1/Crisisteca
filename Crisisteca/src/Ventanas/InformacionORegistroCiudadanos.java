@@ -56,6 +56,7 @@ public class InformacionORegistroCiudadanos extends JFrame{
 				// TODO Auto-generated method stub
 				try {
 					new InformacionDeInteres(institucion).setVisible(true);
+					setVisible(false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -66,21 +67,21 @@ public class InformacionORegistroCiudadanos extends JFrame{
 	
 
 			
-//		ActionListener albRegistroDeCiudadanos = new ActionListener() {
-//			
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//				try {
-//					new   .setVisible(true);
-//				} catch (SQLException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//			}
-//		};
-//		bRegistroDeCiudadanos.addActionListener(albRegistroDeCiudadanos);
+		ActionListener albRegistroDeCiudadanos = new ActionListener() {
+			
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					new RegistroDeCiudadanos(institucion).setVisible(true);
+					setVisible(false);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		};
+		bRegistroDeCiudadanos.addActionListener(albRegistroDeCiudadanos);
 
 	 
 

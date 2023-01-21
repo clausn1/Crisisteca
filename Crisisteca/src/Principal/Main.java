@@ -13,9 +13,6 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 
 		
-
-		
-		
 //		BDInstitucion bdin = new BDInstitucion();
 //		BDCiudadano bdciu = new BDCiudadano();
 //		Institucion institucion1 = new Institucion("AAA","Nombre 1", "institucion1@gmail.com", 32000, FuncionesEspeciales.crearContraseña());

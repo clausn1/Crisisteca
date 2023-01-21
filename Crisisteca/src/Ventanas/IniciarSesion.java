@@ -99,6 +99,7 @@ public class IniciarSesion extends JFrame{
 					System.out.println("Se ha iniciado sesión como Ciudadano");
 					try {
 						new ReportarEmergenciasOEmergencias(FuncionesEspeciales.devolverCiudadano(Integer.parseInt(Usuario))).setVisible(true);
+						setVisible(false);
 					} catch (NumberFormatException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -110,12 +111,13 @@ public class IniciarSesion extends JFrame{
 						e1.printStackTrace();
 					}
 
-							setVisible(false);				
+											
 				}
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==1) {
 					System.out.println("Se ha iniciado sesión como Institucion");
 					try {
-						new InformacionORegistroCiudadanos(FuncionesEspeciales.devolverInstitucion(Usuario)).setVisible(true);;
+						new InformacionORegistroCiudadanos(FuncionesEspeciales.devolverInstitucion(Usuario)).setVisible(true);
+						setVisible(false);
 					} catch (NumberFormatException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -131,7 +133,6 @@ public class IniciarSesion extends JFrame{
 					System.out.println("No existe ese usuario con esa contraseña");
 				}
 				
-//				BDCiudadano.InsertarCiudadano(ciudadanonuevo);
 				
 
 				

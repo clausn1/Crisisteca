@@ -279,6 +279,12 @@ public class InformacionDeInteres extends JFrame{
 		bLimpiar.addActionListener(alLimpiar);
 		
 		
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+				new InformacionORegistroCiudadanos(institucion).setVisible(true);
+                setVisible(false);
+            }
+        });
 		
 		
 		
