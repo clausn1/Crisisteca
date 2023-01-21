@@ -382,6 +382,13 @@ public class VentanaReportarEmergencia extends JFrame{
 		
 		this.setVisible(true);
 		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+	        public void windowClosing(java.awt.event.WindowEvent e) {
+					new ReportarEmergenciasOEmergencias(ciudadano).setVisible(true);
+	            setVisible(false);
+	        }
+	    });
+		
 		
 		
 		

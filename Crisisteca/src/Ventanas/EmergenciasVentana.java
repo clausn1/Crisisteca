@@ -17,7 +17,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-
+import Entidades.Ciudadano;
 import Ventanas.EmergenciasVentana;
 
 
@@ -29,7 +29,7 @@ public class EmergenciasVentana extends JFrame{
 
             @Override
             public void run() {
-                new EmergenciasVentana();
+//                new EmergenciasVentana();
             }           
 		});
 	}
@@ -38,7 +38,7 @@ public class EmergenciasVentana extends JFrame{
 	private JButton btn;
 	
 	
-	public EmergenciasVentana() {
+	public EmergenciasVentana(Ciudadano ciudadano) {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Emergencias actuales y de interés");
 		this.setBounds(100, 100, 1000, 700);
@@ -71,6 +71,13 @@ public class EmergenciasVentana extends JFrame{
 		getContentPane().add(pnlMain);
 		
 		setVisible(true);
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+	        public void windowClosing(java.awt.event.WindowEvent e) {
+					new ReportarEmergenciasOEmergencias(ciudadano).setVisible(true);
+	            setVisible(false);
+	        }
+	    });
 			
 	}
 }
