@@ -98,8 +98,8 @@ public class IniciarSesion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String Usuario = tfUsuario.getText() ;
-				String Contrasenya = tfContrasenya.getText();
+				String Usuario = tfUsuario.getText().replaceAll(" ","") ;
+				String Contrasenya = tfContrasenya.getText().replaceAll(" ","");
 				log= Logger.getLogger("programLogger");
 				if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==0) {
 					log.log(Level.INFO, "El usuario"+Usuario+" ha iniciado sesion como Ciudadano:"+ (new Date()));
@@ -120,6 +120,10 @@ public class IniciarSesion extends JFrame{
 
 											
 				}
+				
+				
+				
+				
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==1) {
 					log.log(Level.INFO, "El usuario"+Usuario+" ha iniciado sesion como Institucion:"+ (new Date()));
 					System.out.println("Se ha iniciado sesión como Institucion");
