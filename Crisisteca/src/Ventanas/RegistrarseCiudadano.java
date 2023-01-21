@@ -254,7 +254,7 @@ public class RegistrarseCiudadano extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("","ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")); 	
+					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "")); 	
 					if (FuncionesEspeciales.DuplicadoUsuario(tfDNI.getText())) {
 						JOptionPane.showMessageDialog(null, "Ese número de DNI ya ha sido usado");
 					}
@@ -268,7 +268,7 @@ public class RegistrarseCiudadano extends JFrame{
 						(new Thread() {
 						@Override
 						public void run() {
-							Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(),tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(), Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("",  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"));
+							Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(),tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(), Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", ""));
 							BDCiudadano.InsertarCiudadano(ciudadanonuevo);
 							JOptionPane.showMessageDialog(null, "El nombre de usuario es "+ciudadanonuevo.getaTelefono()+"\nY la contraseña es " + ciudadanonuevo.getaContrasenya());
 							new IniciarSesion().setVisible(true);

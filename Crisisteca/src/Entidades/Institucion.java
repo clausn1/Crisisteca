@@ -1,14 +1,15 @@
 package Entidades;
 
-public class Institucion {
+public class Institucion extends Usuario{
 	
 	private String aCodigo;
-	private String aNombre;
+//	private String aNombre;
 	private String aEmail;
-	private int aTelefono;
-	private String aContrasenya;
+//	private int aTelefono;
+//	private String aContrasenya;
 	
 	public Institucion (String aCodigo, String aNombre, String aEmail, int aTelefono, String aContrasenya) {
+		super(aNombre, aTelefono, aContrasenya);
 		this.aCodigo = aCodigo;
 		this.aNombre = aNombre;
 		this.aEmail = aEmail;

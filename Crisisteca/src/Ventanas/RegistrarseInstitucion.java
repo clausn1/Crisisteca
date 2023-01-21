@@ -204,7 +204,7 @@ public class RegistrarseInstitucion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Institucion institucionnueva = new Institucion(FuncionesEspeciales.crearCodigo(tfNombre.getText(), ""),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"));
+				Institucion institucionnueva = new Institucion(FuncionesEspeciales.crearCodigo(tfNombre.getText(), ""),tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", ""));
 				BDInstitucion.InsertarInstitucion(institucionnueva);
 				JOptionPane.showMessageDialog(null, "El código es "+ institucionnueva.getaCodigo()+"\n Y la contraseña es " + institucionnueva.getaContrasenya());
 				new IniciarSesion().setVisible(true);

@@ -1,41 +1,38 @@
 package Entidades;
 
-public class Ciudadano {
+public class Ciudadano extends Usuario{
 	
-	String aNombre;
+//	String aNombre;
 	String aApellidos;
 	String aDNI;
 	String aDireccion;
 	int aCodigoPostal;
-	int aTelefono;
-	String aContrasenya;
+//	int aTelefono;
+//	String aContrasenya;
 
 
 	public Ciudadano(String aNombre, String aApellidos, String aDNI, String aDireccion, int aCodigoPostal, int aTelefono, String aContrasenya) {
-		super();
-		this.aNombre = aNombre;
+		super(aNombre, aTelefono, aContrasenya);
+//		this.aNombre = aNombre;
 		this.aApellidos = aApellidos;
 		this.aDNI = aDNI;
 		this.aDireccion = aDireccion;
 		this.aCodigoPostal = aCodigoPostal;
-		this.aTelefono = aTelefono;
-		this.aContrasenya = aContrasenya;
-	}
-	public Ciudadano() {
-		
+//		this.aTelefono = aTelefono;
+//		this.aContrasenya = aContrasenya;
 	}
 	
 	/* return: aNombre (Nombre del ciudadano)
 	 */
-	public String getaNombre() {
-		return aNombre;
-	}
-	
-	/* return: aNombre (Nombre del ciudadano)
-	 */
-	public void setaNombre(String aNombre) {
-		this.aNombre = aNombre;
-	}
+//	public String getaNombre() {
+//		return aNombre;
+//	}
+//	
+//	/* return: aNombre (Nombre del ciudadano)
+//	 */
+//	public void setaNombre(String aNombre) {
+//		this.aNombre = aNombre;
+//	}
 	
 	/* return: aApellidos (Apellidos del ciudadano)
 	 */
@@ -87,28 +84,28 @@ public class Ciudadano {
 	
 	/* return: aTelefono (Telefono del ciudadano)
 	 */
-	public int getaTelefono() {
-		return aTelefono;
-	}
-	
-	/* return: aTelefono (Telefono del ciudadano)
-	 */
-	public void setaTelefono(int aTelefono) {
-		this.aTelefono = aTelefono;
-	}
-	
-	/* return: aContasenya (Contraseña del ciudadano)
-	 */
-	public String getaContrasenya() {
-		return aContrasenya;
-	}
+//	public int getaTelefono() {
+//		return aTelefono;
+//	}
+//	
+//	/* return: aTelefono (Telefono del ciudadano)
+//	 */
+//	public void setaTelefono(int aTelefono) {
+//		this.aTelefono = aTelefono;
+//	}
 	
 	/* return: aContasenya (Contraseña del ciudadano)
 	 */
-	public void setaContrasenya(String aContrasenya) {
-		this.aContrasenya = aContrasenya;
-	}
-	
+//	public String getaContrasenya() {
+//		return aContrasenya;
+//	}
+//	
+//	/* return: aContasenya (Contraseña del ciudadano)
+//	 */
+//	public void setaContrasenya(String aContrasenya) {
+//		this.aContrasenya = aContrasenya;
+//	}
+//	
 	/* return: String con todos los parametros del ciudadano
 	 */
 	@Override
