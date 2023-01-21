@@ -59,7 +59,7 @@ public class BDEmergencias {
 		try 
 		{
 			Statement st = initBD();		
-			st.executeUpdate("create table if not exists Emergencias (  Codigo Postal integer, Calle y numero string,  Tipo Emergencia string,Tlf del Usuario integer, Reportar boolean, Detalles e Información string, Fecha y Hora string);");
+			st.executeUpdate("create table if not exists Emergencias (  Codigo Postal integer, Calle y numero string,  Tipo Emergencia string,Tlf del Usuario integer, Reportar boolean, Detalles e Información string, Fecha date);");
 			String sentSQL ="";
 			sentSQL = "insert into Emergencias values(" + emergencia.geteCodigoPostal() + "," +
 					"'"+emergencia.geteCalleYNumero()+"',"+
