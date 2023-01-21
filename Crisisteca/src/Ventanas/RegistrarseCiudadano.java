@@ -14,7 +14,9 @@ import java.util.Random;
 
 import javax.swing.*;
 import BasesDeDatos.BDCiudadano;
+import BasesDeDatos.BDInstitucion;
 import Entidades.Ciudadano;
+import Entidades.Institucion;
 import Principal.FuncionesEspeciales;
 
 public class RegistrarseCiudadano extends JFrame{
@@ -252,7 +254,7 @@ public class RegistrarseCiudadano extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña()); 	
+					Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(), tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(),Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("","ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")); 	
 					if (FuncionesEspeciales.DuplicadoUsuario(tfDNI.getText())) {
 						JOptionPane.showMessageDialog(null, "Ese número de DNI ya ha sido usado");
 					}
@@ -267,6 +269,16 @@ public class RegistrarseCiudadano extends JFrame{
 						@Override
 						public void run() {
 							System.out.println(ciudadanonuevo.getaContrasenya());
+							Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(),tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(), Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("",  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"));
+							BDCiudadano.InsertarCiudadano(ciudadanonuevo);
+							JOptionPane.showMessageDialog(null, "El nombre de usuario es "+ciudadanonuevo.getaTelefono()+"\n Y la contraseña es " + ciudadanonuevo.getaContrasenya());
+							new IniciarSesion().setVisible(true);
+			                setVisible(false);
+							
+							//Borar antes de enviar
+							System.out.println(ciudadanonuevo.getaTelefono());
+							System.out.println(ciudadanonuevo.getaContrasenya());
+							
 						}
 					}).start();
 						

@@ -16,39 +16,34 @@ public class FuncionesEspeciales {
 
 	/** Genera un serie de 20 caracteres aleatorios (formado por letras mayúsculas, minúsculas y números)
 	 *	para ser usados como contraseña
+	 *	@param contrasenya String vacío que se convertirá en el String devuelto
+	 *	@param alfabeto		String con todos los caracteres que pueden ser añadidos en la contraseña (mayúsculas, minúsculas y números)
 	 *	@return String generado aleatoriamente
 	 */
-	public static String crearContraseña()
-	    {
-	        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	        SecureRandom sr = new SecureRandom();
-	        StringBuilder sb = new StringBuilder();
-	        for (int i = 0; i < 20; i++)
-	        {
-	            int ir = sr.nextInt(chars.length());
-	            sb.append(chars.charAt(ir));
-	        }
-	        return sb.toString();
-	    }
 	
+	public static String crearContraseña(String contrasenya, String alfabeto){
+        if (contrasenya.length()==20){
+        	return contrasenya;
+        }
+        return crearContraseña(contrasenya+ alfabeto.charAt((int) Math.floor(Math.random()*62)), alfabeto);
+    }
+	
+
 	/** Genera un serie de caracteres que consiste en un String que recibe como para parámetro pero en mayúscula
 	 *	y sin espacios seguido por 4 números aleatorios para ser usado como código de una institución
 	 *	@param nombre	Nombre de la institución
-	 *	@return String generado aleatoriamente
+	 *	@param codigo 	String vacío que se acabará convirtiendo en el String devuelto
+	 *	@return String generado para ser usado como código
 	 */
-	public static String crearCodigo(String nombre)
-    {
-        final String chars = "0123456789";
-        SecureRandom sr = new SecureRandom();
-        StringBuilder sb = new StringBuilder();
-        sb.append(nombre.replaceAll(" ","").toUpperCase());
-        for (int i = 0; i < 4; i++)
-        {
-            int ir = sr.nextInt(chars.length());
-            sb.append(chars.charAt(ir));
-        }
-        return sb.toString();
-    }
+	public static String crearCodigo(String nombre, String codigo)
+	  {
+		if (codigo.length() == nombre.replaceAll(" ","").length()+4) {
+			return codigo;
+		}
+		if (codigo.length()<4) {return crearCodigo(nombre, codigo + (int) Math.floor(Math.random()*10));}
+	    else {return crearCodigo(nombre, nombre.replaceAll(" ","").toUpperCase()+codigo); }
+	
+	  }
 	
 	/** Permite saber si un usuario en concreto existe en la base de datos y si es un ciudadano o una instituación
 	 *	@param usuarioQueBuscamos	Nombre del usuario que buscamos en la base de datos
@@ -194,6 +189,7 @@ public class FuncionesEspeciales {
         return institucion;
         
     }
+	
 	
 	
 }
