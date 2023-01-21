@@ -149,7 +149,6 @@ public class IniciarSesion extends JFrame {
 						e1.printStackTrace();
 					}
 				} else {
-					log.log(null, Contrasenya);
 					log.log(Level.INFO, "Se ha intentado iniciar sesion con una contraseña que no existe");
 					System.out.println("No existe ese usuario con esa contraseña");
 				}
