@@ -3,23 +3,30 @@ package Ventanas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import Entidades.Institucion;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.JButton;
 
 public class InformacionORegistroCiudadanos extends JFrame{
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new InformacionORegistroCiudadanos();
-            }
-		});
-		
-		
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                new InformacionORegistroCiudadanos();
+//            }
+//		});
+//		
+//		
+//	}
 	
-	public InformacionORegistroCiudadanos() {
+	public InformacionORegistroCiudadanos(Institucion institucion) {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Escoger que hacer");
 		this.setBounds(550, 250, 1000, 700);
@@ -41,21 +48,39 @@ public class InformacionORegistroCiudadanos extends JFrame{
         setVisible(true);
 
 
-        
-        
-//        ActionListener albReportarEmergencia = new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new VentanaReportarEmergencia().setVisible(true);
-//				setVisible(false);
-//				
-//			}
-//		};
-//	
+        ActionListener albInformacionInteres = new ActionListener() {
+	
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					new InformacionDeInteres(institucion).setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		};
+		bInformacionInteres.addActionListener(albInformacionInteres);
+	
 
 			
-
+//		ActionListener albRegistroDeCiudadanos = new ActionListener() {
+//			
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				try {
+//					new   .setVisible(true);
+//				} catch (SQLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//			}
+//		};
+//		bRegistroDeCiudadanos.addActionListener(albRegistroDeCiudadanos);
 
 	 
 

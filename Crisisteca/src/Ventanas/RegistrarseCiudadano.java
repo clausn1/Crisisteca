@@ -268,10 +268,9 @@ public class RegistrarseCiudadano extends JFrame{
 						(new Thread() {
 						@Override
 						public void run() {
-							System.out.println(ciudadanonuevo.getaContrasenya());
 							Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(),tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(), Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("",  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"));
 							BDCiudadano.InsertarCiudadano(ciudadanonuevo);
-							JOptionPane.showMessageDialog(null, "El nombre de usuario es "+ciudadanonuevo.getaTelefono()+"\n Y la contraseña es " + ciudadanonuevo.getaContrasenya());
+							JOptionPane.showMessageDialog(null, "El nombre de usuario es "+ciudadanonuevo.getaTelefono()+"\nY la contraseña es " + ciudadanonuevo.getaContrasenya());
 							new IniciarSesion().setVisible(true);
 			                setVisible(false);
 							

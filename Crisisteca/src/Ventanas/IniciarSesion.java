@@ -114,6 +114,18 @@ public class IniciarSesion extends JFrame{
 				}
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==1) {
 					System.out.println("Se ha iniciado sesión como Institucion");
+					try {
+						new InformacionORegistroCiudadanos(FuncionesEspeciales.devolverInstitucion(Usuario)).setVisible(true);;
+					} catch (NumberFormatException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				else {
 					System.out.println("No existe ese usuario con esa contraseña");

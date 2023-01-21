@@ -27,29 +27,30 @@ import javax.swing.table.TableRowSorter;
 
 import BasesDeDatos.BDEmergencias;
 import Entidades.Emergencias;
+import Entidades.Institucion;
 
 public class InformacionDeInteres extends JFrame{
 	
 	
 	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-					new InformacionDeInteres();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-		});
-		
-		
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                try {
+//					new InformacionDeInteres();
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//            }
+//		});
+//		
+//		
+//	}
 	
-	public InformacionDeInteres() throws SQLException {
+	public InformacionDeInteres(Institucion institucion) throws SQLException {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Busque la información como desee");
 		this.setBounds(300, 5, 1000, 700);
