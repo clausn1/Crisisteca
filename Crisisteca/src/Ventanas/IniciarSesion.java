@@ -1,4 +1,3 @@
-
 package Ventanas;
 
 import java.awt.BorderLayout;
@@ -7,8 +6,14 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javax.print.attribute.standard.PrinterStateReason;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +31,7 @@ public class IniciarSesion extends JFrame{
 
             @Override
             public void run() {
+            	
                 new IniciarSesion();
             }
             
@@ -35,7 +41,7 @@ public class IniciarSesion extends JFrame{
 	
 	
 	
-	
+			static Logger log;
 	private JTextField tfUsuario;
 	private JTextField tfContrasenya;
 	
@@ -94,47 +100,51 @@ public class IniciarSesion extends JFrame{
 				
 				String Usuario = tfUsuario.getText() ;
 				String Contrasenya = tfContrasenya.getText();
-				
+				log= Logger.getLogger("programLogger");
 				if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==0) {
+					log.log(Level.INFO, "El usuario"+Usuario+" ha iniciado sesion como Ciudadano:"+ (new Date()));
 					System.out.println("Se ha iniciado sesión como Ciudadano");
 					try {
 						new ReportarEmergenciasOEmergencias(FuncionesEspeciales.devolverCiudadano(Integer.parseInt(Usuario))).setVisible(true);
 						setVisible(false);
 					} catch (NumberFormatException e1) {
-						// TODO Auto-generated catch block
+						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano");
 						e1.printStackTrace();
 					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
+						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano");
 						e1.printStackTrace();
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano");
 						e1.printStackTrace();
 					}
 
 											
 				}
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario,Contrasenya)==1) {
+					log.log(Level.INFO, "El usuario"+Usuario+" ha iniciado sesion como Institucion:"+ (new Date()));
 					System.out.println("Se ha iniciado sesión como Institucion");
 					try {
 						new InformacionORegistroCiudadanos(FuncionesEspeciales.devolverInstitucion(Usuario)).setVisible(true);
 						setVisible(false);
 					} catch (NumberFormatException e1) {
 						// TODO Auto-generated catch block
+						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de Institucion");
 						e1.printStackTrace();
 					} catch (ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
+						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de Institucion");
 						e1.printStackTrace();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
+						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de Institucion");
 						e1.printStackTrace();
 					}
 				}
 				else {
+					log.log(null, Contrasenya);
+					log.log(Level.INFO, "Se ha intentado iniciar sesion con una contraseña que no existe");
 					System.out.println("No existe ese usuario con esa contraseña");
 				}
-				
-				
-
 				
 			}
 		};  
