@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 import BasesDeDatos.BDCiudadano;
 import Entidades.Ciudadano;
@@ -16,17 +17,19 @@ public class FuncionesEspeciales {
 
 	/** Genera un serie de 20 caracteres aleatorios (formado por letras mayúsculas, minúsculas y números)
 	 *	para ser usados como contraseña
-	 *	@param contrasenya String vacío que se convertirá en el String devuelto
 	 *	@param alfabeto		String con todos los caracteres que pueden ser añadidos en la contraseña (mayúsculas, minúsculas y números)
+	 *	@param contrasenya String vacío que se convertirá en el String devuelto
 	 *	@return String generado aleatoriamente
 	 */
 	
-	public static String crearContraseña(String contrasenya, String alfabeto){
-        if (contrasenya.length()==20){
-        	return contrasenya;
-        }
-        return crearContraseña(contrasenya+ alfabeto.charAt((int) Math.floor(Math.random()*62)), alfabeto);
-    }
+	public static String crearContraseña(String alfabeto, String contrasenya) {
+		boolean cogerNumero = new Random().nextBoolean();
+		if (contrasenya.length() == 20) {return contrasenya;}
+		if (cogerNumero) { return crearContraseña(alfabeto, contrasenya + alfabeto.charAt((int) Math.floor(Math.random()*10+52)));}
+		else {return crearContraseña(alfabeto, contrasenya + alfabeto.charAt((int) Math.floor(Math.random()*52)));}
+		
+	
+	  }
 	
 
 	/** Genera un serie de caracteres que consiste en un String que recibe como para parámetro pero en mayúscula
