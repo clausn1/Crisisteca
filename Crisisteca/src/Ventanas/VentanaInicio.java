@@ -2,6 +2,7 @@ package Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +35,8 @@ public class VentanaInicio extends JFrame {
 		this.setSize(400,150);  
 		getContentPane().setLayout(new FlowLayout());  
 		this.setLocationRelativeTo(null);              
-		this.setTitle("Crisisteca");                  
+		this.setTitle("Crisisteca");  
+		this.setResizable(false);
 		
 		//Panel texto inicio prueba
 		JPanel pnl_text = new JPanel();
@@ -43,9 +45,12 @@ public class VentanaInicio extends JFrame {
 		JPanel pnl_izquierda = new JPanel();
 		JPanel pnl_derecha = new JPanel();
 		
-		JLabel lblTexto = new JLabel("Bienvenido a crisisteca");
+		JLabel lblTexto = new JLabel("Bienvenido a Crisisteca");
+		Font bold = new Font ("BoldFont", Font.BOLD,25);
+		lblTexto.setFont(bold);
 		JButton btnRegistrarse = new JButton("Registrarse");
 		JButton btnInicSesion = new JButton("Iniciar Sesión");
+		
 		
 		pnl_text.add(lblTexto);
 		pnl_izquierda.add(btnInicSesion);

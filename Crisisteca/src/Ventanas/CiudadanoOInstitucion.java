@@ -23,7 +23,7 @@ public class CiudadanoOInstitucion extends JFrame{
 	public CiudadanoOInstitucion() {
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setTitle("Escoger tipo de usuario");
-		this.setBounds(550, 250, 1000, 700);
+		this.setBounds(625, 350, 1000, 700);
         this.setSize(300,100);
 		this.setResizable(false);
 
