@@ -219,7 +219,7 @@ public class VentanaReportarEmergencia extends JFrame {
 						+ calendar.get(Calendar.MINUTE) + ":" + calendar.get(calendar.SECOND));
 				Emergencias emergenciaNueva = new Emergencias(
 						Integer.parseInt(comboxCodigoPostal.getSelectedItem().toString()),
-						comboxCalle.getSelectedItem().toString() + "-" + numero.getSelectedText(),
+						comboxCalle.getSelectedItem().toString() + "-" + numero.getText(),
 						comboxTipoEmergencia.getSelectedItem().toString(), ciudadano.getaTelefono(),
 						cboxAvisar.isSelected(), taDetalles.getText(), fechaYHora);
 				BDEmergencias.InsertarEmergencia(emergenciaNueva);

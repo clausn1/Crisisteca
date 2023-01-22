@@ -198,9 +198,6 @@ public class RegistrarseInstitucion extends JFrame {
 				new IniciarSesion().setVisible(true);
 				setVisible(false);
 				log.log(Level.INFO, "Se ha registrado como institucion.");
-				// BORRAR ANTES DE ENVIAR
-				System.out.println(institucionnueva.getaCodigo());
-				System.out.println(institucionnueva.getaContrasenya());
 			}
 		};
 

@@ -246,9 +246,6 @@ public class RegistrarseCiudadano extends JFrame {
 					setVisible(false);
 					log.log(Level.INFO, "Se ha registrado como ciudadano. ");
 
-					// Borar antes de enviar
-					System.out.println(ciudadanonuevo.getaTelefono());
-					System.out.println(ciudadanonuevo.getaContrasenya());
 
 				}
 
