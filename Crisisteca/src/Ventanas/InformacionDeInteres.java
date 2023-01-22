@@ -220,6 +220,8 @@ public class InformacionDeInteres extends JFrame{
 				fFiltros.setVisible(false);
 				log.log(Level.FINE, "Se han filtrado los resultados de la vista de informacion de interes");
 				ArrayList<String> filtroArrayCp= new ArrayList<String>();
+				
+				//El filtro del codigo postal
 				for(int i =0; i<arrayCP.size();i++)
 					if(!arrayCP.get(i).isSelected())
 						filtroArrayCp.add(arrayCP.get(i).getText());
@@ -234,6 +236,8 @@ public class InformacionDeInteres extends JFrame{
 					z++;
 				}
 				rowsToRemove.clear();
+				
+				//El filtro de el tipo de emergencia
 				for(int i=0; i<tInformacion.getRowCount();i++) {
 					if(!cbCoche.isSelected())
 					if( tInformacion.getValueAt(i, 1).equals("Coche"))
@@ -244,6 +248,25 @@ public class InformacionDeInteres extends JFrame{
 					 if(!cbViolencia.isSelected())
 					if( tInformacion.getValueAt(i, 1).equals("Violencia"))
 						rowsToRemove.add(i);
+				}
+				z=0;
+				for(int i=0;i<rowsToRemove.size();i++) {
+					tInformacion.removeRow(rowsToRemove.get(i)-z);
+					z++;
+				}
+				rowsToRemove.clear();
+				//El filtro de la fecha
+				for(int i = 0;i<tInformacion.getRowCount();i++) {
+					
+					String partir[]=tInformacion.getValueAt(i, 2).toString().split(" ");
+					String partes[]=partir[0].split("-");
+					if(cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())>Integer.parseInt(partes[0])||cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())<Integer.parseInt(partes[0])) 
+						rowsToRemove.add(i);
+			
+					else if(cbDesdeMes.getItemAt(cbDesdeMes.getSelectedIndex())>Integer.parseInt(partes[1])&&cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())==Integer.parseInt(partes[0])||cbHastaMes.getItemAt(cbHastaMes.getSelectedIndex())<Integer.parseInt(partes[1])&&cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())==Integer.parseInt(partes[0]))
+						rowsToRemove.add(i);
+					else if(cbDesdeDia.getItemAt(cbDesdeDia.getSelectedIndex())>Integer.parseInt(partes[2])&&cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())==Integer.parseInt(partes[0])&&cbDesdeMes.getItemAt(cbDesdeMes.getSelectedIndex())==Integer.parseInt(partes[1])||cbHastaDia.getItemAt(cbHastaDia.getSelectedIndex())<Integer.parseInt(partes[2])&&cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())==Integer.parseInt(partes[0])&&cbHastaMes.getItemAt(cbHastaMes.getSelectedIndex())==Integer.parseInt(partes[1]))
+						rowsToRemove.add(i);				
 				}
 				z=0;
 				for(int i=0;i<rowsToRemove.size();i++) {
@@ -299,7 +322,7 @@ public class InformacionDeInteres extends JFrame{
 		pnlMain.setLayout(new BorderLayout());
 		pnlMain.add(pnlBotones, BorderLayout.NORTH);
 		pnlMain.add(bLimpiar, BorderLayout.SOUTH);
-		pnlMain.add(new JScrollPane(tabla), BorderLayout.CENTER);
+		pnlMain.add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
 
 		
 		
