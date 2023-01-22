@@ -74,7 +74,12 @@ public class ReportarEmergenciasOEmergencias extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					new EmergenciasVentana(ciudadano).setVisible(true);
+					try {
+						new EmergenciasVentana(ciudadano).setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					setVisible(false);
 				}
 			};
