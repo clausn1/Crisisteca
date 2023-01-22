@@ -12,44 +12,29 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 
-public class InformacionORegistroCiudadanos extends JFrame{
+public class InformacionORegistroCiudadanos extends JFrame {
 
-//	public static void main(String[] args) {
-//		SwingUtilities.invokeLater(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                new InformacionORegistroCiudadanos();
-//            }
-//		});
-//		
-//		
-//	}
-	
 	public InformacionORegistroCiudadanos(Institucion institucion) {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Escoger que hacer");
 		this.setBounds(550, 250, 1000, 700);
-        this.setSize(360,100);
+		this.setSize(360, 100);
 		this.setResizable(false);
 
-		
-        JButton bInformacionInteres = new JButton("Información de interés");
-        JButton bRegistroDeCiudadanos = new JButton("Registro de ciudadanos");
+		JButton bInformacionInteres = new JButton("Información de interés");
+		JButton bRegistroDeCiudadanos = new JButton("Registro de ciudadanos");
 
-        JPanel pnlMain = new JPanel();
-        JPanel pnlBotones = new JPanel();
-        
-        pnlBotones.add(bInformacionInteres);
-        pnlBotones.add(bRegistroDeCiudadanos);
-        pnlMain.add(pnlBotones);
-        getContentPane().add(pnlMain);
+		JPanel pnlMain = new JPanel();
+		JPanel pnlBotones = new JPanel();
 
-        setVisible(true);
+		pnlBotones.add(bInformacionInteres);
+		pnlBotones.add(bRegistroDeCiudadanos);
+		pnlMain.add(pnlBotones);
+		getContentPane().add(pnlMain);
 
+		setVisible(true);
 
-        ActionListener albInformacionInteres = new ActionListener() {
-	
+		ActionListener albInformacionInteres = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -64,11 +49,8 @@ public class InformacionORegistroCiudadanos extends JFrame{
 			}
 		};
 		bInformacionInteres.addActionListener(albInformacionInteres);
-	
 
-			
 		ActionListener albRegistroDeCiudadanos = new ActionListener() {
-			
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -76,22 +58,13 @@ public class InformacionORegistroCiudadanos extends JFrame{
 					new RegistroDeCiudadanos(institucion).setVisible(true);
 					setVisible(false);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 			}
 		};
 		bRegistroDeCiudadanos.addActionListener(albRegistroDeCiudadanos);
 
-	 
+	}
 
-
-	
-	
-	
-	
-	
-	}	
-
-	
 }

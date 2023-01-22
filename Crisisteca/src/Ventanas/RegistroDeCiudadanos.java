@@ -29,13 +29,13 @@ public class RegistroDeCiudadanos extends JFrame {
 		this.setBounds(300, 5, 1000, 700);
 		this.setSize(700, 700);
 		this.setResizable(true);
-		
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
+
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
 				new InformacionORegistroCiudadanos(institucion).setVisible(true);
-                setVisible(false);
-            }
-        });
+				setVisible(false);
+			}
+		});
 
 		// panel donde se van a mostrar los datos
 		DefaultTableModel tInformacion = new DefaultTableModel();
@@ -63,11 +63,11 @@ public class RegistroDeCiudadanos extends JFrame {
 		JTable tabla = new JTable(tInformacion);
 		TableRowSorter<DefaultTableModel> ordenaLaTabla = new TableRowSorter<DefaultTableModel>(tInformacion);
 		tabla.setRowSorter(ordenaLaTabla);
-		
-		
+
 		JPanel pnlMain = new JPanel();
 		pnlMain.setLayout(new BorderLayout());
-		pnlMain.add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
+		pnlMain.add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
 
 		getContentPane().add(pnlMain);
 		setVisible(true);

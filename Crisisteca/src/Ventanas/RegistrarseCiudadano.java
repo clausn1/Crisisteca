@@ -24,17 +24,7 @@ import Principal.FuncionesEspeciales;
 public class RegistrarseCiudadano extends JFrame {
 	static Logger log;
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
 
-			@Override
-			public void run() {
-				new RegistrarseCiudadano();
-			}
-
-		});
-
-	}
 
 	private JTextField tfNombre;
 	private JTextField tfApellidos;
@@ -195,10 +185,10 @@ public class RegistrarseCiudadano extends JFrame {
 					terminos.setLineWrap(true);
 					terminos.setWrapStyleWord(true);
 					terminos.setEditable(false);
-					terminos.setText("USO NO AUTORIZADO\n" + "\n"
-							+ "En caso de que aplique (para venta de software, templetes, u otro producto de diseño y programación) usted no puede colocar uno de nuestros productos, modificado o sin modificar, en un CD, sitio web o ningún otro medio y ofrecerlos para la redistribución o la reventa de ningún tipo.\n"
-							+ "\nPROPIEDAD\n" + "\n"
-							+ "Usted no puede declarar propiedad intelectual o exclusiva a ninguno de nuestros productos, modificado o sin modificar. Todos los productos son propiedad  de los proveedores del contenido. En caso de que no se especifique lo contrario, nuestros productos se proporcionan  sin ningún tipo de garantía, expresa o implícita. En ningún esta compañía será  responsables de ningún daño incluyendo, pero no limitado a, daños directos, indirectos, especiales, fortuitos o consecuentes u otras pérdidas resultantes del uso o de la imposibilidad de utilizar nuestros productos.");
+					terminos.setText("USO INDEBIDO\n" + "\n"
+							+ "Usted acepta hacer uso adecuado de la aplicacion, siendo honesto con sus reportes\n"
+							+ "\n CONSECUENCIAS LEGALES\n" + "\n"
+							+ "Si usted hace un uso indebido de la aplicacion, acepta el hecho de que se puedan tomar acciones legales en su contra.");
 					tyc.add(terminos);
 				}
 			}

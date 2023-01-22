@@ -5,8 +5,8 @@ public class Usuario {
 	String aNombre;
 	int aTelefono;
 	String aContrasenya;
-	
-	public Usuario (String aNombre, int aTelefono, String aContrasenya) {
+
+	public Usuario(String aNombre, int aTelefono, String aContrasenya) {
 		this.aNombre = aNombre;
 		this.aTelefono = aTelefono;
 		this.aContrasenya = aContrasenya;
@@ -36,23 +36,9 @@ public class Usuario {
 		this.aContrasenya = aContrasenya;
 	}
 
-
-
-
-
-
-
 	@Override
 	public String toString() {
 		return "Usuario [aNombre=" + aNombre + ", aTelefono=" + aTelefono + ", aContrasenya=" + aContrasenya + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
