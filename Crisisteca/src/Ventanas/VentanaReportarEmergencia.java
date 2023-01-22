@@ -372,7 +372,7 @@ public class VentanaReportarEmergencia extends JFrame{
 				Calendar calendar = Calendar.getInstance();
 				  calendar.setTimeInMillis(millis);
 				 String fechaYHora=new String(calendar.get(Calendar.YEAR)+"-"+calendar.get(Calendar.MONTH)+1+"-"+calendar.get(Calendar.DAY_OF_MONTH)  +" " +calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
-				 Emergencias emergenciaNueva= new Emergencias(Integer.parseInt(comboxCodigoPostal.getSelectedItem().toString()),comboxCalle.getSelectedItem().toString()+"-"+numero, comboxTipoEmergencia.getSelectedItem().toString(),ciudadano.getaTelefono(), cboxAvisar.isSelected(), taDetalles.getText(),fechaYHora );
+				 Emergencias emergenciaNueva= new Emergencias(Integer.parseInt(comboxCodigoPostal.getSelectedItem().toString()),comboxCalle.getSelectedItem().toString()+"-"+numero.getSelectedText(), comboxTipoEmergencia.getSelectedItem().toString(),ciudadano.getaTelefono(), cboxAvisar.isSelected(), taDetalles.getText(),fechaYHora );
 				 BDEmergencias.InsertarEmergencia(emergenciaNueva);
 				 JOptionPane.showMessageDialog(null, "La emergencia ha sido reportada ");
 				 log.log(Level.INFO,"Se ha reportado una emergencia:" + (new Date()));

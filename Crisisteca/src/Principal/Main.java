@@ -23,8 +23,8 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 		log = Logger.getLogger("programLogger");
 		try {
-		Handler h = new FileHandler("res/informacionPrograma.xml", true);
-		Handler herror = new FileHandler("res/erroresdelPrograma.xml", true);
+		Handler h = new FileHandler("res/informacionPrograma.xml", false);
+		Handler herror = new FileHandler("res/erroresdelPrograma.xml", false);
 		log.addHandler(h);
 		log.addHandler(herror);
 		h.setLevel(Level.FINEST);

@@ -147,7 +147,6 @@ public class EmergenciasVentana extends JFrame{
 	
 		//Metemos los valores de la base de datos en la tabla
 		Statement st = BDEmergencias.initBD();
-//		st.executeUpdate("create table if not exists Emergencias (  CodigoPostal integer, CalleNumero string,  TipoEmergencia string, Telefono integer, Reportar boolean, DetallesInformación string, Fecha date);");
 		ResultSet rs = st.executeQuery("SELECT CodigoPostal, TipoEmergencia, Fecha FROM Emergencias WHERE CodigoPostal = " + ciudadano.getaCodigoPostal() + " ORDER BY Fecha DESC; ");
 		
 		while(rs.next()) {
