@@ -39,7 +39,6 @@ public class RegistrarseInstitucion extends JFrame {
 	static Logger log;
 
 
-//	private JTextField tfCodigo;
 	private JTextField tfNombre;
 	private JTextField tfEmail;
 	private JTextField tfTelefono;
@@ -67,8 +66,7 @@ public class RegistrarseInstitucion extends JFrame {
 		pnlAbajo.setLayout(new BoxLayout(pnlAbajo, BoxLayout.X_AXIS));
 
 		/// Panel de la Izquierda
-//		JLabel lblCodigo= new JLabel("Código: ");
-//		lblCodigo.setFont(new Font("Arial", Font.PLAIN, 30));
+
 		JLabel lblNombre = new JLabel("Nombre: ");
 		lblNombre.setFont(new Font("Arial", Font.PLAIN, 30));
 		JLabel lblEmail = new JLabel("E-mail: ");
@@ -76,18 +74,17 @@ public class RegistrarseInstitucion extends JFrame {
 		JLabel lblTelefono = new JLabel("Teléfono: ");
 		lblTelefono.setFont(new Font("Arial", Font.PLAIN, 30));
 
-//		pnlIzquierda.add(lblCodigo);
 		pnlIzquierda.add(lblNombre);
 		pnlIzquierda.add(lblEmail);
 		pnlIzquierda.add(lblTelefono);
 
 		/// Panel de la Derecha
-//		tfCodigo = new JTextField(20);
+
 		tfNombre = new JTextField(20);
 		tfEmail = new JTextField(20);
 		tfTelefono = new JTextField(20);
 
-		tfTelefono.addKeyListener(new KeyAdapter() { // https://www.tutorialspoint.com/how-can-we-make-jtextfield-accept-only-numbers-in-java
+		tfTelefono.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent p) {
 				if (p.getKeyChar() >= '0' && p.getKeyChar() <= '9' || p.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
 					tfTelefono.setEditable(true);
@@ -104,12 +101,11 @@ public class RegistrarseInstitucion extends JFrame {
 			}
 
 		});
-//		tfCodigo.setFont(new Font("Arial", Font.PLAIN, 20));
+
 		tfNombre.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfEmail.setFont(new Font("Arial", Font.PLAIN, 20));
 		tfTelefono.setFont(new Font("Arial", Font.PLAIN, 20));
 
-//		pnlDerecha.add(tfCodigo);
 		pnlDerecha.add(tfNombre);
 		pnlDerecha.add(tfEmail);
 		pnlDerecha.add(tfTelefono);
@@ -126,7 +122,7 @@ public class RegistrarseInstitucion extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (tyc == null || !tyc.isDisplayable()) {
 					tyc = new JFrame("Leer");
-					tyc.setSize(new Dimension(500, 600));
+					tyc.setSize(new Dimension(500, 300));
 					tyc.setVisible(true);
 					tyc.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 					// el texto de terminos y condiciones
@@ -191,7 +187,7 @@ public class RegistrarseInstitucion extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+
 				Institucion institucionnueva = new Institucion(FuncionesEspeciales.crearCodigo(tfNombre.getText(), ""),
 						tfNombre.getText(), tfEmail.getText(), Integer.parseInt(tfTelefono.getText()),
 						FuncionesEspeciales

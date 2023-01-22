@@ -101,21 +101,32 @@ public class IniciarSesion extends JFrame {
 
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario, Contrasenya) == 0) {
 					log.log(Level.INFO, "El usuario " + Usuario + " ha iniciado sesion como Ciudadano:" + (new Date()));
-					System.out.println("Se ha iniciado sesión como Ciudadano");
-					try {
-						new ReportarEmergenciasOEmergencias(
-								FuncionesEspeciales.devolverCiudadano(Integer.parseInt(Usuario))).setVisible(true);
-						setVisible(false);
-					} catch (Exception e1) {
-						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano", e1);
-					}
+					(new Thread() {
+						@Override
+						public void run() {
+							try {
+								new ReportarEmergenciasOEmergencias(
+										FuncionesEspeciales.devolverCiudadano(Integer.parseInt(Usuario)))
+										.setVisible(true);
+								setVisible(false);
+							} catch (Exception e1) {
+								log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano", e1);
+							}
+						}
+					}).start();
+					(new Thread() {
+						@Override
+						public void run() {
+							JOptionPane.showMessageDialog(null, "Se ha iniciado sesión correctamente", "InicioSesión",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+					}).start();
 
 				}
 
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario, Contrasenya) == 1) {
-					log.log(Level.INFO,
-							"El usuario " + Usuario + " ha iniciado sesion como Institucion:" + (new Date()));
-					System.out.println("Se ha iniciado sesión como Institucion");
+					log.log(Level.INFO, "El usuario " + Usuario + " ha iniciado sesion como Institucion correctamente:"
+							+ (new Date()));
 					(new Thread() {
 						@Override
 						public void run() {
@@ -132,7 +143,7 @@ public class IniciarSesion extends JFrame {
 					(new Thread() {
 						@Override
 						public void run() {
-							JOptionPane.showMessageDialog(null, "Se ha iniciado sesión", "InicioSesión",
+							JOptionPane.showMessageDialog(null, "Se ha iniciado sesión correctamente", "InicioSesión",
 									JOptionPane.INFORMATION_MESSAGE);
 
 						}

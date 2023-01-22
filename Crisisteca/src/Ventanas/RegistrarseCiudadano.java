@@ -51,8 +51,7 @@ public class RegistrarseCiudadano extends JFrame {
 		JPanel pnlIzquierda = new JPanel();
 		JPanel pnlDerecha = new JPanel();
 		JPanel pnlAbajo = new JPanel();
-//		JPanel pnlAbajoIzquierda = new JPanel();
-//		JPanel pnlAbajoDerecha = new JPanel();
+
 
 		pnlMain.setLayout(new BorderLayout());
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
@@ -92,21 +91,7 @@ public class RegistrarseCiudadano extends JFrame {
 		tfEmail = new JTextField(20);
 		tfTelefono = new JTextField(20);
 
-		/// Es otra manera de hacerlo, desactivando el textfield
-//		tfCodigoPostal.addKeyListener(new KeyAdapter() { //https://www.tutorialspoint.com/how-can-we-make-jtextfield-accept-only-numbers-in-java
-//		public void keyPressed(KeyEvent p) {
-//            if (p.getKeyChar() >= '0' && p.getKeyChar() <= '9' || p.getKeyChar()==KeyEvent.VK_BACK_SPACE) {
-//            	tfCodigoPostal.setEditable(true);
-//            } else {
-//            	tfCodigoPostal.setEditable(false);
-//            }
-//         }
-//		public void keyTyped(KeyEvent t) {
-//	        if (tfCodigoPostal.getText().length() >= 5 )
-//	            t.consume(); 
-//		}
-//      	
-//	});
+
 
 		tfCodigoPostal.addKeyListener(new KeyAdapter() { // https://www.tutorialspoint.com/how-can-we-make-jtextfield-accept-only-numbers-in-java
 			public void keyPressed(KeyEvent p) {
@@ -176,7 +161,7 @@ public class RegistrarseCiudadano extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (tyc == null || !tyc.isDisplayable()) {
 					tyc = new JFrame("Leer");
-					tyc.setSize(new Dimension(500, 600));
+					tyc.setSize(new Dimension(500, 300));
 					tyc.setVisible(true);
 					tyc.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 					// el texto de terminos y condiciones

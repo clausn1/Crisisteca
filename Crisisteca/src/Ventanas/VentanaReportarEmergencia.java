@@ -180,6 +180,7 @@ public class VentanaReportarEmergencia extends JFrame {
 
 		cboxAvisar = new JCheckBox();
 		cboxAvisar.setAlignmentY(CENTER_ALIGNMENT);
+		cboxAvisar.setSelected(true);
 
 		pnlDerecha.add(comboxTipoEmergencia);
 		pnlDerecha.add(Box.createVerticalGlue());
