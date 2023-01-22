@@ -73,7 +73,7 @@ public class FuncionesEspeciales {
 	 * @return Devuelve 0 si es ciudadano, devuelve 1 si es una institución y
 	 *         devuelve -1 en caso de no existir en la base de datos
 	 */
-	public static Integer ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
+	public static int ExisteUsuario(String usuarioQueBuscamos, String contrasenyaQueBuscamos) {
 
 		try {
 			// Conectarnos
@@ -113,7 +113,7 @@ public class FuncionesEspeciales {
 		} catch (Exception e) {
 			log = Logger.getLogger("programLogger");
 			log.log(Level.WARNING, "Error en la busqueda de Usuario en la base de datos", e);
-			return null;
+			
 		}
 		return -1;
 
