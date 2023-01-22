@@ -1,10 +1,13 @@
 package Ventanas;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,11 +15,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -24,13 +27,14 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
 import BasesDeDatos.BDEmergencias;
 import Entidades.Emergencias;
 import Entidades.Institucion;
-
 public class InformacionDeInteres extends JFrame{
 	
 		static Logger log;
@@ -38,15 +42,15 @@ public class InformacionDeInteres extends JFrame{
 //	public static void main(String[] args) {
 //		SwingUtilities.invokeLater(new Runnable() {
 //
-//            @Override
-//            public void run() {
-//                try {
+// @Override
+// public void run() {
+// try {
 //					new InformacionDeInteres();
 //				} catch (SQLException e) {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
 //				}
-//            }
+// }
 //		});
 //		
 //		
@@ -56,7 +60,7 @@ public class InformacionDeInteres extends JFrame{
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Busque la información como desee");
 		this.setBounds(300, 5, 1000, 700);
-        this.setSize(700,700);
+this.setSize(700,700);
 		this.setResizable(false);
 		
 		
@@ -107,7 +111,6 @@ public class InformacionDeInteres extends JFrame{
 			}
 			for(JCheckBox cb:arrayCP)
 			filtroCPPanel.add(cb);
-
 			JCheckBox cbCoche= new JCheckBox("Coche");
 			cbCoche.setSelected(true);
 			JCheckBox cbRobo= new JCheckBox("Robo");
@@ -167,8 +170,37 @@ public class InformacionDeInteres extends JFrame{
 		
 		
 		fFiltros.getContentPane().add(mainPanel);
+		//
 		
-
+		//frame en el que aparece toda la informacion sobre una emergencia seleccionada
+		JFrame fSeleccion= new JFrame();
+		fSeleccion.setBounds(20, 300, 10, 10);
+		fSeleccion.setSize(1200, 200);
+		fSeleccion.setVisible(false);
+		fSeleccion.setDefaultCloseOperation(HIDE_ON_CLOSE);
+		
+		JPanel panelMain = new JPanel();
+		DefaultTableModel tSeleccion= new DefaultTableModel();
+		tSeleccion.addColumn("Codigo Postal");
+		tSeleccion.addColumn("Calle y nº");
+		tSeleccion.addColumn("Tipo de Emergencia");
+		tSeleccion.addColumn("Telefono del usuario que ha reportado");
+		tSeleccion.addColumn("Uso del servicio de emergencias");
+		tSeleccion.addColumn("Fecha y Hora");
+		JTable tablaSeleccion = new JTable(tSeleccion);
+		panelMain.setLayout(new GridLayout(2,0));
+		panelMain.add(new JScrollPane(tablaSeleccion, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
+		JPanel pnlDetalles= new JPanel();
+		pnlDetalles.setLayout(new BorderLayout());
+		JLabel lbDetalles= new JLabel("Detalles de la emergencia");
+		JTextArea taDetalles= new JTextArea();
+		taDetalles.setLineWrap(true);
+		taDetalles.setWrapStyleWord(true);
+		pnlDetalles.add(lbDetalles, BorderLayout.NORTH);
+		pnlDetalles.add(taDetalles, BorderLayout.CENTER);
+		panelMain.add(pnlDetalles);
+		fSeleccion.getContentPane().add(panelMain);
+		
 		
 		
 		//panel donde se van a mostrar los datos
@@ -179,16 +211,14 @@ public class InformacionDeInteres extends JFrame{
 	
 		//Metemos los valores de la base de datos en la tabla
 		Statement st = BDEmergencias.initBD();
-		ResultSet rs = st.executeQuery("SELECT Codigo Postal, Tipo Emergencia, Fecha FROM Emergencias ORDER BY Fecha DESC; ");
+		ResultSet rs = st.executeQuery("SELECT CodigoPostal, TipoEmergencia, Fecha FROM Emergencias ORDER BY Fecha DESC; ");
 		
 		while(rs.next()) {
-			Object [] fila = new Object[3]; 
-
-			   for (int i=0;i<3;i++)
-			      fila[i] = rs.getObject(i+1); 
-
+		Object [] fila = new Object[3];
+			 for (int i=0;i<3;i++)
+			 fila[i] = rs.getObject(i+1);
 		
-			   tInformacion.addRow(fila);
+			 tInformacion.addRow(fila);
 		}
 		
 		
@@ -197,7 +227,6 @@ public class InformacionDeInteres extends JFrame{
 		JTable tabla = new JTable(tInformacion);
 		TableRowSorter<DefaultTableModel> ordenaLaTabla = new TableRowSorter<DefaultTableModel>(tInformacion);
 		tabla.setRowSorter(ordenaLaTabla);
-
 		log = Logger.getLogger("programLogger");
 		
 		ActionListener alFiltrar = new ActionListener() {
@@ -206,7 +235,7 @@ public class InformacionDeInteres extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				fFiltros.setVisible(true);
 				bFiltrar.setEnabled(false);
-        		
+		
 			}
 		};
 		bFiltrar.addActionListener(alFiltrar);
@@ -260,7 +289,7 @@ public class InformacionDeInteres extends JFrame{
 					
 					String partir[]=tInformacion.getValueAt(i, 2).toString().split(" ");
 					String partes[]=partir[0].split("-");
-					if(cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())>Integer.parseInt(partes[0])||cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())<Integer.parseInt(partes[0])) 
+					if(cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())>Integer.parseInt(partes[0])||cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())<Integer.parseInt(partes[0]))
 						rowsToRemove.add(i);
 			
 					else if(cbDesdeMes.getItemAt(cbDesdeMes.getSelectedIndex())>Integer.parseInt(partes[1])&&cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())==Integer.parseInt(partes[0])||cbHastaMes.getItemAt(cbHastaMes.getSelectedIndex())<Integer.parseInt(partes[1])&&cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())==Integer.parseInt(partes[0]))
@@ -273,7 +302,6 @@ public class InformacionDeInteres extends JFrame{
 					tInformacion.removeRow(rowsToRemove.get(i)-z);
 					z++;
 				}
-
 			}
 		};
 		bAplicar.addActionListener(alAplican);
@@ -287,18 +315,15 @@ public class InformacionDeInteres extends JFrame{
 				Statement st = BDEmergencias.initBD();
 				ResultSet rs = null;
 				try {
-					rs = st.executeQuery("SELECT Codigo Postal, Tipo Emergencia, Fecha FROM Emergencias ORDER BY Fecha DESC; ");
+					rs = st.executeQuery("SELECT CodigoPostal, TipoEmergencia, Fecha FROM Emergencias ORDER BY Fecha DESC; ");
 					while(rs.next()) {
-						Object [] fila = new Object[3]; 
-
-						   for (int i=0;i<3;i++)
-						      fila[i] = rs.getObject(i+1); 
-
+						Object [] fila = new Object[3];
+						 for (int i=0;i<3;i++)
+						 fila[i] = rs.getObject(i+1);
 					
-						   tInformacion.addRow(fila);
+						 tInformacion.addRow(fila);
 					}
 				} catch (SQLException e1) {
-
 					log.log(Level.WARNING, "No se ha podido crear la tabla al limpiar los filtros");
 				}
 				bFiltrar.setEnabled(true);
@@ -308,13 +333,41 @@ public class InformacionDeInteres extends JFrame{
 		bLimpiar.addActionListener(alLimpiar);
 		
 		
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
+addWindowListener(new java.awt.event.WindowAdapter() {
+public void windowClosing(java.awt.event.WindowEvent e) {
 				new InformacionORegistroCiudadanos(institucion).setVisible(true);
-                setVisible(false);
-            }
-        });
+setVisible(false);
+}
+});
 		
+tabla.addMouseListener(new MouseAdapter() {
+		
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tSeleccion.setRowCount(0);
+				Statement st = BDEmergencias.initBD();
+				ResultSet rs = null;
+				try {
+					rs = st.executeQuery("SELECT * FROM Emergencias WHERE Fecha LIKE ('" +tInformacion.getValueAt(tabla.getSelectedRow(), 2)+"')");
+					//rs = st.executeQuery("SELECT * FROM Emergencias WHERE Fecha LIKE ('" +tInformacion.getValueAt(tabla.getSelectedRow(), 2)+"');");
+						Object [] fila = new Object[6];
+						 for (int i=0;i<=6;i++) {	
+							 if(i==5)taDetalles.setText(rs.getObject(i+1).toString());
+							 else if(i>5) fila[i-1] = rs.getObject(i+1);
+							 else fila[i] = rs.getObject(i+1);
+						 }			
+						 tSeleccion.addRow(fila);
+						 taDetalles.setEditable(false);
+						
+				} catch (SQLException e1) {
+					log.log(Level.WARNING, "No se ha podido crear la tabla de la emergencia seleccionada", e1);
+				}
+				fSeleccion.setVisible(true);
+				
+			}
+		});
+			
 		
 		
 		//panel principal
@@ -323,7 +376,6 @@ public class InformacionDeInteres extends JFrame{
 		pnlMain.add(pnlBotones, BorderLayout.NORTH);
 		pnlMain.add(bLimpiar, BorderLayout.SOUTH);
 		pnlMain.add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
-
 		
 		
 		getContentPane().add(pnlMain);
@@ -335,5 +387,4 @@ public class InformacionDeInteres extends JFrame{
 	
 	
 	
-
 }
