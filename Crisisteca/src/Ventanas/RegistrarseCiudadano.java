@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.security.PublicKey;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 import BasesDeDatos.BDCiudadano;
@@ -20,7 +22,7 @@ import Entidades.Institucion;
 import Principal.FuncionesEspeciales;
 
 public class RegistrarseCiudadano extends JFrame{
-
+	static Logger log;
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -43,6 +45,8 @@ public class RegistrarseCiudadano extends JFrame{
     private JFrame tyc;
 
 	public RegistrarseCiudadano() {
+		log = Logger.getLogger("programLogger");
+		
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Registrarse como Ciudadano");
 		this.setBounds(100, 100, 1000, 700);
@@ -216,8 +220,10 @@ public class RegistrarseCiudadano extends JFrame{
 
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			 if (e.getStateChange()==ItemEvent.SELECTED)
+			 if (e.getStateChange()==ItemEvent.SELECTED) {
   			   bRegistrar.setEnabled(true);
+				log.log(Level.FINE, "Las condiciones de uso han sido aceptadas. ");
+				}
   	   else
   		   
   	        bRegistrar.setEnabled(false);
@@ -270,9 +276,10 @@ public class RegistrarseCiudadano extends JFrame{
 						public void run() {
 							Ciudadano ciudadanonuevo = new Ciudadano(tfNombre.getText(),tfApellidos.getText(), tfDNI.getText(), tfDireccion.getText(), Integer.parseInt(tfCodigoPostal.getText()),Integer.parseInt(tfTelefono.getText()), FuncionesEspeciales.crearContraseña("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", ""));
 							BDCiudadano.InsertarCiudadano(ciudadanonuevo);
-							JOptionPane.showMessageDialog(null, "El nombre de usuario es "+ciudadanonuevo.getaTelefono()+"\nY la contraseña es " + ciudadanonuevo.getaContrasenya());
+							JOptionPane.showMessageDialog(null, "El nombre de usuario es "+ciudadanonuevo.getaTelefono()+"\nY la contraseña es " + ciudadanonuevo.getaContrasenya(),"Apunta", JOptionPane.INFORMATION_MESSAGE);
 							new IniciarSesion().setVisible(true);
 			                setVisible(false);
+			                log.log(Level.INFO, "Se ha registrado como ciudadano. ");
 							
 							//Borar antes de enviar
 							System.out.println(ciudadanonuevo.getaTelefono());

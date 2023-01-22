@@ -5,11 +5,16 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.SwingUtilities;
 import Entidades.Emergencias;
 
 public class BDEmergencias {
 	
+	
+	static Logger log;
 //Tenemos esto para cargar BDEmergencias		
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -35,6 +40,8 @@ public class BDEmergencias {
 						
 			} 
 		catch (Exception e) {
+			log = Logger.getLogger("programLogger");
+			log.log(Level.SEVERE, "Error creando una sentencia al iniciar la base de datos",e);
 			return null;
 		}
 	}
@@ -47,7 +54,8 @@ public class BDEmergencias {
 			if (st!=null) st.close();
 			if (con!=null) con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log = Logger.getLogger("programLogger");
+			log.log(Level.SEVERE, "Error al cerrar la base de datos",e);
 		}
 	}
 	
@@ -72,7 +80,8 @@ public class BDEmergencias {
 			cerrarBD(initBD().getConnection(), st);
 			return true;
 		}catch (Exception e) {
-			e.printStackTrace();
+			log = Logger.getLogger("programLogger");
+			log.log(Level.WARNING, "Error al Insertar valores en la tabla Emergencias",e);
 			return false;
 		}  
 	}
@@ -96,8 +105,8 @@ public class BDEmergencias {
 				st.executeUpdate( sentSQL );
 				
 			} catch (Exception e) {
-				System.out.println("no ha funcionao insertar ");
-				e.printStackTrace();
+				log = Logger.getLogger("programLogger");
+				log.log(Level.WARNING, "Error al comprobar si se inserta una emergencia",e);
 			}
 		}
 	
@@ -116,8 +125,8 @@ public class BDEmergencias {
 			System.out.println(emergencia);
 		}
 		}catch(Exception e) {
-			System.out.println("no ha funcionao");
-			e.printStackTrace();
+			log = Logger.getLogger("programLogger");
+			log.log(Level.WARNING, "Error al comprobar si seleccionamos una emergencia",e);
 		}					
 	}
 

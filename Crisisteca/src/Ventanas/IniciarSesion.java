@@ -23,10 +23,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import com.sun.tools.javac.Main;
+
 import Principal.FuncionesEspeciales;
+
 
 public class IniciarSesion extends JFrame {
 
+	static Logger log;
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -40,11 +45,14 @@ public class IniciarSesion extends JFrame {
 
 	}
 
-	static Logger log;
+
 	private JTextField tfUsuario;
 	private JTextField tfContrasenya;
 
 	public IniciarSesion() {
+		log = Logger.getLogger("programLogger");
+		
+		
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Iniciar sesión");
 		this.setBounds(1000, 600, 1000, 700);
@@ -98,59 +106,44 @@ public class IniciarSesion extends JFrame {
 
 				String Usuario = tfUsuario.getText().replaceAll(" ", "");
 				String Contrasenya = tfContrasenya.getText().replaceAll(" ", "");
-				log = Logger.getLogger("programLogger");
+				
 
 				if (Usuario.isEmpty() || Contrasenya.isEmpty()) {
 					log.log(Level.INFO, "No hay contenido escrito dentro del textfield de usuario o de contraseña");
 					System.out.println("No existe ese usuario con esa contraseña");
-					JOptionPane.showMessageDialog(null, "Recuerde incluir todos los campos");
+					JOptionPane.showMessageDialog(null, "Recuerde incluir todos los campos","Recordatorio", JOptionPane.WARNING_MESSAGE);
 
 				}
 
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario, Contrasenya) == 0) {
-					log.log(Level.INFO, "El usuario" + Usuario + " ha iniciado sesion como Ciudadano:" + (new Date()));
+					log.log(Level.INFO, "El usuario " + Usuario + " ha iniciado sesion como Ciudadano:" + (new Date()));
 					System.out.println("Se ha iniciado sesión como Ciudadano");
 					try {
 						new ReportarEmergenciasOEmergencias(
 								FuncionesEspeciales.devolverCiudadano(Integer.parseInt(Usuario))).setVisible(true);
 						setVisible(false);
-					} catch (NumberFormatException e1) {
-						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano");
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano");
-						e1.printStackTrace();
-					} catch (SQLException e1) {
-						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano");
-						e1.printStackTrace();
+					}catch (Exception e1) {
+					log.log(Level.SEVERE, "Error en abrir la ventana de usuario de ciudadano", e1);
 					}
+	
 
 				}
 
 				else if (FuncionesEspeciales.ExisteUsuario(Usuario, Contrasenya) == 1) {
 					log.log(Level.INFO,
-							"El usuario" + Usuario + " ha iniciado sesion como Institucion:" + (new Date()));
+							"El usuario " + Usuario + " ha iniciado sesion como Institucion:" + (new Date()));
 					System.out.println("Se ha iniciado sesión como Institucion");
 					try {
 						new InformacionORegistroCiudadanos(FuncionesEspeciales.devolverInstitucion(Usuario))
 								.setVisible(true);
 						setVisible(false);
-					} catch (NumberFormatException e1) {
-						// TODO Auto-generated catch block
-						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de Institucion");
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de Institucion");
-						e1.printStackTrace();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de Institucion");
-						e1.printStackTrace();
-					}
+					}catch (Exception e1) {
+						log.log(Level.SEVERE, "Error en abrir la ventana de usuario de Institucion", e1);
+						}
+	
 				} else {
 					log.log(Level.INFO, "Se ha intentado iniciar sesion con una contraseña que no existe");
-					System.out.println("No existe ese usuario con esa contraseña");
+					JOptionPane.showMessageDialog(null, "Compruebe su nombre de usuario y su contraseña","¡Cuidado!", JOptionPane.WARNING_MESSAGE);
 				}
 
 			}

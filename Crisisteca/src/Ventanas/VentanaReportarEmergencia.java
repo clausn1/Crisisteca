@@ -15,6 +15,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -37,6 +40,7 @@ import Entidades.Emergencias;
 
 public class VentanaReportarEmergencia extends JFrame{
 	
+	static Logger log;
 //	public static void main(String[] args) {
 //		SwingUtilities.invokeLater(new Runnable() {
 //			
@@ -55,6 +59,7 @@ public class VentanaReportarEmergencia extends JFrame{
 	private JTextArea taDetalles;
 	
 	public VentanaReportarEmergencia(Ciudadano ciudadano) {
+		log = Logger.getLogger("programLogger");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Reportar Emergencia");
 		this.setBounds(100, 100, 1000, 700);
@@ -133,152 +138,166 @@ public class VentanaReportarEmergencia extends JFrame{
 			numero.show();
 			comboxCalle.removeAllItems();
 				Integer itemSeleecionado = (Integer)comboxCodigoPostal.getSelectedItem();
-				if(48001==itemSeleecionado) {
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48001.txt"))) {
+				for(int i=1;i<13;i++) {
+					if (i<10) {
+				if(48000+i==itemSeleecionado) {
+					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/4800"+i+".txt"))) {
 						for (String line = br.readLine(); line != null; line = br.readLine()) {
 							 comboxCalle.addItem(line);
 						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
+					} catch (Exception e1) {
+						log.log(Level.WARNING, "No se ha podido acceder al archivo con el codigo postal indicado.");
 					}
 					comboxCalle.setEnabled(true);
-
-				}else if(48002==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48002.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48003==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48003.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48004==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48004.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48005==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48005.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48006==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48006.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48007==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48007.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48008==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48008.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48009==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48009.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48010==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48010.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48011==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48011.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
-				}else if(48012==itemSeleecionado){
-					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48012.txt"))) {
-						for (String line = br.readLine(); line != null; line = br.readLine()) {
-							 comboxCalle.addItem(line);
-						 }
-					} catch (FileNotFoundException e1) {
-						System.out.println("no hay calles en este codigo postal");
-					} catch (IOException e1) {
-						System.out.println("El archivo no se puede leer");
-					}
-					comboxCalle.setEnabled(true);
-
 				}
+					}else {
+						if(48000+i==itemSeleecionado) {
+							 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/480"+i+".txt"))) {
+								for (String line = br.readLine(); line != null; line = br.readLine()) {
+									 comboxCalle.addItem(line);
+								 }
+								} catch (Exception e1) {
+									log.log(Level.WARNING, "No se ha podido acceder al archivo con el codigo postal indicado.");
+								}
+							comboxCalle.setEnabled(true);
+						}	
+					}
 				
+//				}else if(48002==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48002.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48003==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48003.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48004==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48004.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48005==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48005.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48006==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48006.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48007==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48007.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48008==itemSeleecionado){
+//					int i=1;
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48008.txt"+i+""))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48009==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48009.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48010==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48010.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48011==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48011.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}else if(48012==itemSeleecionado){
+//					 try (BufferedReader br = new BufferedReader (new FileReader ("res/calles/CPBilbao/48012.txt"))) {
+//						for (String line = br.readLine(); line != null; line = br.readLine()) {
+//							 comboxCalle.addItem(line);
+//						 }
+//					} catch (FileNotFoundException e1) {
+//						System.out.println("no hay calles en este codigo postal");
+//					} catch (IOException e1) {
+//						System.out.println("El archivo no se puede leer");
+//					}
+//					comboxCalle.setEnabled(true);
+//
+//				}
+				}
 			}
 		});
 		
@@ -356,6 +375,7 @@ public class VentanaReportarEmergencia extends JFrame{
 				 Emergencias emergenciaNueva= new Emergencias(Integer.parseInt(comboxCodigoPostal.getSelectedItem().toString()),comboxCalle.getSelectedItem().toString()+"-"+numero, comboxTipoEmergencia.getSelectedItem().toString(),ciudadano.getaTelefono(), cboxAvisar.isSelected(), taDetalles.getText(),fechaYHora );
 				 BDEmergencias.InsertarEmergencia(emergenciaNueva);
 				 JOptionPane.showMessageDialog(null, "La emergencia ha sido reportada ");
+				 log.log(Level.INFO,"Se ha reportado una emergencia:" + (new Date()));
 			}
 			
 			
@@ -389,28 +409,7 @@ public class VentanaReportarEmergencia extends JFrame{
 	        }
 	    });
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 	}
 

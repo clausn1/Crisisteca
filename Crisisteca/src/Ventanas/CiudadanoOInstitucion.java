@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 
 public class CiudadanoOInstitucion extends JFrame{
-
+	static Logger log;
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -21,6 +23,8 @@ public class CiudadanoOInstitucion extends JFrame{
 	}
 	
 	public CiudadanoOInstitucion() {
+		log = Logger.getLogger("programLogger");
+		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setTitle("Escoger tipo de usuario");
 		this.setBounds(625, 350, 1000, 700);
@@ -59,6 +63,7 @@ public class CiudadanoOInstitucion extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				new RegistrarseCiudadano().setVisible(true);
 				setVisible(false);
+				log.log(Level.FINE, "Se ha elegido registrarse como ciudadano");
 				
 			}
 		};
@@ -71,6 +76,7 @@ public class CiudadanoOInstitucion extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					new RegistrarseInstitucion().setVisible(true);
 					setVisible(false);
+					log.log(Level.FINE, "Se ha elegido registrarse como institucion");
 				}
 			};
 			

@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -31,7 +33,7 @@ import Entidades.Institucion;
 
 public class InformacionDeInteres extends JFrame{
 	
-	
+		static Logger log;
 	
 //	public static void main(String[] args) {
 //		SwingUtilities.invokeLater(new Runnable() {
@@ -196,6 +198,8 @@ public class InformacionDeInteres extends JFrame{
 		TableRowSorter<DefaultTableModel> ordenaLaTabla = new TableRowSorter<DefaultTableModel>(tInformacion);
 		tabla.setRowSorter(ordenaLaTabla);
 
+		log = Logger.getLogger("programLogger");
+		
 		ActionListener alFiltrar = new ActionListener() {
 			
 			@Override
@@ -214,6 +218,7 @@ public class InformacionDeInteres extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fFiltros.setVisible(false);
+				log.log(Level.FINE, "Se han filtrado los resultados de la vista de informacion de interes");
 				ArrayList<String> filtroArrayCp= new ArrayList<String>();
 				for(int i =0; i<arrayCP.size();i++)
 					if(!arrayCP.get(i).isSelected())
@@ -270,7 +275,8 @@ public class InformacionDeInteres extends JFrame{
 						   tInformacion.addRow(fila);
 					}
 				} catch (SQLException e1) {
-					System.out.println("No se ha podido crear la tabla de nuevo");
+
+					log.log(Level.WARNING, "No se ha podido crear la tabla al limpiar los filtros");
 				}
 				bFiltrar.setEnabled(true);
 				

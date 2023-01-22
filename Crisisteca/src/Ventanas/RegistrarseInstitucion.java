@@ -1,4 +1,4 @@
-package Ventanas;
+ package Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,6 +14,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.security.SecureRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -33,6 +35,9 @@ import Entidades.Institucion;
 import Principal.FuncionesEspeciales;
 
 public class RegistrarseInstitucion extends JFrame{
+	
+	static Logger log;
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -53,6 +58,7 @@ public class RegistrarseInstitucion extends JFrame{
     private JFrame tyc;
 		
 	public RegistrarseInstitucion() {
+		log = Logger.getLogger("programLogger");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Registrarse como Institución");
 		this.setBounds(100, 100, 1000, 700);
@@ -182,8 +188,9 @@ public class RegistrarseInstitucion extends JFrame{
 
     		@Override
     		public void itemStateChanged(ItemEvent e) {
-    			 if (e.getStateChange()==ItemEvent.SELECTED)
+    			 if (e.getStateChange()==ItemEvent.SELECTED) {
       			   bRegistrar.setEnabled(true);
+    			 log.log(Level.FINE, "Las condiciones de uso han sido aceptadas. ");}
       	   else
       		   
       	        bRegistrar.setEnabled(false);
@@ -209,6 +216,7 @@ public class RegistrarseInstitucion extends JFrame{
 				JOptionPane.showMessageDialog(null, "El código es "+ institucionnueva.getaCodigo()+"\n Y la contraseña es " + institucionnueva.getaContrasenya());
 				new IniciarSesion().setVisible(true);
                 setVisible(false);
+                log.log(Level.INFO, "Se ha registrado como institucion.");
 				//BORRAR ANTES DE ENVIAR
 				System.out.println(institucionnueva.getaCodigo());
 				System.out.println(institucionnueva.getaContrasenya());

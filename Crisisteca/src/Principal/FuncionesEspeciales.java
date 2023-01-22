@@ -8,20 +8,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import BasesDeDatos.BDCiudadano;
 import Entidades.Ciudadano;
 import Entidades.Institucion;
 
 public class FuncionesEspeciales {
-
+ static Logger log;
 	/** Genera un serie de 20 caracteres aleatorios (formado por letras mayúsculas, minúsculas y números)
 	 *	para ser usados como contraseña
 	 *	@param alfabeto		String con todos los caracteres que pueden ser añadidos en la contraseña (mayúsculas, minúsculas y números)
 	 *	@param contrasenya String vacío que se convertirá en el String devuelto
 	 *	@return String generado aleatoriamente
 	 */
-	
+ 	
 	public static String crearContraseña(String alfabeto, String contrasenya) {
 		boolean cogerNumero = new Random().nextBoolean();
 		if (contrasenya.length() == 20) {return contrasenya;}
@@ -94,7 +96,8 @@ public class FuncionesEspeciales {
 	
 				
 			}catch(Exception e){
-				e.printStackTrace();
+				log = Logger.getLogger("programLogger");
+				log.log(Level.WARNING, "Error en la busqueda de Usuario en la base de datos", e);
 				return null;
 			}
 			return -1;
@@ -129,7 +132,8 @@ public class FuncionesEspeciales {
 				return valorPaCerrar;
 				
 			}catch(Exception e){
-				e.printStackTrace();
+				log = Logger.getLogger("programLogger");
+				log.log(Level.WARNING, "Hubo un error en buscar si el DNI esta duplicado", e);
 				return false;
 			}	
 		}
@@ -148,7 +152,8 @@ public class FuncionesEspeciales {
 			return valorPaCerrar;
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			log = Logger.getLogger("programLogger");
+			log.log(Level.WARNING, "Hubo un error en buscar si el Telefono esta duplicado", e);
 			return false;
 		}	
 	}

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 
@@ -20,7 +21,8 @@ import Ventanas.VentanaInicio;
 public class BDCiudadano {
 
 private static Connection connected = null;
-
+			
+	static Logger log;
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -46,6 +48,8 @@ private static Connection connected = null;
 						
 			} 
 		catch (Exception e) {
+			log = Logger.getLogger("programLogger");
+			log.log(Level.SEVERE, "Error creando una sentencia al iniciar la base de datos",e);
 			return null;
 		}
 	}
@@ -58,7 +62,8 @@ private static Connection connected = null;
 			if (st!=null) st.close();
 			if (con!=null) con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log = Logger.getLogger("programLogger");
+			log.log(Level.SEVERE, "Error al cerrar la base de datos",e);
 		}
 	}
 
@@ -94,7 +99,8 @@ private static Connection connected = null;
 			    cerrarBD(initBD().getConnection(), st);
 				return true;
 			}catch (Exception e) {
-				e.printStackTrace();
+				log = Logger.getLogger("programLogger");
+				log.log(Level.WARNING, "Error al Insertar valores en la tabla ciudadano",e);
 				return false;
 			}  
 	    }
@@ -117,7 +123,8 @@ private static Connection connected = null;
 	    cerrarBD(initBD().getConnection(), st);
 
 		}catch(Exception e) {
-			e.printStackTrace();
+			log = Logger.getLogger("programLogger");
+			log.log(Level.WARNING, "Error al comprobar si seleccionamos un ciudadano",e);
 		}			
 	}
 	

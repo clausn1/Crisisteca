@@ -5,14 +5,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.SwingUtilities;
 import Entidades.Institucion;
 import Principal.FuncionesEspeciales;
 
 public class BDInstitucion {
-
+	static Logger log;
 	//Tenemos esto para cargar BDInstitucion		
 	public static void main(String[] args) {
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
@@ -25,6 +29,7 @@ public class BDInstitucion {
 	/* Crea una sentencia de base de datos
 	 * return: st (sentencia de trabajo si se crea correctamente), en caso de error devuelve null
 	 */
+
 	public static Statement initBD() {
 		try {
 	 		Class.forName("org.sqlite.JDBC");
@@ -35,6 +40,8 @@ public class BDInstitucion {
 						
 			} 
 		catch (Exception e) {
+			log = Logger.getLogger("programLogger");
+			log.log(Level.SEVERE, "Error creando una sentencia al iniciar la base de datos",e);
 			return null;
 		}
 	}
@@ -47,7 +54,8 @@ public class BDInstitucion {
 			if (st!=null) st.close();
 			if (con!=null) con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log = Logger.getLogger("programLogger");
+			log.log(Level.SEVERE, "Error al cerrar la base de datos",e);
 		}
 	}
 	
@@ -73,7 +81,8 @@ public class BDInstitucion {
 	        return true;  
 	            
 	    } catch (SQLException e) {
-	    	e.printStackTrace();
+			log = Logger.getLogger("programLogger");
+			log.log(Level.WARNING, "Error al Insertar valores en la tabla institucion",e);
 	        return false;
 	    }        
 	}
@@ -93,8 +102,8 @@ public class BDInstitucion {
 				System.out.println(institucion);
 			}
 			} catch(Exception e) {
-				System.out.println("no ha funcionao");
-				e.printStackTrace();
+				log = Logger.getLogger("programLogger");
+				log.log(Level.WARNING, "Error al comprobar si seleccionamos una institucion",e);
 			}				
 		}	
 	}
