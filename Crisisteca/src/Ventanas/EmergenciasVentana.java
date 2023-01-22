@@ -43,13 +43,10 @@ public class EmergenciasVentana extends JFrame{
         this.setSize(700,700);
 		this.setResizable(false);
 		
-		JButton bFiltrar = new JButton("Filtros de busqueda");
 		JFrame fFiltros;
-		JButton bLimpiar = new JButton("Limpiar filtros de busqueda");
 		
 		// panel de los botones de busqueda
 		JPanel pnlBotones = new JPanel();
-		pnlBotones.add(bFiltrar);
 		//frame de los filtros de busqueda
 			fFiltros = new JFrame("Filtros de busqueda");
 			fFiltros.setSize(new Dimension(500,600));
@@ -150,7 +147,8 @@ public class EmergenciasVentana extends JFrame{
 	
 		//Metemos los valores de la base de datos en la tabla
 		Statement st = BDEmergencias.initBD();
-		ResultSet rs = st.executeQuery("SELECT Codigo Postal, Tipo Emergencia, Fecha FROM Emergencias ORDER BY Fecha DESC; ");
+//		st.executeUpdate("create table if not exists Emergencias (  CodigoPostal integer, CalleNumero string,  TipoEmergencia string, Telefono integer, Reportar boolean, DetallesInformación string, Fecha date);");
+		ResultSet rs = st.executeQuery("SELECT CodigoPostal, TipoEmergencia, Fecha FROM Emergencias WHERE CodigoPostal = " + ciudadano.getaCodigoPostal() + " ORDER BY Fecha DESC; ");
 		
 		while(rs.next()) {
 			Object [] fila = new Object[3]; 
@@ -168,113 +166,70 @@ public class EmergenciasVentana extends JFrame{
 
 		log = Logger.getLogger("programLogger");
 		
-		ActionListener alFiltrar = new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				fFiltros.setVisible(true);
-				bFiltrar.setEnabled(false);
-        		
-			}
-		};
-		bFiltrar.addActionListener(alFiltrar);
-		
-		
-		ActionListener alAplican = new ActionListener() {
-			
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				fFiltros.setVisible(false);
-				log.log(Level.FINE, "Se han filtrado los resultados de la vista de informacion de interes");
-				ArrayList<String> filtroArrayCp= new ArrayList<String>();
-				
-				//El filtro del codigo postal
-				for(int i =0; i<arrayCP.size();i++)
-					if(!arrayCP.get(i).isSelected())
-						filtroArrayCp.add(arrayCP.get(i).getText());
-				ArrayList<Integer> rowsToRemove= new ArrayList<Integer>();
-				for(int i=0; i<tInformacion.getRowCount();i++) {
-					if(filtroArrayCp.contains(tInformacion.getValueAt(i, 0).toString()))
-						rowsToRemove.add(i);
-				}
-				int z=0;
-				for(int i=0;i<rowsToRemove.size();i++) {
-					tInformacion.removeRow(rowsToRemove.get(i)-z);
-					z++;
-				}
-				rowsToRemove.clear();
-				
-				//El filtro de el tipo de emergencia
-				for(int i=0; i<tInformacion.getRowCount();i++) {
-					if(!cbCoche.isSelected())
-					if( tInformacion.getValueAt(i, 1).equals("Coche"))
-						rowsToRemove.add(i);
-					if(!cbRobo.isSelected())
-					if( tInformacion.getValueAt(i, 1).equals("Robo"))
-						rowsToRemove.add(i);
-					 if(!cbViolencia.isSelected())
-					if( tInformacion.getValueAt(i, 1).equals("Violencia"))
-						rowsToRemove.add(i);
-				}
-				z=0;
-				for(int i=0;i<rowsToRemove.size();i++) {
-					tInformacion.removeRow(rowsToRemove.get(i)-z);
-					z++;
-				}
-				rowsToRemove.clear();
-				//El filtro de la fecha
-				for(int i = 0;i<tInformacion.getRowCount();i++) {
-					
-					String partir[]=tInformacion.getValueAt(i, 2).toString().split(" ");
-					String partes[]=partir[0].split("-");
-					if(cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())>Integer.parseInt(partes[0])||cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())<Integer.parseInt(partes[0])) 
-						rowsToRemove.add(i);
-			
-					else if(cbDesdeMes.getItemAt(cbDesdeMes.getSelectedIndex())>Integer.parseInt(partes[1])&&cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())==Integer.parseInt(partes[0])||cbHastaMes.getItemAt(cbHastaMes.getSelectedIndex())<Integer.parseInt(partes[1])&&cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())==Integer.parseInt(partes[0]))
-						rowsToRemove.add(i);
-					else if(cbDesdeDia.getItemAt(cbDesdeDia.getSelectedIndex())>Integer.parseInt(partes[2])&&cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())==Integer.parseInt(partes[0])&&cbDesdeMes.getItemAt(cbDesdeMes.getSelectedIndex())==Integer.parseInt(partes[1])||cbHastaDia.getItemAt(cbHastaDia.getSelectedIndex())<Integer.parseInt(partes[2])&&cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())==Integer.parseInt(partes[0])&&cbHastaMes.getItemAt(cbHastaMes.getSelectedIndex())==Integer.parseInt(partes[1]))
-						rowsToRemove.add(i);				
-				}
-				z=0;
-				for(int i=0;i<rowsToRemove.size();i++) {
-					tInformacion.removeRow(rowsToRemove.get(i)-z);
-					z++;
-				}
-
-			}
-		};
-		bAplicar.addActionListener(alAplican);
-		
-		
-		ActionListener alLimpiar = new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				tInformacion.setRowCount(0);;
-				Statement st = BDEmergencias.initBD();
-				ResultSet rs = null;
-				try {
-					rs = st.executeQuery("SELECT Codigo Postal, Tipo Emergencia, Fecha FROM Emergencias ORDER BY Fecha DESC; ");
-					while(rs.next()) {
-						Object [] fila = new Object[3]; 
-
-						   for (int i=0;i<3;i++)
-						      fila[i] = rs.getObject(i+1); 
-
-					
-						   tInformacion.addRow(fila);
-					}
-				} catch (SQLException e1) {
-
-					log.log(Level.WARNING, "No se ha podido crear la tabla al limpiar los filtros");
-				}
-				bFiltrar.setEnabled(true);
-				
-			}
-		};
-		bLimpiar.addActionListener(alLimpiar);
-		
+//		ActionListener alAplican = new ActionListener() {
+//			
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				fFiltros.setVisible(false);
+//				log.log(Level.FINE, "Se han filtrado los resultados de la vista de informacion de interes");
+//				ArrayList<String> filtroArrayCp= new ArrayList<String>();
+//				
+//				//El filtro del codigo postal
+//				for(int i =0; i<arrayCP.size();i++)
+//					if(!arrayCP.get(i).isSelected())
+//						filtroArrayCp.add(arrayCP.get(i).getText());
+//				ArrayList<Integer> rowsToRemove= new ArrayList<Integer>();
+//				for(int i=0; i<tInformacion.getRowCount();i++) {
+//					if(filtroArrayCp.contains(tInformacion.getValueAt(i, 0).toString()))
+//						rowsToRemove.add(i);
+//				}
+//				int z=0;
+//				for(int i=0;i<rowsToRemove.size();i++) {
+//					tInformacion.removeRow(rowsToRemove.get(i)-z);
+//					z++;
+//				}
+//				rowsToRemove.clear();
+//				
+//				//El filtro de el tipo de emergencia
+//				for(int i=0; i<tInformacion.getRowCount();i++) {
+//					if(!cbCoche.isSelected())
+//					if( tInformacion.getValueAt(i, 1).equals("Coche"))
+//						rowsToRemove.add(i);
+//					if(!cbRobo.isSelected())
+//					if( tInformacion.getValueAt(i, 1).equals("Robo"))
+//						rowsToRemove.add(i);
+//					 if(!cbViolencia.isSelected())
+//					if( tInformacion.getValueAt(i, 1).equals("Violencia"))
+//						rowsToRemove.add(i);
+//				}
+//				z=0;
+//				for(int i=0;i<rowsToRemove.size();i++) {
+//					tInformacion.removeRow(rowsToRemove.get(i)-z);
+//					z++;
+//				}
+//				rowsToRemove.clear();
+//				//El filtro de la fecha
+//				for(int i = 0;i<tInformacion.getRowCount();i++) {
+//					
+//					String partir[]=tInformacion.getValueAt(i, 2).toString().split(" ");
+//					String partes[]=partir[0].split("-");
+//					if(cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())>Integer.parseInt(partes[0])||cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())<Integer.parseInt(partes[0])) 
+//						rowsToRemove.add(i);
+//			
+//					else if(cbDesdeMes.getItemAt(cbDesdeMes.getSelectedIndex())>Integer.parseInt(partes[1])&&cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())==Integer.parseInt(partes[0])||cbHastaMes.getItemAt(cbHastaMes.getSelectedIndex())<Integer.parseInt(partes[1])&&cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())==Integer.parseInt(partes[0]))
+//						rowsToRemove.add(i);
+//					else if(cbDesdeDia.getItemAt(cbDesdeDia.getSelectedIndex())>Integer.parseInt(partes[2])&&cbDesdeAño.getItemAt(cbDesdeAño.getSelectedIndex())==Integer.parseInt(partes[0])&&cbDesdeMes.getItemAt(cbDesdeMes.getSelectedIndex())==Integer.parseInt(partes[1])||cbHastaDia.getItemAt(cbHastaDia.getSelectedIndex())<Integer.parseInt(partes[2])&&cbHastaAño.getItemAt(cbHastaAño.getSelectedIndex())==Integer.parseInt(partes[0])&&cbHastaMes.getItemAt(cbHastaMes.getSelectedIndex())==Integer.parseInt(partes[1]))
+//						rowsToRemove.add(i);				
+//				}
+//				z=0;
+//				for(int i=0;i<rowsToRemove.size();i++) {
+//					tInformacion.removeRow(rowsToRemove.get(i)-z);
+//					z++;
+//				}
+//
+//			}
+//		};
 		
 		addWindowListener(new java.awt.event.WindowAdapter() {
 	        public void windowClosing(java.awt.event.WindowEvent e) {
@@ -287,7 +242,6 @@ public class EmergenciasVentana extends JFrame{
 		JPanel pnlMain = new JPanel();
 		pnlMain.setLayout(new BorderLayout());
 		pnlMain.add(pnlBotones, BorderLayout.NORTH);
-		pnlMain.add(bLimpiar, BorderLayout.SOUTH);
 		pnlMain.add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
 
 		getContentPane().add(pnlMain);
